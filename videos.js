@@ -4,13 +4,13 @@
 // For Azure: use 'type: azure' and the full embed URL.
 const videoList = [
     {
-        sequence: 1,
+        sequence: 2,
         type: 'youtube',
         link: '8MuTZAbvPAE', 
         title: 'Connect Python with Power Apps'
     },
     {
-        sequence: 2,
+        sequence: 1,
         type: 'youtube',
         link: 'oVMiLzE-K1I',
         title: 'About Us'
