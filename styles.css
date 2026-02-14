@@ -83,6 +83,11 @@ body {
   letter-spacing: 0.2px;
 }
 
+.logo img {
+  height: 50px; /* Adjusts logo size to fit the header */
+  width: auto;
+}
+
 .nav-list {
   list-style: none;
   margin: 0;
