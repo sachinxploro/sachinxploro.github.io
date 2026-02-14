@@ -1,24 +1,31 @@
 // Customer Success Stories Data
 const customerList = [
-    {
-        customerName: "Prithu Homes",
-        customerWebsite: "https://www.prithu.in",
-        customerLogo: "assets/logo_placeholder.png", 
-        customerImage: "assets/md_image_placeholder.jpg",
-        problemStatement: "A prominent construction company engaged in redevelopment faced challenges with manual approvals, planning, and reporting.",
-        solution: "DigitalAIGarage.com implemented a workflow automation stack to digitize approvals, planning, and reporting. This resulted in unified task management, automated reports, and higher project visibility."
-    }
+  {
+    customerName: "Prithu Homes",
+    customerWebsite: "https://www.prithu.in",
+    customerLogo:
+      "https://static.wixstatic.com/media/0a2938_171c080f36db4e27aeb095ca065a1d57~mv2.png/v1/fill/w_348,h_130,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Prithu%20Homes%20Logo.png",
+    customerImage: "assets/md_image_placeholder.jpg",
+
+    businessChallenge: "Escalating CRM Licensing & Maintenance Costs",
+
+    problemStatement:
+      "The organization faced rising CRM operating expenses driven by high licensing fees, ongoing customization efforts, and maintenance overhead. The legacy CRM platform offered limited flexibility and lacked seamless integration with other enterprise applications, resulting in fragmented workflows and reduced operational efficiency.",
+
+    solution:
+      "We designed and implemented a fully integrated CRM solution using Microsoft Power Apps, Power Automate, and Azure Cloud services. The new platform reduced licensing costs by 50%, digitized approvals and project planning processes, and enabled automated reporting. This transformation delivered unified task management, improved cross-functional visibility, and enhanced overall project governance.",
+  },
 ];
 
-const customerContainer = document.querySelector('.customer-scroll-container');
+const customerContainer = document.querySelector(".customer-scroll-container");
 
 if (customerContainer) {
-    customerList.forEach(customer => {
-        const card = document.createElement('div');
-        card.className = 'customer-card';
-        
-        // Create the card content
-        card.innerHTML = `
+  customerList.forEach((customer) => {
+    const card = document.createElement("div");
+    card.className = "customer-card";
+
+    // Create the card content
+    card.innerHTML = `
             <div class="customer-header">
                 <!-- You can uncomment the image tag below if you have actual logos -->
                 <!-- <img src="${customer.customerLogo}" alt="${customer.customerName}" class="customer-logo"> -->
@@ -37,6 +44,6 @@ if (customerContainer) {
                 </div>
             </div>
         `;
-        customerContainer.appendChild(card);
-    });
+    customerContainer.appendChild(card);
+  });
 }
