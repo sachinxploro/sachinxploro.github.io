@@ -8,12 +8,6 @@ const videoList = [
         type: 'youtube',
         link: '8MuTZAbvPAE', 
         title: 'Construction Industry Process Transformation'
-    },
-    {
-        sequence: 2,
-        type: 'youtube',
-        link: 'VIDEO_ID_2', // Replace with actual ID
-        title: 'Future Success Story'
     }
     // Example for Azure:
     // {
@@ -61,7 +55,8 @@ if (videoContainer) {
 
         // Render Thumbnail + Play Button
         if (video.type === 'youtube') {
-            const thumbUrl = `https://img.youtube.com/vi/${video.link}/maxresdefault.jpg`;
+            // Use hqdefault.jpg (High Quality) as it is reliable for all videos.
+            const thumbUrl = `https://img.youtube.com/vi/${video.link}/hqdefault.jpg`;
             videoCard.innerHTML = `
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; background: #000;">
                     <img src="${thumbUrl}" alt="${video.title}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
