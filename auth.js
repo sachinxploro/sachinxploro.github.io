@@ -23,7 +23,7 @@ const myMSALObj = new msal.PublicClientApplication(msalConfig);
 
 // Optimization: If this page is loaded in a popup (during login), hide the UI
 if (window.opener && window !== window.opener) {
-    document.body.style.display = "none";
+    document.documentElement.style.display = "none";
 }
 
 let username = "";
