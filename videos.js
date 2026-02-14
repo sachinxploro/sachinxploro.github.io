@@ -7,7 +7,13 @@ const videoList = [
         sequence: 1,
         type: 'youtube',
         link: '8MuTZAbvPAE', 
-        title: 'Construction Industry Process Transformation'
+        title: 'Connect Python with Power Apps'
+    },
+    {
+        sequence: 2,
+        type: 'youtube',
+        link: 'oVMiLzE-K1I',
+        title: 'About Us'
     }
     // Example for Azure:
     // {
@@ -62,6 +68,7 @@ if (videoContainer) {
                     <img src="${thumbUrl}" alt="${video.title}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
                     <div class="play-button"></div>
                 </div>
+                <div style="padding: 1rem; text-align: center; font-weight: 600;">${video.title}</div>
             `;
         } else {
             // Fallback for non-YouTube videos (show iframe with overlay to capture click)
@@ -70,6 +77,7 @@ if (videoContainer) {
                     <iframe width="100%" height="100%" src="${video.link}" frameborder="0" style="pointer-events: none;"></iframe>
                     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;"></div>
                 </div>
+                <div style="padding: 1rem; text-align: center; font-weight: 600;">${video.title}</div>
             `;
         }
 
