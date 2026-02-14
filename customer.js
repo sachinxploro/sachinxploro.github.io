@@ -6,7 +6,7 @@ const customerList = [
     customerLogo:
       "https://static.wixstatic.com/media/0a2938_171c080f36db4e27aeb095ca065a1d57~mv2.png/v1/fill/w_348,h_130,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Prithu%20Homes%20Logo.png",
     customerImage: "assets/md_image_placeholder.jpg",
-
+    showcompanyName: false,
     businessChallenge: "Escalating CRM Licensing & Maintenance Costs",
 
     problemStatement:
@@ -17,6 +17,8 @@ const customerList = [
   },
 ];
 
+//--------------------xxx----------------------------------xxx-------------------
+
 const customerContainer = document.querySelector(".customer-scroll-container");
 
 if (customerContainer) {
@@ -24,13 +26,15 @@ if (customerContainer) {
     const card = document.createElement("div");
     card.className = "customer-card";
 
+    const hasLogo =
+      customer.customerLogo && customer.customerLogo.trim() !== "";
+    const showName = !hasLogo || customer.showcompanyName;
+
     // Create the card content
     card.innerHTML = `
             <div class="customer-header">
-                <img src="${customer.customerLogo}" alt="${customer.customerName}" class="customer-logo">
-                <h3>
-                    <a href="${customer.customerWebsite}" target="_blank">${customer.customerName}</a>
-                </h3>
+                ${hasLogo ? `<a href="${customer.customerWebsite}" target="_blank"><img src="${customer.customerLogo}" alt="${customer.customerName}" class="customer-logo"></a>` : ""}
+                ${showName ? `<h3><a href="${customer.customerWebsite}" target="_blank">${customer.customerName}</a></h3>` : ""}
             </div>
             <div class="customer-body">
                 <div class="info-block problem">
