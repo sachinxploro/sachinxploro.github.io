@@ -81,6 +81,9 @@ body {
   text-decoration: none;
   font-weight: 800;
   letter-spacing: 0.2px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .logo img {
