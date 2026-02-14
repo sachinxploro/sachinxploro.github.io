@@ -27,8 +27,7 @@ if (customerContainer) {
     // Create the card content
     card.innerHTML = `
             <div class="customer-header">
-                <!-- You can uncomment the image tag below if you have actual logos -->
-                <!-- <img src="${customer.customerLogo}" alt="${customer.customerName}" class="customer-logo"> -->
+                <img src="${customer.customerLogo}" alt="${customer.customerName}" class="customer-logo">
                 <h3>
                     <a href="${customer.customerWebsite}" target="_blank">${customer.customerName}</a>
                 </h3>

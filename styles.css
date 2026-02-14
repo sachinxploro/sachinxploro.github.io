@@ -548,6 +548,14 @@ body {
   background: rgba(22, 33, 66, 0.6);
 }
 
+.customer-logo {
+  display: block;
+  max-height: 50px;
+  max-width: 100%;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
 .customer-header h3 {
   margin: 0;
   font-size: 1.3rem;
