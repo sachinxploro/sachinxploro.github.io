@@ -492,3 +492,98 @@ body {
   padding: 5px;
   line-height: 1;
 }
+
+/* Customer Carousel (Frosted Glass UI) */
+.customer-scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 1rem 0.5rem 2rem; /* Bottom padding for scrollbar/shadow space */
+  -webkit-overflow-scrolling: touch;
+  
+  /* Custom Scrollbar Styling */
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--surface);
+}
+
+.customer-scroll-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.customer-scroll-wrapper::-webkit-scrollbar-track {
+  background: var(--surface);
+  border-radius: 4px;
+}
+
+.customer-scroll-wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--accent);
+  border-radius: 4px;
+}
+
+.customer-scroll-container {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content; /* Ensures container expands horizontally */
+}
+
+.customer-card {
+  width: 380px;
+  min-width: 380px;
+  /* Frosted Glass Effect */
+  background: rgba(22, 33, 66, 0.4); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.customer-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  background: rgba(22, 33, 66, 0.6);
+}
+
+.customer-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.customer-header a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.info-block strong {
+  display: block;
+  color: #fff;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+  opacity: 0.9;
+}
+
+.info-block p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.info-block.problem {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 600px) {
+  .customer-card {
+    width: 300px;
+    min-width: 300px;
+  }
+}
