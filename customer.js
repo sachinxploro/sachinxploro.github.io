@@ -18,7 +18,7 @@ const customerList = [
   },
   {
     customerName: "Kashvi Metals",
-    customerWebsite: "https://www.prithu.in",
+    customerWebsite: "https://www.kashvimetals.com",
     customerLogo: "",
     customerImage: "assets/md_image_placeholder.jpg",
     showcompanyName: true,
