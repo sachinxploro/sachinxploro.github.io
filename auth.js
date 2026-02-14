@@ -21,6 +21,11 @@ const msalConfig = {
 // Create the main MSAL instance
 const myMSALObj = new msal.PublicClientApplication(msalConfig);
 
+// Optimization: If this page is loaded in a popup (during login), hide the UI
+if (window.opener && window !== window.opener) {
+    document.body.style.display = "none";
+}
+
 let username = "";
 
 /**
@@ -38,7 +43,7 @@ async function initializeMsal() {
         
         if (response) {
             handleResponse(response);
-        } else {
+        } else if (!window.opener) {
             // Check if user is already signed in via cache
             const currentAccounts = myMSALObj.getAllAccounts();
             if (currentAccounts.length > 0) {
