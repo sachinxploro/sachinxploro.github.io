@@ -138,7 +138,7 @@
         "countTarget": {
           "selector": "#stat-2-num",
           "attribute": "data-target",
-          "value": "50"
+          "value": "10"
         },
         "suffix": {
           "selector": "#stat-2-plus",
@@ -153,7 +153,7 @@
         "countTarget": {
           "selector": "#stat-3-num",
           "attribute": "data-target",
-          "value": "200"
+          "value": "4"
         },
         "suffix": {
           "selector": "#stat-3-plus",
@@ -168,7 +168,7 @@
         "countTarget": {
           "selector": "#stat-4-num",
           "attribute": "data-target",
-          "value": "12"
+          "value": "10"
         },
         "label": {
           "selector": "#stat-4-label",
