@@ -3,15 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Content JSON Editor</title>
+    <title>Static Content Data</title>
     <style>
       :root {
-        --bg: #f5f7fb;
+        --bg: #ececec;
         --surface: #ffffff;
-        --text: #1d2533;
-        --muted: #5d6980;
-        --line: #d9e0ec;
-        --accent: #0c6cf2;
+        --text: #0f1723;
+        --muted: #3f4a60;
+        --line: #cfd5e0;
+        --accent: #156bc7;
+        --value-bg: #f1efd9;
       }
 
       * {
@@ -26,37 +27,48 @@
       }
 
       .page {
-        max-width: 1200px;
+        max-width: 1240px;
         margin: 0 auto;
-        padding: 24px;
+        padding: 20px 24px 40px;
       }
 
-      .topbar {
-        display: flex;
-        justify-content: space-between;
-        gap: 16px;
-        align-items: center;
+      .back-link {
+        display: inline-block;
         margin-bottom: 16px;
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 700;
       }
 
-      .topbar h1 {
-        font-size: 1.2rem;
-        margin: 0;
+      .header-box {
+        border-top: 1px solid #ddd;
+        padding-top: 18px;
+        margin-bottom: 22px;
       }
 
-      .actions {
+      .header-box h1 {
+        margin: 0 0 6px;
+        font-size: 2rem;
+      }
+
+      .header-box p {
+        margin: 0 0 10px;
+        color: var(--muted);
+      }
+
+      .toolbar {
         display: flex;
-        gap: 10px;
         align-items: center;
+        gap: 12px;
       }
 
       button {
         border: 0;
-        border-radius: 8px;
-        padding: 10px 14px;
+        border-radius: 3px;
+        padding: 7px 12px;
         background: var(--accent);
         color: #fff;
-        font-weight: 600;
+        font-weight: 700;
         cursor: pointer;
       }
 
@@ -65,90 +77,110 @@
         font-size: 0.9rem;
       }
 
+      .section-block + .section-block {
+        margin-top: 26px;
+      }
+
+      .section-block h2 {
+        margin: 0 0 12px;
+        font-size: 2rem;
+        text-transform: capitalize;
+      }
+
       .table-wrap {
         background: var(--surface);
         border: 1px solid var(--line);
-        border-radius: 12px;
         overflow: auto;
       }
 
       table {
         width: 100%;
         border-collapse: collapse;
-        min-width: 900px;
+        min-width: 1000px;
       }
 
       th,
       td {
-        padding: 10px 12px;
-        border-bottom: 1px solid var(--line);
+        padding: 8px 9px;
+        border: 1px solid var(--line);
         vertical-align: top;
         text-align: left;
+        font-size: 0.9rem;
       }
 
       th {
-        font-size: 0.85rem;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.03em;
+        color: #fff;
+        background: var(--accent);
+        font-size: 0.88rem;
       }
 
-      td.path {
-        width: 28%;
-        color: var(--muted);
-        font-size: 0.9rem;
-      }
-
-      td.selector {
-        width: 24%;
+      td.key {
+        width: 19%;
         font-family: Consolas, monospace;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
       }
 
       td.value {
-        width: 48%;
+        width: 36%;
+        background: var(--value-bg);
+      }
+
+      td.path {
+        width: 25%;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      td.selector {
+        width: 20%;
+        font-family: Consolas, monospace;
+        font-size: 0.85rem;
       }
 
       textarea {
         width: 100%;
-        min-height: 64px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
+        min-height: 58px;
+        border: 1px solid #c5c9d3;
+        background: #fffdf3;
         padding: 8px;
         font: inherit;
         resize: vertical;
+      }
+
+      .empty {
+        color: var(--muted);
+        font-style: italic;
+        border: 1px dashed var(--line);
+        padding: 12px;
+        background: #fafafa;
       }
     </style>
   </head>
   <body>
     <div class="page">
-      <div class="topbar">
-        <h1>Content JSON Table View</h1>
-        <div class="actions">
+      <a class="back-link" href="index.html">Back to Home</a>
+
+      <div class="header-box">
+        <h1>Static Content Data</h1>
+        <p>This page displays the raw data configured in <code>content.json</code>.</p>
+        <div class="toolbar">
+          <button id="downloadBtn" type="button">Download JSON</button>
           <span id="rowCount" class="status">Loading...</span>
-          <button id="downloadBtn" type="button">Download Json</button>
         </div>
       </div>
 
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Group Path</th>
-              <th>Selector</th>
-              <th>Value</th>
-            </tr>
-          </thead>
-          <tbody id="contentRows"></tbody>
-        </table>
-      </div>
+      <div id="sectionsContainer"></div>
     </div>
 
     <script>
       let contentData = null;
 
-      function getPathLabel(pathParts) {
-        return pathParts.join(" > ");
+      function normalizePath(pathParts) {
+        return pathParts
+          .map(function (part) {
+            return String(part).replace(/^\[(\d+)\]$/, "item$1");
+          })
+          .join(" > ");
       }
 
       function collectRows(node, pathParts, rows) {
@@ -158,57 +190,91 @@
           typeof node.selector === "string" &&
           Object.prototype.hasOwnProperty.call(node, "value")
         ) {
-          rows.push({
-            path: getPathLabel(pathParts),
-            selector: node.selector,
-            nodeRef: node,
-          });
+          rows.push({ path: pathParts.slice(), selector: node.selector, nodeRef: node });
           return;
         }
 
         if (Array.isArray(node)) {
           node.forEach(function (item, index) {
-            collectRows(item, pathParts.concat("item" + (index + 1)), rows);
+            collectRows(item, pathParts.concat("[" + (index + 1) + "]"), rows);
           });
           return;
         }
 
-        Object.entries(node).forEach(function (entry) {
-          const key = entry[0];
-          const value = entry[1];
+        Object.entries(node).forEach(function ([key, value]) {
           collectRows(value, pathParts.concat(key), rows);
         });
       }
 
-      function renderRows(rows) {
-        const tbody = document.getElementById("contentRows");
-        tbody.innerHTML = "";
+      function renderSections(rows) {
+        const container = document.getElementById("sectionsContainer");
+        container.innerHTML = "";
 
+        const bySection = {};
         rows.forEach(function (row) {
-          const tr = document.createElement("tr");
-
-          const pathTd = document.createElement("td");
-          pathTd.className = "path";
-          pathTd.textContent = row.path;
-
-          const selectorTd = document.createElement("td");
-          selectorTd.className = "selector";
-          selectorTd.textContent = row.selector;
-
-          const valueTd = document.createElement("td");
-          valueTd.className = "value";
-          const textarea = document.createElement("textarea");
-          textarea.value = String(row.nodeRef.value ?? "");
-          textarea.addEventListener("input", function () {
-            row.nodeRef.value = textarea.value;
-          });
-          valueTd.appendChild(textarea);
-
-          tr.appendChild(pathTd);
-          tr.appendChild(selectorTd);
-          tr.appendChild(valueTd);
-          tbody.appendChild(tr);
+          const sectionName = row.path.length > 0 ? row.path[0] : "root";
+          bySection[sectionName] = bySection[sectionName] || [];
+          bySection[sectionName].push(row);
         });
+
+        const sectionNames = Object.keys(bySection).sort();
+        sectionNames.forEach(function (sectionName) {
+          const block = document.createElement("section");
+          block.className = "section-block";
+
+          const heading = document.createElement("h2");
+          heading.textContent = sectionName;
+          block.appendChild(heading);
+
+          const tableWrap = document.createElement("div");
+          tableWrap.className = "table-wrap";
+          const table = document.createElement("table");
+          table.innerHTML =
+            "<thead><tr><th>Key</th><th>Value</th><th>Group Path</th><th>Selector</th></tr></thead>";
+          const tbody = document.createElement("tbody");
+
+          bySection[sectionName].forEach(function (row) {
+            const tr = document.createElement("tr");
+            const keyTd = document.createElement("td");
+            keyTd.className = "key";
+            keyTd.textContent = row.path[row.path.length - 1] || "";
+
+            const valueTd = document.createElement("td");
+            valueTd.className = "value";
+            const textarea = document.createElement("textarea");
+            textarea.value = String(row.nodeRef.value ?? "");
+            textarea.addEventListener("input", function () {
+              row.nodeRef.value = textarea.value;
+            });
+            valueTd.appendChild(textarea);
+
+            const pathTd = document.createElement("td");
+            pathTd.className = "path";
+            pathTd.textContent = normalizePath(row.path);
+
+            const selectorTd = document.createElement("td");
+            selectorTd.className = "selector";
+            selectorTd.textContent = row.selector;
+
+            tr.appendChild(keyTd);
+            tr.appendChild(valueTd);
+            tr.appendChild(pathTd);
+            tr.appendChild(selectorTd);
+            tbody.appendChild(tr);
+          });
+
+          table.appendChild(tbody);
+          tableWrap.appendChild(table);
+          block.appendChild(tableWrap);
+          container.appendChild(block);
+        });
+
+        if (sectionNames.length === 0) {
+          const empty = document.createElement("div");
+          empty.className = "empty";
+          empty.textContent = "No content entries found.";
+          container.appendChild(empty);
+        }
 
         document.getElementById("rowCount").textContent =
           rows.length + " content entries";
@@ -237,7 +303,7 @@
           contentData = await response.json();
           const rows = [];
           collectRows(contentData, [], rows);
-          renderRows(rows);
+          renderSections(rows);
         } catch (error) {
           document.getElementById("rowCount").textContent =
             "Failed to load content.json";

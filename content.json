@@ -233,6 +233,220 @@
       "value": "info@DigitalAIGarage.com"
     }
   },
+  "aboutPage": {
+    "head": {
+      "pageTitle": {
+        "selector": "#about-page-title",
+        "value": "About Us | Digital AI Garage"
+      },
+      "metaDescription": {
+        "selector": "#about-meta-description",
+        "value": "About Digital AI Garage: process digitization, automation, and integration."
+      }
+    },
+    "header": {
+      "logoText": {
+        "selector": "#about-logo-text",
+        "value": "Digital AI Garage"
+      },
+      "navHome": {
+        "selector": "#about-nav-home",
+        "value": "Home"
+      },
+      "navCapabilities": {
+        "selector": "#about-nav-capabilities",
+        "value": "Capabilities"
+      },
+      "navJourney": {
+        "selector": "#about-nav-journey",
+        "value": "Journey"
+      },
+      "navContact": {
+        "selector": "#about-nav-contact",
+        "value": "Contact"
+      }
+    },
+    "hero": {
+      "eyebrow": {
+        "selector": "#about-hero-eyebrow",
+        "value": "Who Are We"
+      },
+      "title": {
+        "selector": "#about-hero-title",
+        "value": "Digitization, Automation, Integration"
+      },
+      "description": {
+        "selector": "#about-hero-description",
+        "value": "We help organizations digitize and automate repeatable business processes using Microsoft Power Platform and Azure services. Our work focuses on practical transformation: faster decisions, visible workflows, reduced manual effort, and scalable operations."
+      }
+    },
+    "capabilities": {
+      "eyebrow": {
+        "selector": "#about-capabilities-eyebrow",
+        "value": "What We Do"
+      },
+      "title": {
+        "selector": "#about-capabilities-title",
+        "value": "From Manual Processes To Smart Workflows"
+      },
+      "cards": [
+        {
+          "title": {
+            "selector": "#about-cap-card-1-title",
+            "value": "Digitization"
+          },
+          "description": {
+            "selector": "#about-cap-card-1-description",
+            "value": "Convert paper-driven and email-heavy processes into structured digital flows with clear ownership and tracking."
+          }
+        },
+        {
+          "title": {
+            "selector": "#about-cap-card-2-title",
+            "value": "Automation"
+          },
+          "description": {
+            "selector": "#about-cap-card-2-description",
+            "value": "Trigger approvals, notifications, validations, and repetitive actions automatically to reduce delays and errors."
+          }
+        },
+        {
+          "title": {
+            "selector": "#about-cap-card-3-title",
+            "value": "Integration"
+          },
+          "description": {
+            "selector": "#about-cap-card-3-description",
+            "value": "Connect systems like ERP, CRM, finance, and HR so data moves across platforms without duplicate entry."
+          }
+        }
+      ]
+    },
+    "bestFitProcesses": {
+      "eyebrow": {
+        "selector": "#about-bestfit-eyebrow",
+        "value": "Best Fit Processes"
+      },
+      "title": {
+        "selector": "#about-bestfit-title",
+        "value": "Processes That Benefit Most"
+      },
+      "items": [
+        {
+          "selector": "#about-bestfit-item-1",
+          "value": "Multi-team workflows with sequential approvals"
+        },
+        {
+          "selector": "#about-bestfit-item-2",
+          "value": "Role-based access and secure data handling requirements"
+        },
+        {
+          "selector": "#about-bestfit-item-3",
+          "value": "Manual data capture, phone/email follow-ups, and paperwork"
+        },
+        {
+          "selector": "#about-bestfit-item-4",
+          "value": "Compliance, audit trail, and status tracking needs"
+        },
+        {
+          "selector": "#about-bestfit-item-5",
+          "value": "Repetitive operations that can be standardized"
+        }
+      ]
+    },
+    "whyMicrosoft": {
+      "eyebrow": {
+        "selector": "#about-why-eyebrow",
+        "value": "Why Microsoft"
+      },
+      "title": {
+        "selector": "#about-why-title",
+        "value": "Depth Over Breadth"
+      },
+      "description": {
+        "selector": "#about-why-description",
+        "value": "We intentionally specialized in one enterprise ecosystem to deliver stronger quality and faster execution. Power Platform and Azure give us a tightly integrated base to build reliable business apps, custom CRM solutions, automations, and reporting systems tailored to each client."
+      }
+    },
+    "journey": {
+      "eyebrow": {
+        "selector": "#about-journey-eyebrow",
+        "value": "How To Begin"
+      },
+      "title": {
+        "selector": "#about-journey-title",
+        "value": "Start Small, Scale With Confidence"
+      },
+      "steps": [
+        {
+          "title": {
+            "selector": "#about-journey-step-1-title",
+            "value": "Step 1"
+          },
+          "description": {
+            "selector": "#about-journey-step-1-description",
+            "value": "Identify one high-impact process that is manual, repetitive, or approval-heavy."
+          }
+        },
+        {
+          "title": {
+            "selector": "#about-journey-step-2-title",
+            "value": "Step 2"
+          },
+          "description": {
+            "selector": "#about-journey-step-2-description",
+            "value": "Deploy a focused solution quickly and measure improvements in speed, visibility, and control."
+          }
+        },
+        {
+          "title": {
+            "selector": "#about-journey-step-3-title",
+            "value": "Step 3"
+          },
+          "description": {
+            "selector": "#about-journey-step-3-description",
+            "value": "Expand across departments with deeper automation and system integration."
+          }
+        }
+      ]
+    },
+    "technologyStack": {
+      "eyebrow": {
+        "selector": "#about-stack-eyebrow",
+        "value": "Technology Stack"
+      },
+      "items": [
+        {
+          "selector": "#about-stack-item-1",
+          "value": "Power Apps"
+        },
+        {
+          "selector": "#about-stack-item-2",
+          "value": "Power Automate"
+        },
+        {
+          "selector": "#about-stack-item-3",
+          "value": "Dataverse"
+        },
+        {
+          "selector": "#about-stack-item-4",
+          "value": "Power BI"
+        },
+        {
+          "selector": "#about-stack-item-5",
+          "value": "Azure Cloud Services"
+        },
+        {
+          "selector": "#about-stack-item-6",
+          "value": "Open Stack Frontend"
+        }
+      ],
+      "backHome": {
+        "selector": "#about-back-home",
+        "value": "Back to Home"
+      }
+    }
+  },
   "footer": {
     "prefix": {
       "selector": "#footer-prefix",
