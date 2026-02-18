@@ -124,24 +124,52 @@
   "stats": {
     "items": [
       {
+        "countTarget": {
+          "selector": "#stat-1-num",
+          "attribute": "data-target",
+          "value": "5"
+        },
         "label": {
           "selector": "#stat-1-label",
           "value": "Cutting-Edge Technologies"
         }
       },
       {
+        "countTarget": {
+          "selector": "#stat-2-num",
+          "attribute": "data-target",
+          "value": "50"
+        },
+        "suffix": {
+          "selector": "#stat-2-plus",
+          "value": "+"
+        },
         "label": {
           "selector": "#stat-2-label",
           "value": "Successful Implementations"
         }
       },
       {
+        "countTarget": {
+          "selector": "#stat-3-num",
+          "attribute": "data-target",
+          "value": "200"
+        },
+        "suffix": {
+          "selector": "#stat-3-plus",
+          "value": "+"
+        },
         "label": {
           "selector": "#stat-3-label",
           "value": "Satisfied Clients"
         }
       },
       {
+        "countTarget": {
+          "selector": "#stat-4-num",
+          "attribute": "data-target",
+          "value": "12"
+        },
         "label": {
           "selector": "#stat-4-label",
           "value": "Industry Partners"

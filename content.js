@@ -5,7 +5,11 @@ function collectContentEntries(node, entries) {
     typeof node.selector === "string" &&
     Object.prototype.hasOwnProperty.call(node, "value")
   ) {
-    entries.push({ selector: node.selector, value: node.value });
+    entries.push({
+      selector: node.selector,
+      value: node.value,
+      attribute: typeof node.attribute === "string" ? node.attribute : null,
+    });
     return;
   }
 
@@ -28,6 +32,11 @@ function applyContent(contentTree) {
   entries.forEach(function (entry) {
     const element = document.querySelector(entry.selector);
     if (!element) return;
+
+    if (entry.attribute) {
+      element.setAttribute(entry.attribute, String(entry.value));
+      return;
+    }
 
     if (element.tagName === "META") {
       element.setAttribute("content", String(entry.value));
