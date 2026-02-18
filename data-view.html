@@ -137,6 +137,30 @@
         font-size: 0.85rem;
       }
 
+      .selector-id {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .selector-links {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        font-family: "Segoe UI", Tahoma, sans-serif;
+      }
+
+      .selector-links a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      .selector-links a:hover,
+      .selector-links a:focus-visible {
+        text-decoration: underline;
+      }
+
       textarea {
         width: 100%;
         min-height: 58px;
@@ -174,6 +198,10 @@
 
     <script>
       let contentData = null;
+      let pageSelectorMap = {
+        index: new Set(),
+        about: new Set(),
+      };
 
       function normalizePath(pathParts) {
         return pathParts
@@ -254,7 +282,42 @@
 
             const selectorTd = document.createElement("td");
             selectorTd.className = "selector";
-            selectorTd.textContent = row.selector;
+            const idText = document.createElement("span");
+            idText.className = "selector-id";
+            idText.textContent = row.selector;
+            selectorTd.appendChild(idText);
+
+            const selectorId = String(row.selector || "").replace(/^#/, "");
+            const linksWrap = document.createElement("div");
+            linksWrap.className = "selector-links";
+
+            if (pageSelectorMap.index.has(selectorId)) {
+              const indexLink = document.createElement("a");
+              indexLink.href = "index.html#" + selectorId;
+              indexLink.target = "_blank";
+              indexLink.rel = "noopener noreferrer";
+              indexLink.textContent = "Open in Home";
+              linksWrap.appendChild(indexLink);
+            }
+
+            if (pageSelectorMap.about.has(selectorId)) {
+              const aboutLink = document.createElement("a");
+              aboutLink.href = "about.html#" + selectorId;
+              aboutLink.target = "_blank";
+              aboutLink.rel = "noopener noreferrer";
+              aboutLink.textContent = "Open in About";
+              linksWrap.appendChild(aboutLink);
+            }
+
+            if (!linksWrap.children.length) {
+              const none = document.createElement("span");
+              none.style.color = "var(--muted)";
+              none.style.fontSize = "0.78rem";
+              none.textContent = "No page match";
+              linksWrap.appendChild(none);
+            }
+
+            selectorTd.appendChild(linksWrap);
 
             tr.appendChild(keyTd);
             tr.appendChild(valueTd);
@@ -280,6 +343,15 @@
           rows.length + " content entries";
       }
 
+      function getIdSetFromHtml(htmlText) {
+        const doc = new DOMParser().parseFromString(htmlText, "text/html");
+        const ids = new Set();
+        doc.querySelectorAll("[id]").forEach(function (el) {
+          ids.add(el.id);
+        });
+        return ids;
+      }
+
       function downloadJson() {
         if (!contentData) return;
 
@@ -297,10 +369,21 @@
 
       async function init() {
         try {
-          const response = await fetch("content.json", { cache: "no-store" });
-          if (!response.ok) throw new Error("Could not load content.json");
+          const responses = await Promise.all([
+            fetch("content.json", { cache: "no-store" }),
+            fetch("index.html", { cache: "no-store" }),
+            fetch("about.html", { cache: "no-store" }),
+          ]);
 
-          contentData = await response.json();
+          if (!responses[0].ok) throw new Error("Could not load content.json");
+
+          contentData = await responses[0].json();
+
+          const indexHtml = responses[1].ok ? await responses[1].text() : "";
+          const aboutHtml = responses[2].ok ? await responses[2].text() : "";
+          pageSelectorMap.index = getIdSetFromHtml(indexHtml);
+          pageSelectorMap.about = getIdSetFromHtml(aboutHtml);
+
           const rows = [];
           collectRows(contentData, [], rows);
           renderSections(rows);
