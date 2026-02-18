@@ -167,6 +167,10 @@
         "selector": "#about-description-2",
         "value": "These platforms have more than enough weapons in its arsenal (in form of Lego1 Blocks) to solve evolving Digital needs of growing businesses."
       }
+    },
+    "pageCta": {
+      "selector": "#about-page-cta",
+      "value": "Read Our Full Story"
     }
   },
   "success": {
