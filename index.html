@@ -32,12 +32,16 @@
             <li><a id="nav-contact" href="#contact"></a></li>
             <!-- Auth Buttons -->
             <li id="loginItem"><a href="#" id="loginBtn"></a></li>
-            <li id="userItem" style="display: none">
-              <span
-                id="userName"
-                style="margin-right: 0.5rem; font-weight: bold"
-              ></span>
-              <a href="#" id="logoutBtn"></a>
+            <li id="userItem" class="user-item" style="display: none">
+              <details class="user-menu">
+                <summary>
+                  <span id="userName"></span>
+                </summary>
+                <div class="user-menu-panel">
+                  <a id="dataViewLink" href="data-view.html"></a>
+                  <a href="#" id="logoutBtn"></a>
+                </div>
+              </details>
             </li>
           </ul>
         </nav>
