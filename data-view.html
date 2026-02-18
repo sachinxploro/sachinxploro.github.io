@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content JSON Editor</title>
+    <style>
+      :root {
+        --bg: #f5f7fb;
+        --surface: #ffffff;
+        --text: #1d2533;
+        --muted: #5d6980;
+        --line: #d9e0ec;
+        --accent: #0c6cf2;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+
+      .topbar h1 {
+        font-size: 1.2rem;
+        margin: 0;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      button {
+        border: 0;
+        border-radius: 8px;
+        padding: 10px 14px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .status {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .table-wrap {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        overflow: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 900px;
+      }
+
+      th,
+      td {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+        text-align: left;
+      }
+
+      th {
+        font-size: 0.85rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+
+      td.path {
+        width: 28%;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      td.selector {
+        width: 24%;
+        font-family: Consolas, monospace;
+        font-size: 0.9rem;
+      }
+
+      td.value {
+        width: 48%;
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 64px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 8px;
+        font: inherit;
+        resize: vertical;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="topbar">
+        <h1>Content JSON Table View</h1>
+        <div class="actions">
+          <span id="rowCount" class="status">Loading...</span>
+          <button id="downloadBtn" type="button">Download Json</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Group Path</th>
+              <th>Selector</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody id="contentRows"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      let contentData = null;
+
+      function getPathLabel(pathParts) {
+        return pathParts.join(" > ");
+      }
+
+      function collectRows(node, pathParts, rows) {
+        if (!node || typeof node !== "object") return;
+
+        if (
+          typeof node.selector === "string" &&
+          Object.prototype.hasOwnProperty.call(node, "value")
+        ) {
+          rows.push({
+            path: getPathLabel(pathParts),
+            selector: node.selector,
+            nodeRef: node,
+          });
+          return;
+        }
+
+        if (Array.isArray(node)) {
+          node.forEach(function (item, index) {
+            collectRows(item, pathParts.concat("item" + (index + 1)), rows);
+          });
+          return;
+        }
+
+        Object.entries(node).forEach(function (entry) {
+          const key = entry[0];
+          const value = entry[1];
+          collectRows(value, pathParts.concat(key), rows);
+        });
+      }
+
+      function renderRows(rows) {
+        const tbody = document.getElementById("contentRows");
+        tbody.innerHTML = "";
+
+        rows.forEach(function (row) {
+          const tr = document.createElement("tr");
+
+          const pathTd = document.createElement("td");
+          pathTd.className = "path";
+          pathTd.textContent = row.path;
+
+          const selectorTd = document.createElement("td");
+          selectorTd.className = "selector";
+          selectorTd.textContent = row.selector;
+
+          const valueTd = document.createElement("td");
+          valueTd.className = "value";
+          const textarea = document.createElement("textarea");
+          textarea.value = String(row.nodeRef.value ?? "");
+          textarea.addEventListener("input", function () {
+            row.nodeRef.value = textarea.value;
+          });
+          valueTd.appendChild(textarea);
+
+          tr.appendChild(pathTd);
+          tr.appendChild(selectorTd);
+          tr.appendChild(valueTd);
+          tbody.appendChild(tr);
+        });
+
+        document.getElementById("rowCount").textContent =
+          rows.length + " content entries";
+      }
+
+      function downloadJson() {
+        if (!contentData) return;
+
+        const jsonText = JSON.stringify(contentData, null, 2);
+        const blob = new Blob([jsonText], { type: "application/json" });
+        const objectUrl = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = objectUrl;
+        link.download = "content.json";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(objectUrl);
+      }
+
+      async function init() {
+        try {
+          const response = await fetch("content.json", { cache: "no-store" });
+          if (!response.ok) throw new Error("Could not load content.json");
+
+          contentData = await response.json();
+          const rows = [];
+          collectRows(contentData, [], rows);
+          renderRows(rows);
+        } catch (error) {
+          document.getElementById("rowCount").textContent =
+            "Failed to load content.json";
+          console.error(error);
+        }
+      }
+
+      document
+        .getElementById("downloadBtn")
+        .addEventListener("click", downloadJson);
+
+      init();
+    </script>
+  </body>
+</html>

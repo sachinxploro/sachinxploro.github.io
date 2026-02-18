@@ -1,49 +1,238 @@
 {
-  "#page-title": "Digital AI Garage | Go Digital, Grow Beyond",
-  "#meta-description": "Digital AI Garage landing page",
-  "#logo-text": "Digital AI Garage",
-  "#nav-services": "Services",
-  "#nav-about": "About",
-  "#nav-success": "Customer Success Story",
-  "#nav-tools": "Tools",
-  "#nav-contact": "Contact",
-  "#loginBtn": "Login",
-  "#logoutBtn": "Logout",
-  "#hero-eyebrow": "Power Platform Experts",
-  "#hero-title": "Go Digital,<br />Grow Beyond",
-  "#hero-description": "At Digital AI Garage, we are committed to solve our customer's business challenges via Technology infusion. Using new age technology platforms s.a. Microsoft's Power Platform, we help customers in their journey of Digital Transformation led growth.",
-  "#hero-cta": "Get in Touch",
-  "#hero-panel-title": "Driving Business Innovation",
-  "#hero-panel-description": "Technology consultation, process digitization, and data-driven decision systems.",
-  "#services-eyebrow": "Our Services",
-  "#services-title": "Taking Your Business to the Next Level",
-  "#service-1-title": "Technology Consultation",
-  "#service-1-description": "Talk to our consultants about how Microsoft Power Platform can accelerate transformation by 10x.",
-  "#service-2-title": "Business Process Digitization",
-  "#service-2-description": "Use plug-and-play components from Microsoft Power Platform to digitize processes in weeks.",
-  "#service-3-title": "Data-Driven Decision Making",
-  "#service-3-description": "Turn raw operational data into insights that improve speed, planning, and outcomes.",
-  "#stat-1-label": "Cutting-Edge Technologies",
-  "#stat-2-label": "Successful Implementations",
-  "#stat-3-label": "Satisfied Clients",
-  "#stat-4-label": "Industry Partners",
-  "#about-eyebrow": "About Us",
-  "#about-title": "Empowering Business Through Technology",
-  "#about-description-1": "At Digital AI Garage, we are committed to solve our customer's business challenges via Technology infusion. Using new age technology platforms s.a. Microsoft's Power Platform, we help customers in their journey of Digital Transformation led growth.",
-  "#about-description-2": "These platforms have more than enough weapons in its arsenal (in form of Lego1 Blocks) to solve evolving Digital needs of growing businesses.",
-  "#success-eyebrow": "Success Stories",
-  "#success-title": "Key Transformations We've Delivered",
-  "#videos-title": "Digitize. Automate. Dominate.",
-  "#tools-eyebrow": "Tools",
-  "#tools-title": "Business Process Digitization Using",
-  "#tool-1": "Power Apps",
-  "#tool-2": "Power Automate",
-  "#tool-3": "Dataverse",
-  "#tool-4": "Power BI",
-  "#contact-eyebrow": "Get In Touch",
-  "#contact-title": "Let's Discuss Your Digital Transformation Journey",
-  "#contact-description": "Reach out today for a free consulting session on building efficient, scalable digital operations.",
-  "#contact-email": "info@DigitalAIGarage.com",
-  "#footer-prefix": "&copy; ",
-  "#footer-suffix": " by Digital AI Garage."
+  "head": {
+    "pageTitle": {
+      "selector": "#page-title",
+      "value": "Digital AI Garage | Go Digital, Grow Beyond"
+    },
+    "metaDescription": {
+      "selector": "#meta-description",
+      "value": "Digital AI Garage landing page"
+    }
+  },
+  "header": {
+    "logoText": {
+      "selector": "#logo-text",
+      "value": "Digital AI Garage"
+    },
+    "navigation": {
+      "services": {
+        "selector": "#nav-services",
+        "value": "Services"
+      },
+      "about": {
+        "selector": "#nav-about",
+        "value": "About"
+      },
+      "success": {
+        "selector": "#nav-success",
+        "value": "Customer Success Story"
+      },
+      "tools": {
+        "selector": "#nav-tools",
+        "value": "Tools"
+      },
+      "contact": {
+        "selector": "#nav-contact",
+        "value": "Contact"
+      }
+    },
+    "auth": {
+      "login": {
+        "selector": "#loginBtn",
+        "value": "Login"
+      },
+      "logout": {
+        "selector": "#logoutBtn",
+        "value": "Logout"
+      }
+    }
+  },
+  "hero": {
+    "eyebrow": {
+      "selector": "#hero-eyebrow",
+      "value": "Power Platform Experts"
+    },
+    "title": {
+      "selector": "#hero-title",
+      "value": "Go Digital,<br />Grow Beyond"
+    },
+    "description": {
+      "selector": "#hero-description",
+      "value": "At Digital AI Garage, we are committed to solve our customer's business challenges via Technology infusion. Using new age technology platforms s.a. Microsoft's Power Platform, we help customers in their journey of Digital Transformation led growth."
+    },
+    "cta": {
+      "selector": "#hero-cta",
+      "value": "Get in Touch"
+    },
+    "panel": {
+      "title": {
+        "selector": "#hero-panel-title",
+        "value": "Driving Business Innovation"
+      },
+      "description": {
+        "selector": "#hero-panel-description",
+        "value": "Technology consultation, process digitization, and data-driven decision systems."
+      }
+    }
+  },
+  "services": {
+    "eyebrow": {
+      "selector": "#services-eyebrow",
+      "value": "Our Services"
+    },
+    "title": {
+      "selector": "#services-title",
+      "value": "Taking Your Business to the Next Level"
+    },
+    "cards": [
+      {
+        "title": {
+          "selector": "#service-1-title",
+          "value": "Technology Consultation"
+        },
+        "description": {
+          "selector": "#service-1-description",
+          "value": "Talk to our consultants about how Microsoft Power Platform can accelerate transformation by 10x."
+        }
+      },
+      {
+        "title": {
+          "selector": "#service-2-title",
+          "value": "Business Process Digitization"
+        },
+        "description": {
+          "selector": "#service-2-description",
+          "value": "Use plug-and-play components from Microsoft Power Platform to digitize processes in weeks."
+        }
+      },
+      {
+        "title": {
+          "selector": "#service-3-title",
+          "value": "Data-Driven Decision Making"
+        },
+        "description": {
+          "selector": "#service-3-description",
+          "value": "Turn raw operational data into insights that improve speed, planning, and outcomes."
+        }
+      }
+    ]
+  },
+  "stats": {
+    "items": [
+      {
+        "label": {
+          "selector": "#stat-1-label",
+          "value": "Cutting-Edge Technologies"
+        }
+      },
+      {
+        "label": {
+          "selector": "#stat-2-label",
+          "value": "Successful Implementations"
+        }
+      },
+      {
+        "label": {
+          "selector": "#stat-3-label",
+          "value": "Satisfied Clients"
+        }
+      },
+      {
+        "label": {
+          "selector": "#stat-4-label",
+          "value": "Industry Partners"
+        }
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": {
+      "selector": "#about-eyebrow",
+      "value": "About Us"
+    },
+    "title": {
+      "selector": "#about-title",
+      "value": "Empowering Business Through Technology"
+    },
+    "description": {
+      "primary": {
+        "selector": "#about-description-1",
+        "value": "At Digital AI Garage, we are committed to solve our customer's business challenges via Technology infusion. Using new age technology platforms s.a. Microsoft's Power Platform, we help customers in their journey of Digital Transformation led growth."
+      },
+      "secondary": {
+        "selector": "#about-description-2",
+        "value": "These platforms have more than enough weapons in its arsenal (in form of Lego1 Blocks) to solve evolving Digital needs of growing businesses."
+      }
+    }
+  },
+  "success": {
+    "eyebrow": {
+      "selector": "#success-eyebrow",
+      "value": "Success Stories"
+    },
+    "title": {
+      "selector": "#success-title",
+      "value": "Key Transformations We've Delivered"
+    },
+    "videosTitle": {
+      "selector": "#videos-title",
+      "value": "Digitize. Automate. Dominate."
+    }
+  },
+  "tools": {
+    "eyebrow": {
+      "selector": "#tools-eyebrow",
+      "value": "Tools"
+    },
+    "title": {
+      "selector": "#tools-title",
+      "value": "Business Process Digitization Using"
+    },
+    "items": [
+      {
+        "selector": "#tool-1",
+        "value": "Power Apps"
+      },
+      {
+        "selector": "#tool-2",
+        "value": "Power Automate"
+      },
+      {
+        "selector": "#tool-3",
+        "value": "Dataverse"
+      },
+      {
+        "selector": "#tool-4",
+        "value": "Power BI"
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": {
+      "selector": "#contact-eyebrow",
+      "value": "Get In Touch"
+    },
+    "title": {
+      "selector": "#contact-title",
+      "value": "Let's Discuss Your Digital Transformation Journey"
+    },
+    "description": {
+      "selector": "#contact-description",
+      "value": "Reach out today for a free consulting session on building efficient, scalable digital operations."
+    },
+    "email": {
+      "selector": "#contact-email",
+      "value": "info@DigitalAIGarage.com"
+    }
+  },
+  "footer": {
+    "prefix": {
+      "selector": "#footer-prefix",
+      "value": "&copy; "
+    },
+    "suffix": {
+      "selector": "#footer-suffix",
+      "value": " by Digital AI Garage."
+    }
+  }
 }
