@@ -321,6 +321,10 @@
           "answer": "We enable organizations to digitize and automate their business processes."
         },
         {
+          "question": "What kind of processes can be digitized ?",
+          "answer": "Any structured, repeatable business process that involves multiple stakeholders, decision points, data capture, or approvals can be digitized.\n\nProcesses that:\n- Involve multiple people or departments\n- Require complex workflows or sequential approvals\n- Need role-based or security-based access control\n- Depend on manual data entry or paper-based documentation\n- Require tracking, audit trails, or compliance monitoring\n- Involve repetitive tasks that can be standardized\n- Require integration across systems (ERP, CRM, HRMS, etc.)"
+        },
+        {
           "question": "Is it only digitization ?",
           "answer": "It goes beyond digitization with automation and integration so approvals, notifications, and data movement happen seamlessly."
         },
