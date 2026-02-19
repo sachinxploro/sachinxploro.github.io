@@ -47,6 +47,43 @@ async function loadAboutCommunication() {
       }, autoIntervalMs);
     }
 
+    function buildAnswerContent(rawText) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "communication-answer";
+
+      const lines = String(rawText || "").split(/\r?\n/);
+      let listEl = null;
+
+      lines.forEach(function (line) {
+        const trimmed = line.trim();
+
+        if (!trimmed) {
+          listEl = null;
+          return;
+        }
+
+        if (trimmed.startsWith("- ")) {
+          if (!listEl) {
+            listEl = document.createElement("ul");
+            listEl.className = "communication-answer-list";
+            wrapper.appendChild(listEl);
+          }
+          const li = document.createElement("li");
+          li.textContent = trimmed.slice(2).trim();
+          listEl.appendChild(li);
+          return;
+        }
+
+        listEl = null;
+        const para = document.createElement("p");
+        para.className = "communication-answer-paragraph";
+        para.textContent = trimmed;
+        wrapper.appendChild(para);
+      });
+
+      return wrapper;
+    }
+
     communication.sections.forEach(function (section, index) {
       if (!section) return;
 
@@ -74,9 +111,7 @@ async function loadAboutCommunication() {
       dagImg.className = "comm-avatar";
       dagImg.src = dagStaffImage;
       dagImg.alt = "DAG Staff";
-      const answer = document.createElement("p");
-      answer.className = "communication-answer";
-      answer.textContent = String(section.answer || "");
+      const answer = buildAnswerContent(section.answer);
       bottom.appendChild(dagImg);
       bottom.appendChild(answer);
 
