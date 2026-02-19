@@ -5,7 +5,7 @@ MYWEBSITE CONSTRUCTION GUIDE
 -----------
 This project is a static website with content managed in JSON and rendered into HTML pages.
 It has:
-- Public pages for visitors (`index.html`, `about.html`)
+- Public pages for visitors (`index.html`, `about.html`, `case-study.html`)
 - An internal data editor view (`data-view.html`)
 - Supporting JavaScript modules for dynamic UI pieces
 - A build step that pre-renders SEO content into final HTML files
@@ -20,7 +20,7 @@ Main goal of the current architecture:
 Authoring flow:
 1. Update `content.json` (directly or via `data-view.html` table UI)
 2. Run `node build/generate-pages.js`
-3. Script populates `index.html` and `about.html` from template files
+3. Script populates `index.html`, `about.html`, and `case-study.html` from template files
 4. Script updates `sitemap.xml` and `robots.txt`
 5. Deploy/push to GitHub Pages
 
@@ -38,10 +38,12 @@ Source-of-truth for content:
 Source templates (do not treat as deployed pages):
 - `index.template.html`
 - `about.template.html`
+- `case-study.template.html`
 
 Generated/deployable public pages:
 - `index.html`
 - `about.html`
+- `case-study.html`
 
 Important:
 - If `content.json` changes, regenerate public pages before deploy.
@@ -59,6 +61,7 @@ Core content/build:
   - Reads `content.json`
   - Injects values into template HTML by selector/id
   - Writes final `index.html` and `about.html`
+  - Writes final `case-study.html`
   - Generates `sitemap.xml`
   - Generates `robots.txt`
 
@@ -68,12 +71,18 @@ Core content/build:
 - `about.template.html`
   About page template with IDs/placeholders used by content mapping.
 
+- `case-study.template.html`
+  Case Study page template with IDs and `<!--CASE_STUDY_ITEMS-->` injection token.
+
 Public pages:
 - `index.html`
   Generated homepage served to users and crawlers.
 
 - `about.html`
   Generated about page served to users and crawlers.
+
+- `case-study.html`
+  Generated case study page with pre-rendered case cards for SEO.
 
 Admin/content tools:
 - `data-view.html`
@@ -132,8 +141,8 @@ Project docs/config:
   - `build/generate-pages.js` during build
   - `content.js`, `tools.js`, `about-communication.js` at runtime
 
-- `index.template.html` + `about.template.html` -> transformed by:
-  - `build/generate-pages.js` -> output `index.html`, `about.html`
+- `index.template.html` + `about.template.html` + `case-study.template.html` -> transformed by:
+  - `build/generate-pages.js` -> output `index.html`, `about.html`, `case-study.html`
 
 - `index.html` includes scripts:
   - `content.js`, `tools.js`, `customer.js`, `videos.js`, `script.js`, `auth.js`
@@ -141,9 +150,12 @@ Project docs/config:
 - `about.html` includes scripts:
   - `content.js`, `about-communication.js`, `script.js`
 
+- `case-study.html` includes scripts:
+  - `content.js`, `videos.js`, `script.js`
+
 - `data-view.html` fetches:
   - `content.json` for editable rows
-  - `index.html` and `about.html` to map selectors to page links
+  - `index.html`, `about.html`, and `case-study.html` to map selectors to page links
 
 
 6) SEO CONSTRUCTION NOTES
@@ -177,11 +189,13 @@ Automatic build behavior:
    - `content.json`
    - `index.template.html`
    - `about.template.html`
+   - `case-study.template.html`
    - `build/generate-pages.js`
 2. Runs `node build/generate-pages.js` on GitHub servers
 3. Auto-commits generated outputs if changed:
    - `index.html`
    - `about.html`
+   - `case-study.html`
    - `sitemap.xml`
    - `robots.txt`
 

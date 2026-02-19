@@ -25,7 +25,7 @@
       },
       "success": {
         "selector": "#nav-success",
-        "value": "Customer Success Story"
+        "value": "Case Study"
       },
       "tools": {
         "selector": "#nav-tools",
@@ -404,6 +404,10 @@
       "navContact": {
         "selector": "#about-nav-contact",
         "value": "Contact"
+      },
+      "navCaseStudy": {
+        "selector": "#about-nav-case-study",
+        "value": "Case Study"
       }
     },
     "hero": {
@@ -634,5 +638,79 @@
       "selector": "#footer-suffix",
       "value": " by Digital AI Garage."
     }
+  },
+  "caseStudy": {
+    "head": {
+      "pageTitle": {
+        "selector": "#case-page-title",
+        "value": "Case Study | Digital AI Garage"
+      },
+      "metaDescription": {
+        "selector": "#case-meta-description",
+        "value": "Customer case studies by Digital AI Garage showcasing digitization, automation, and integration outcomes."
+      }
+    },
+    "header": {
+      "logoText": {
+        "selector": "#case-logo-text",
+        "value": "Digital AI Garage"
+      },
+      "navHome": {
+        "selector": "#case-nav-home",
+        "value": "Home"
+      },
+      "navAbout": {
+        "selector": "#case-nav-about",
+        "value": "About"
+      },
+      "navCurrent": {
+        "selector": "#case-nav-current",
+        "value": "Case Study"
+      },
+      "navContact": {
+        "selector": "#case-nav-contact",
+        "value": "Contact"
+      }
+    },
+    "hero": {
+      "eyebrow": {
+        "selector": "#case-eyebrow",
+        "value": "Customer Success Story"
+      },
+      "title": {
+        "selector": "#case-title",
+        "value": "Case Studies and Transformation Outcomes"
+      },
+      "description": {
+        "selector": "#case-description",
+        "value": "Explore real implementations where we digitized manual workflows, reduced operational delays, and improved decision-making visibility."
+      }
+    },
+    "sectionTitle": {
+      "selector": "#case-list-title",
+      "value": "Featured Case Studies"
+    },
+    "videosTitle": {
+      "selector": "#case-videos-title",
+      "value": "Digitize. Automate. Dominate."
+    },
+    "items": [
+      {
+        "topic": "Prithu Homes",
+        "details": "Problem: Rising CRM operating expenses, fragmented workflows, and limited integration with enterprise systems.\n\nSolution: Built an integrated CRM using Microsoft Power Apps, Power Automate, and Azure Cloud services. Licensing cost reduced by 50%, approvals and planning digitized, and reporting automated.",
+        "image": [
+          "assets/images/sharepoint.webp",
+          "assets/images/AzureCloud.webp"
+        ]
+      },
+      {
+        "topic": "Kashvi Metals",
+        "details": "Problem: Slow decision-making due to paper-based documentation, phone calls, and manual follow-ups.\n\nSolution: Delivered a custom digital platform to centralize approvals, automate key steps, and provide real-time process tracking for improved accountability and control.",
+        "image": [
+          "assets/images/PowerAutomate_scalable.svg",
+          "assets/images/Dataverse_scalable.svg"
+        ]
+      }
+    ]
   }
 }

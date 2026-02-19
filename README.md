@@ -27,6 +27,7 @@ node build/generate-pages.js
 This updates:
 - `index.html`
 - `about.html`
+- `case-study.html`
 - `sitemap.xml`
 - `robots.txt`
 

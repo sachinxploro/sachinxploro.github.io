@@ -737,9 +737,52 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.case-study-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.case-study-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.case-study-card h3 {
+  margin: 0 0 0.6rem;
+}
+
+.case-study-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.case-image-grid {
+  margin-top: 0.95rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.case-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+}
+
 @media (max-width: 600px) {
   .customer-card {
     width: 300px;
     min-width: 300px;
+  }
+
+  .case-study-grid,
+  .case-image-grid {
+    grid-template-columns: 1fr;
   }
 }

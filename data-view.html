@@ -272,6 +272,7 @@
       let pageSelectorMap = {
         index: new Set(),
         about: new Set(),
+        caseStudy: new Set(),
       };
 
       function normalizePath(pathParts) {
@@ -494,6 +495,15 @@
               linksWrap.appendChild(aboutLink);
             }
 
+            if (selectorId && pageSelectorMap.caseStudy.has(selectorId)) {
+              const caseLink = document.createElement("a");
+              caseLink.href = "case-study.html#" + selectorId;
+              caseLink.target = "_blank";
+              caseLink.rel = "noopener noreferrer";
+              caseLink.textContent = "Open in Case Study";
+              linksWrap.appendChild(caseLink);
+            }
+
             if (!linksWrap.children.length) {
               const none = document.createElement("span");
               none.style.color = "var(--muted)";
@@ -595,6 +605,7 @@
             fetch("content.json", { cache: "no-store" }),
             fetch("index.html", { cache: "no-store" }),
             fetch("about.html", { cache: "no-store" }),
+            fetch("case-study.html", { cache: "no-store" }),
           ]);
 
           if (!responses[0].ok) throw new Error("Could not load content.json");
@@ -603,8 +614,10 @@
 
           const indexHtml = responses[1].ok ? await responses[1].text() : "";
           const aboutHtml = responses[2].ok ? await responses[2].text() : "";
+          const caseHtml = responses[3].ok ? await responses[3].text() : "";
           pageSelectorMap.index = getIdSetFromHtml(indexHtml);
           pageSelectorMap.about = getIdSetFromHtml(aboutHtml);
+          pageSelectorMap.caseStudy = getIdSetFromHtml(caseHtml);
 
           rerender();
         } catch (error) {

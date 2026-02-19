@@ -4,6 +4,7 @@ const path = require("path");
 const rootDir = path.resolve(__dirname, "..");
 const contentPath = path.join(rootDir, "content.json");
 const content = JSON.parse(fs.readFileSync(contentPath, "utf8"));
+const CASE_ITEMS_TOKEN = "<!--CASE_STUDY_ITEMS-->";
 
 function collectContentEntries(node, entries) {
   if (!node || typeof node !== "object") return;
@@ -78,7 +79,51 @@ function applyEntryToHtml(html, entry) {
   return html.replace(elementPattern, `$1${String(entry.value)}$4`);
 }
 
-function renderFromTemplate(templateFile, outputFile, scopePrefix) {
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function renderCaseStudyItems(items) {
+  if (!Array.isArray(items) || items.length === 0) {
+    return '<article class="case-study-card"><h3>No case studies added yet</h3></article>';
+  }
+
+  return items
+    .map((item, index) => {
+      const topic = escapeHtml(item?.topic || `Case Study ${index + 1}`);
+      const details = escapeHtml(item?.details || "").replace(/\r?\n/g, "<br />");
+      const imageList = Array.isArray(item?.image)
+        ? item.image
+        : item?.image
+          ? [item.image]
+          : Array.isArray(item?.images)
+            ? item.images
+            : [];
+
+      const imagesHtml = imageList
+        .map((src, imgIndex) => {
+          const safeSrc = escapeHtml(src);
+          return `<img class="case-image" src="${safeSrc}" alt="${topic} image ${imgIndex + 1}" loading="lazy" />`;
+        })
+        .join("");
+
+      return `
+        <article class="case-study-card">
+          <h3>${topic}</h3>
+          <p>${details}</p>
+          ${imagesHtml ? `<div class="case-image-grid">${imagesHtml}</div>` : ""}
+        </article>
+      `;
+    })
+    .join("");
+}
+
+function renderFromTemplate(templateFile, outputFile, options = {}) {
   const templatePath = path.join(rootDir, templateFile);
   let html = fs.readFileSync(templatePath, "utf8");
 
@@ -86,13 +131,17 @@ function renderFromTemplate(templateFile, outputFile, scopePrefix) {
   collectContentEntries(content, entries);
 
   const filteredEntries = entries.filter((entry) => {
-    if (!scopePrefix) return true;
-    return entry.selector.startsWith(scopePrefix);
+    if (!options.scopePrefix) return true;
+    return entry.selector.startsWith(options.scopePrefix);
   });
 
   filteredEntries.forEach((entry) => {
     html = applyEntryToHtml(html, entry);
   });
+
+  if (options.includeCaseItems && html.includes(CASE_ITEMS_TOKEN)) {
+    html = html.replace(CASE_ITEMS_TOKEN, renderCaseStudyItems(content?.caseStudy?.items));
+  }
 
   fs.writeFileSync(path.join(rootDir, outputFile), html, "utf8");
 }
@@ -100,7 +149,7 @@ function renderFromTemplate(templateFile, outputFile, scopePrefix) {
 function generateSitemap() {
   const domain = "https://www.digitalaigarage.com";
   const now = new Date().toISOString().slice(0, 10);
-  const pages = ["/", "/about.html"];
+  const pages = ["/", "/about.html", "/case-study.html"];
 
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
@@ -130,7 +179,10 @@ function generateRobots() {
 
 renderFromTemplate("index.template.html", "index.html");
 renderFromTemplate("about.template.html", "about.html");
+renderFromTemplate("case-study.template.html", "case-study.html", {
+  includeCaseItems: true,
+});
 generateSitemap();
 generateRobots();
 
-console.log("Generated index.html, about.html, sitemap.xml, and robots.txt");
+console.log("Generated index.html, about.html, case-study.html, sitemap.xml, and robots.txt");
