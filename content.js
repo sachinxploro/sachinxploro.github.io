@@ -56,6 +56,7 @@ async function loadContent() {
 
     const contentTree = await response.json();
     applyContent(contentTree);
+    document.dispatchEvent(new CustomEvent("contentLoaded"));
   } catch (error) {
     console.error("Content loading error:", error);
   }

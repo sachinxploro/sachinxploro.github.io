@@ -29,39 +29,51 @@ document.querySelectorAll(".reveal").forEach(function (el) {
 // ---------------------------------------------
 // 3️⃣ Animated statistics counter
 // Animates numbers when visible in viewport
+// Waits for content.json to populate data-target values.
 // ---------------------------------------------
-const statObserver = new IntersectionObserver(
-  function (entries) {
-    entries.forEach(function (entry) {
-      if (!entry.isIntersecting) return;
+let statsInitialized = false;
 
-      const el = entry.target;
-      const target = Number(el.getAttribute("data-target"));
-      const duration = 1400; // animation duration in ms
-      const start = performance.now();
+function initStatsCounter() {
+  if (statsInitialized) return;
+  statsInitialized = true;
 
-      function tick(now) {
-        const progress = Math.min((now - start) / duration, 1);
-        el.textContent = String(Math.floor(progress * target));
+  const statObserver = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
 
-        if (progress < 1) {
-          requestAnimationFrame(tick);
-        } else {
-          el.textContent = String(target); // Ensure exact final value
+        const el = entry.target;
+        const target = Number(el.getAttribute("data-target"));
+        const duration = 1400; // animation duration in ms
+        const start = performance.now();
+
+        function tick(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          el.textContent = String(Math.floor(progress * target));
+
+          if (progress < 1) {
+            requestAnimationFrame(tick);
+          } else {
+            el.textContent = String(target); // Ensure exact final value
+          }
         }
-      }
 
-      requestAnimationFrame(tick);
-      statObserver.unobserve(el); // Stop observing after animation
-    });
-  },
-  { threshold: 0.55 } // Trigger when 55% visible
-);
+        requestAnimationFrame(tick);
+        statObserver.unobserve(el); // Stop observing after animation
+      });
+    },
+    { threshold: 0.55 } // Trigger when 55% visible
+  );
 
-// Observe elements with class "stat-num"
-document.querySelectorAll(".stat-num").forEach(function (el) {
-  statObserver.observe(el);
-});
+  // Observe elements with class "stat-num"
+  document.querySelectorAll(".stat-num").forEach(function (el) {
+    statObserver.observe(el);
+  });
+}
+
+document.addEventListener("contentLoaded", initStatsCounter);
+// Fallback in case content event is missed.
+window.setTimeout(initStatsCounter, 700);
 
 
 /* ---------------------------------------------
