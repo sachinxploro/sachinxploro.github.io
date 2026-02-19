@@ -226,20 +226,68 @@
     },
     "items": [
       {
-        "selector": "#tool-1",
-        "value": "Power Apps"
+        "logoSrc": {
+          "selector": "#tool-1-logo",
+          "attribute": "src",
+          "value": "assets/images/tool-placeholder.png"
+        },
+        "logoAlt": {
+          "selector": "#tool-1-logo",
+          "attribute": "alt",
+          "value": "Power Apps logo"
+        },
+        "label": {
+          "selector": "#tool-1-label",
+          "value": "Power Apps"
+        }
       },
       {
-        "selector": "#tool-2",
-        "value": "Power Automate"
+        "logoSrc": {
+          "selector": "#tool-2-logo",
+          "attribute": "src",
+          "value": "assets/images/tool-placeholder.png"
+        },
+        "logoAlt": {
+          "selector": "#tool-2-logo",
+          "attribute": "alt",
+          "value": "Power Automate logo"
+        },
+        "label": {
+          "selector": "#tool-2-label",
+          "value": "Power Automate"
+        }
       },
       {
-        "selector": "#tool-3",
-        "value": "Dataverse"
+        "logoSrc": {
+          "selector": "#tool-3-logo",
+          "attribute": "src",
+          "value": "assets/images/tool-placeholder.png"
+        },
+        "logoAlt": {
+          "selector": "#tool-3-logo",
+          "attribute": "alt",
+          "value": "Dataverse logo"
+        },
+        "label": {
+          "selector": "#tool-3-label",
+          "value": "Dataverse"
+        }
       },
       {
-        "selector": "#tool-4",
-        "value": "Power BI"
+        "logoSrc": {
+          "selector": "#tool-4-logo",
+          "attribute": "src",
+          "value": "assets/images/tool-placeholder.png"
+        },
+        "logoAlt": {
+          "selector": "#tool-4-logo",
+          "attribute": "alt",
+          "value": "Power BI logo"
+        },
+        "label": {
+          "selector": "#tool-4-label",
+          "value": "Power BI"
+        }
       }
     ]
   },
@@ -311,7 +359,7 @@
     "customerCommunication": {
       "title": {
         "selector": "#about-communication-title",
-        "value": "How a typical Customer Communications starts"
+        "value": "How a typical Customer Communication starts"
       },
       "customerImage": "assets/images/customer-avatar.png",
       "dagStaffImage": "assets/images/dag-staff-avatar.png",

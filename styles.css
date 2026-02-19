@@ -356,9 +356,28 @@ body {
   border: 1px solid var(--line);
   border-radius: 13px;
   min-height: 120px;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.8rem;
   font-weight: 700;
+  text-align: center;
+}
+
+.tool-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px;
+}
+
+.tool-logo:not([src]),
+.tool-logo[src=""] {
+  display: none;
 }
 
 .contact-wrap {
