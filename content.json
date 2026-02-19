@@ -308,6 +308,28 @@
         "value": "We help organizations digitize and automate repeatable business processes using Microsoft Power Platform and Azure services. Our work focuses on practical transformation: faster decisions, visible workflows, reduced manual effort, and scalable operations."
       }
     },
+    "customerCommunication": {
+      "title": {
+        "selector": "#about-communication-title",
+        "value": "A Customer Communication"
+      },
+      "customerImage": "assets/images/customer-avatar.svg",
+      "dagStaffImage": "assets/images/dag-staff-avatar.svg",
+      "sections": [
+        {
+          "question": "What do you do ?",
+          "answer": "We enable organizations to digitize and automate their business processes."
+        },
+        {
+          "question": "Is it only digitization ?",
+          "answer": "It goes beyond digitization with automation and integration so approvals, notifications, and data movement happen seamlessly."
+        },
+        {
+          "question": "How can we begin ?",
+          "answer": "Start with one high-impact manual workflow. We deliver a focused solution quickly and then scale across departments."
+        }
+      ]
+    },
     "capabilities": {
       "eyebrow": {
         "selector": "#about-capabilities-eyebrow",

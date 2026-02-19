@@ -211,26 +211,48 @@
           .join(" > ");
       }
 
-      function collectRows(node, pathParts, rows) {
-        if (!node || typeof node !== "object") return;
+      function collectRows(node, pathParts, rows, parentNode, parentKey) {
+        if (node === null || node === undefined) return;
+
+        if (typeof node !== "object") {
+          rows.push({
+            path: pathParts.slice(),
+            selector: "",
+            type: "primitive",
+            parentNode: parentNode,
+            parentKey: parentKey,
+          });
+          return;
+        }
 
         if (
           typeof node.selector === "string" &&
           Object.prototype.hasOwnProperty.call(node, "value")
         ) {
-          rows.push({ path: pathParts.slice(), selector: node.selector, nodeRef: node });
+          rows.push({
+            path: pathParts.slice(),
+            selector: node.selector,
+            type: "selectorValue",
+            nodeRef: node,
+          });
           return;
         }
 
         if (Array.isArray(node)) {
           node.forEach(function (item, index) {
-            collectRows(item, pathParts.concat("[" + (index + 1) + "]"), rows);
+            collectRows(
+              item,
+              pathParts.concat("[" + (index + 1) + "]"),
+              rows,
+              node,
+              index
+            );
           });
           return;
         }
 
         Object.entries(node).forEach(function ([key, value]) {
-          collectRows(value, pathParts.concat(key), rows);
+          collectRows(value, pathParts.concat(key), rows, node, key);
         });
       }
 
@@ -270,9 +292,16 @@
             const valueTd = document.createElement("td");
             valueTd.className = "value";
             const textarea = document.createElement("textarea");
-            textarea.value = String(row.nodeRef.value ?? "");
+            textarea.value =
+              row.type === "selectorValue"
+                ? String(row.nodeRef.value ?? "")
+                : String(row.parentNode?.[row.parentKey] ?? "");
             textarea.addEventListener("input", function () {
-              row.nodeRef.value = textarea.value;
+              if (row.type === "selectorValue") {
+                row.nodeRef.value = textarea.value;
+              } else if (row.parentNode) {
+                row.parentNode[row.parentKey] = textarea.value;
+              }
             });
             valueTd.appendChild(textarea);
 
@@ -284,14 +313,14 @@
             selectorTd.className = "selector";
             const idText = document.createElement("span");
             idText.className = "selector-id";
-            idText.textContent = row.selector;
+            idText.textContent = row.selector || "-";
             selectorTd.appendChild(idText);
 
             const selectorId = String(row.selector || "").replace(/^#/, "");
             const linksWrap = document.createElement("div");
             linksWrap.className = "selector-links";
 
-            if (pageSelectorMap.index.has(selectorId)) {
+            if (selectorId && pageSelectorMap.index.has(selectorId)) {
               const indexLink = document.createElement("a");
               indexLink.href = "index.html#" + selectorId;
               indexLink.target = "_blank";
@@ -300,7 +329,7 @@
               linksWrap.appendChild(indexLink);
             }
 
-            if (pageSelectorMap.about.has(selectorId)) {
+            if (selectorId && pageSelectorMap.about.has(selectorId)) {
               const aboutLink = document.createElement("a");
               aboutLink.href = "about.html#" + selectorId;
               aboutLink.target = "_blank";
