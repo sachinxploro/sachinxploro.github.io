@@ -245,7 +245,7 @@
         "logoSrc": {
           "selector": "#tool-2-logo",
           "attribute": "src",
-          "value": "assets/images/tool-placeholder.png"
+          "value": "assets/images/PowerApps_scalable.svg"
         },
         "logoAlt": {
           "selector": "#tool-2-logo",
@@ -261,7 +261,7 @@
         "logoSrc": {
           "selector": "#tool-3-logo",
           "attribute": "src",
-          "value": "assets/images/tool-placeholder.png"
+          "value": "assets/images/PowerAutomate_scalable.svg"
         },
         "logoAlt": {
           "selector": "#tool-3-logo",
@@ -277,7 +277,7 @@
         "logoSrc": {
           "selector": "#tool-4-logo",
           "attribute": "src",
-          "value": "assets/images/tool-placeholder.png"
+          "value": "assets/images/Dataverse_scalable.svg"
         },
         "logoAlt": {
           "selector": "#tool-4-logo",
