@@ -246,6 +246,22 @@
         color: #a11f1f;
         border-color: #d0a5a5;
       }
+
+      tr.group-start td {
+        border-top: 3px solid #9fb2da;
+      }
+
+      tr.group-tone-a td:not(.value) {
+        background: #f8f9fc;
+      }
+
+      tr.group-tone-b td:not(.value) {
+        background: #eef3fb;
+      }
+
+      tr.group-start td.key {
+        font-weight: 700;
+      }
     </style>
   </head>
   <body>
@@ -274,6 +290,7 @@
         about: new Set(),
         caseStudy: new Set(),
       };
+      let sectionOpenState = {};
 
       function normalizePath(pathParts) {
         return pathParts
@@ -281,6 +298,34 @@
             return String(part).replace(/^\[(\d+)\]$/, "item$1");
           })
           .join(" > ");
+      }
+
+      function buildRowGroupKey(pathParts) {
+        const indexPos = pathParts.findIndex(function (part) {
+          return /^\[\d+\]$/.test(String(part));
+        });
+
+        if (indexPos >= 0) {
+          return pathParts.slice(0, indexPos + 1).join(">");
+        }
+
+        if (pathParts.length > 1) {
+          return pathParts.slice(0, pathParts.length - 1).join(">");
+        }
+
+        return pathParts.join(">");
+      }
+
+      function snapshotSectionState() {
+        const next = {};
+        document.querySelectorAll(".section-panel").forEach(function (panel) {
+          const key = panel.getAttribute("data-section");
+          if (!key) return;
+          next[key] = panel.open;
+        });
+        if (Object.keys(next).length > 0) {
+          sectionOpenState = next;
+        }
       }
 
       function toAnchorId(sectionName) {
@@ -373,6 +418,7 @@
       }
 
       function rerender() {
+        snapshotSectionState();
         normalizeToolsSelectors();
         const rows = [];
         collectRows(contentData, [], rows, null, null, null);
@@ -426,7 +472,14 @@
 
           const details = document.createElement("details");
           details.className = "section-panel";
-          details.open = true;
+          details.setAttribute("data-section", sectionName);
+          details.open =
+            Object.prototype.hasOwnProperty.call(sectionOpenState, sectionName)
+              ? sectionOpenState[sectionName]
+              : true;
+          details.addEventListener("toggle", function () {
+            sectionOpenState[sectionName] = details.open;
+          });
 
           const heading = document.createElement("summary");
           heading.textContent =
@@ -440,8 +493,24 @@
             "<thead><tr><th>Key</th><th>Value</th><th>Group Path</th><th>Selector</th><th>Actions</th></tr></thead>";
           const tbody = document.createElement("tbody");
 
+          const groupToneByKey = {};
+          let previousGroupKey = null;
+
           bySection[sectionName].forEach(function (row) {
             const tr = document.createElement("tr");
+            const currentGroupKey = buildRowGroupKey(row.path);
+            const isGroupStart = currentGroupKey !== previousGroupKey;
+            if (isGroupStart) {
+              tr.classList.add("group-start");
+            }
+
+            if (!Object.prototype.hasOwnProperty.call(groupToneByKey, currentGroupKey)) {
+              const used = Object.keys(groupToneByKey).length;
+              groupToneByKey[currentGroupKey] = used % 2 === 0 ? "group-tone-a" : "group-tone-b";
+            }
+            tr.classList.add(groupToneByKey[currentGroupKey]);
+            previousGroupKey = currentGroupKey;
+
             const keyTd = document.createElement("td");
             keyTd.className = "key";
             keyTd.textContent = row.path[row.path.length - 1] || "";
