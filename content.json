@@ -138,7 +138,7 @@
         "countTarget": {
           "selector": "#stat-2-num",
           "attribute": "data-target",
-          "value": "10"
+          "value": "15  "
         },
         "suffix": {
           "selector": "#stat-2-plus",
@@ -153,7 +153,7 @@
         "countTarget": {
           "selector": "#stat-3-num",
           "attribute": "data-target",
-          "value": "4"
+          "value": "10"
         },
         "suffix": {
           "selector": "#stat-3-plus",
@@ -350,26 +350,7 @@
           "value": "Azure Cloud Services"
         },
         "brandInfo": {
-          "value": "Microsoft Azure delivers scalable cloud infrastructure, security, integration, and analytics services."
-        }
-      },
-      {
-        "logoSrc": {
-          "selector": "#tool-7-logo",
-          "attribute": "src",
-          "value": "assets/images/sharepoint.webp"
-        },
-        "logoAlt": {
-          "selector": "#tool-7-logo",
-          "attribute": "alt",
-          "value": "Sharepoint Logo"
-        },
-        "label": {
-          "selector": "#tool-7-label",
-          "value": "Sharepoint"
-        },
-        "brandInfo": {
-          "value": "Microsoft SharePoint enables secure document management, collaboration, and intranet solutions across the organization."
+          "value": "Microsoft Azure provides scalable cloud hosting, secure infrastructure, API integration, and enterprise-grade communication services."
         }
       }
     ]
