@@ -170,14 +170,27 @@ Recommended ongoing SEO practice:
 --------------------------
 Current deployment target:
 - GitHub Pages (via `main` branch)
+- GitHub Actions auto-build workflow: `.github/workflows/build-seo-pages.yml`
+
+Automatic build behavior:
+1. Triggered on push to `main` when these files change:
+   - `content.json`
+   - `index.template.html`
+   - `about.template.html`
+   - `build/generate-pages.js`
+2. Runs `node build/generate-pages.js` on GitHub servers
+3. Auto-commits generated outputs if changed:
+   - `index.html`
+   - `about.html`
+   - `sitemap.xml`
+   - `robots.txt`
 
 Safe release checklist:
 1. Edit `content.json`
-2. Run `node build/generate-pages.js`
-3. Verify generated `index.html` and `about.html`
-4. Commit templates/content/build outputs together
-5. Push to `main`
-6. Confirm sitemap URL is reachable
+2. Commit and push to `main`
+3. Wait for GitHub Action \"Build SEO Pages\" to complete
+4. Verify generated files in latest commit (if action created one)
+5. Confirm sitemap URL is reachable
 
 
 8) IMPORTANT MAINTENANCE RULES
@@ -191,7 +204,6 @@ Safe release checklist:
 
 9) FUTURE IMPROVEMENTS (OPTIONAL)
 ---------------------------------
-- Add GitHub Action to auto-run build on every push
 - Move `customer.js` and `videos.js` data into JSON for single-source content management
 - Add schema markup (Organization, Service, Article/CaseStudy)
 - Create separate generated case study pages and include them in sitemap
