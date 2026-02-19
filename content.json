@@ -352,6 +352,25 @@
         "brandInfo": {
           "value": "Microsoft Azure delivers scalable cloud infrastructure, security, integration, and analytics services."
         }
+      },
+      {
+        "logoSrc": {
+          "selector": "#tool-7-logo",
+          "attribute": "src",
+          "value": "assets/images/sharepoint.webp"
+        },
+        "logoAlt": {
+          "selector": "#tool-7-logo",
+          "attribute": "alt",
+          "value": "Sharepoint Logo"
+        },
+        "label": {
+          "selector": "#tool-7-label",
+          "value": "Sharepoint"
+        },
+        "brandInfo": {
+          "value": "Microsoft SharePoint enables secure document management, collaboration, and intranet solutions across the organization."
+        }
       }
     ]
   },
