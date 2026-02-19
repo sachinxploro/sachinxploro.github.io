@@ -256,6 +256,8 @@
         <p>This page displays the raw data configured in <code>content.json</code>.</p>
         <div class="toolbar">
           <button id="downloadBtn" type="button">Download JSON</button>
+          <button id="expandAllBtn" type="button">Expand All</button>
+          <button id="collapseAllBtn" type="button">Collapse All</button>
           <span id="rowCount" class="status">Loading...</span>
         </div>
       </div>
@@ -561,6 +563,12 @@
         URL.revokeObjectURL(objectUrl);
       }
 
+      function setAllSectionsExpanded(expanded) {
+        document.querySelectorAll(".section-panel").forEach(function (panel) {
+          panel.open = expanded;
+        });
+      }
+
       async function init() {
         try {
           const responses = await Promise.all([
@@ -589,6 +597,16 @@
       document
         .getElementById("downloadBtn")
         .addEventListener("click", downloadJson);
+      document
+        .getElementById("expandAllBtn")
+        .addEventListener("click", function () {
+          setAllSectionsExpanded(true);
+        });
+      document
+        .getElementById("collapseAllBtn")
+        .addEventListener("click", function () {
+          setAllSectionsExpanded(false);
+        });
 
       init();
     </script>
