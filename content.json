@@ -330,19 +330,19 @@
         },
         {
           "question": "CRM, ERP is also a process, Can you create one as per my need ?",
-          "answer": "No — it goes beyond digitization. It involves Digitization, Automation, and Integration.\n\n- Digitization converts manual or paper-based processes into structured digital workflows.\n- Automation reduces human intervention by automatically triggering actions, approvals, notifications, and validations.\n- Integration connects systems (ERP, CRM, finance, HR, etc.) so data flows seamlessly across platforms without duplication or manual re-entry."
+          "answer": "Yes. In fact, few of our customers are already using our custom-built CRM solutions. \n\n- Our CRM systems are not only highly cost-effective, but also fully tailored to each organization’s specific processes, workflows, and reporting requirements. \n- We design them to align with your business model — not the other way around."
         },
-         {
+        {
           "question": "Which technology stack you use ?",
-          "answer": "No — it goes beyond digitization. It involves Digitization, Automation, and Integration.\n\n- Digitization converts manual or paper-based processes into structured digital workflows.\n- Automation reduces human intervention by automatically triggering actions, approvals, notifications, and validations.\n- Integration connects systems (ERP, CRM, finance, HR, etc.) so data flows seamlessly across platforms without duplication or manual re-entry."
+          "answer": "Microsoft Power Platform, Azure Cloud Services & Open stack for frontend"
         },
-                 {
+        {
           "question": "Why only Microsoft ?",
-          "answer": "No — it goes beyond digitization. It involves Digitization, Automation, and Integration.\n\n- Digitization converts manual or paper-based processes into structured digital workflows.\n- Automation reduces human intervention by automatically triggering actions, approvals, notifications, and validations.\n- Integration connects systems (ERP, CRM, finance, HR, etc.) so data flows seamlessly across platforms without duplication or manual re-entry."
+          "answer": "This was a deliberate strategic decision. Rather than spreading ourselves across multiple platforms, we chose to specialize in one enterprise-grade ecosystem. \nMicrosoft provides a comprehensive, integrated platform. By going deep instead of wide, we deliver greater quality, faster execution, and more reliable outcomes for our clients."
         },
         {
           "question": "Ok,How can we begin our journey with you ?",
-          "answer": "Start with one high-impact manual workflow. We deliver a focused solution quickly and then scale across departments."
+          "answer": "Start small\n- Identify a simple, high-impact use case within your organization — something manual, repetitive, or approval-driven. \n- We can rapidly build a focused solution to address that specific need.\n- Once you see the value, gain confidence, and experience measurable results, we can gradually scale the solution — expanding automation, integrations, and digital workflows across departments.\n- Digital transformation doesn’t have to start big. It just has to start smart."
         }
       ]
     },
