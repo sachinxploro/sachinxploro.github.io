@@ -15,9 +15,9 @@ async function loadAboutCommunication() {
     if (dotsContainer) dotsContainer.innerHTML = "";
 
     const customerImage =
-      communication.customerImage || "assets/images/customer-avatar.svg";
+      communication.customerImage || "assets/images/customer-avatar.png";
     const dagStaffImage =
-      communication.dagStaffImage || "assets/images/dag-staff-avatar.svg";
+      communication.dagStaffImage || "assets/images/dag-staff-avatar.png";
 
     const track = document.createElement("div");
     track.className = "communication-track";

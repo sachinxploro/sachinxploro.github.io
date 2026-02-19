@@ -313,8 +313,8 @@
         "selector": "#about-communication-title",
         "value": "A Customer Communication"
       },
-      "customerImage": "assets/images/customer-avatar.svg",
-      "dagStaffImage": "assets/images/dag-staff-avatar.svg",
+      "customerImage": "assets/images/customer-avatar.png",
+      "dagStaffImage": "assets/images/dag-staff-avatar.png",
       "sections": [
         {
           "question": "What do you do ?",
