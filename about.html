@@ -65,7 +65,7 @@
 
       .about-hero-layout {
         display: grid;
-        grid-template-columns: 1.15fr 0.85fr;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
         gap: 1.2rem;
         align-items: start;
       }
@@ -140,12 +140,15 @@
         margin: 0;
         font-size: 1.07rem;
         font-weight: 800;
+        overflow-wrap: anywhere;
       }
 
       .communication-answer {
         margin: 0;
         font-size: 1.02rem;
         line-height: 1.4;
+        white-space: pre-line;
+        overflow-wrap: anywhere;
       }
 
       .comm-avatar {
