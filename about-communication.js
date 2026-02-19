@@ -25,6 +25,8 @@ async function loadAboutCommunication() {
 
     const dots = [];
     let activeIndex = 0;
+    let autoTimer = null;
+    const autoIntervalMs = 4500;
 
     function setActive(index) {
       activeIndex = Math.max(0, Math.min(index, communication.sections.length - 1));
@@ -32,6 +34,17 @@ async function loadAboutCommunication() {
       dots.forEach(function (dot, i) {
         dot.classList.toggle("active", i === activeIndex);
       });
+    }
+
+    function resetAutoPlay() {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+      }
+      if (communication.sections.length <= 1) return;
+      autoTimer = setInterval(function () {
+        const next = (activeIndex + 1) % communication.sections.length;
+        setActive(next);
+      }, autoIntervalMs);
     }
 
     communication.sections.forEach(function (section, index) {
@@ -78,8 +91,10 @@ async function loadAboutCommunication() {
         dot.type = "button";
         dot.className = "communication-dot";
         dot.setAttribute("aria-label", "Show communication " + (index + 1));
+        dot.textContent = String(index + 1);
         dot.addEventListener("click", function () {
           setActive(index);
+          resetAutoPlay();
         });
         dotsContainer.appendChild(dot);
         dots.push(dot);
@@ -94,7 +109,20 @@ async function loadAboutCommunication() {
 
     if (communication.sections.length > 0) {
       setActive(0);
+      resetAutoPlay();
     }
+
+    // Pause rotation while hovering over the card area for easier reading.
+    cardsContainer.addEventListener("mouseenter", function () {
+      if (autoTimer) clearInterval(autoTimer);
+    });
+    cardsContainer.addEventListener("mouseleave", function () {
+      resetAutoPlay();
+    });
+
+    window.addEventListener("beforeunload", function () {
+      if (autoTimer) clearInterval(autoTimer);
+    });
   } catch (error) {
     console.error("About communication loading error:", error);
   }
