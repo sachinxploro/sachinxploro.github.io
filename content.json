@@ -311,7 +311,7 @@
     "customerCommunication": {
       "title": {
         "selector": "#about-communication-title",
-        "value": "A Customer Communication"
+        "value": "How a typical Customer Communications starts"
       },
       "customerImage": "assets/images/customer-avatar.png",
       "dagStaffImage": "assets/images/dag-staff-avatar.png",
