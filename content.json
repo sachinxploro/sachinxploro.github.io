@@ -224,6 +224,20 @@
       "selector": "#tools-title",
       "value": "Business Process Digitization Using"
     },
+    "wrapText": {
+      "selector": "#tools-wrap-text",
+      "value": "All listed tools are Microsoft services."
+    },
+    "brandLogoSrc": {
+      "selector": "#tools-brand-logo",
+      "attribute": "src",
+      "value": "assets/images/microsoft-logo.svg"
+    },
+    "brandLogoAlt": {
+      "selector": "#tools-brand-logo",
+      "attribute": "alt",
+      "value": "Microsoft logo"
+    },
     "items": [
       {
         "logoSrc": {

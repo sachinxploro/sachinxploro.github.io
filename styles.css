@@ -351,6 +351,29 @@ body {
   gap: 1rem;
 }
 
+.tools-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+  padding: 0.42rem 0.72rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(15, 23, 48, 0.6);
+}
+
+.tools-brand-logo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.tools-wrap-text {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .tool {
   background: linear-gradient(155deg, rgba(46, 114, 255, 0.24), rgba(0, 209, 199, 0.24));
   border: 1px solid var(--line);
