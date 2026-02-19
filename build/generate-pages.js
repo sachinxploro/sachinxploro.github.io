@@ -93,10 +93,19 @@ function renderCaseStudyItems(items) {
     return '<article class="case-study-card"><h3>No case studies added yet</h3></article>';
   }
 
+  const bulletIcon =
+    '<svg class="case-bullet-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M5 8.3 7 10.3 11.4 5.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+  const sectionDefs = [
+    { key: "aboutCustomer", label: "About Customer" },
+    { key: "problemStatement", label: "Problem Statement" },
+    { key: "provideSolution", label: "Provide Solution" },
+    { key: "benefits", label: "Benefits" },
+    { key: "whatNext", label: "What Next" },
+  ];
+
   return items
     .map((item, index) => {
       const topic = escapeHtml(item?.topic || `Case Study ${index + 1}`);
-      const details = escapeHtml(item?.details || "").replace(/\r?\n/g, "<br />");
       const imageList = Array.isArray(item?.image)
         ? item.image
         : item?.image
@@ -112,10 +121,23 @@ function renderCaseStudyItems(items) {
         })
         .join("");
 
+      const detailFallback = String(item?.details || "").trim();
+      const sectionItems = sectionDefs
+        .map((sectionDef) => {
+          let rawValue = item?.[sectionDef.key];
+          if ((rawValue === undefined || rawValue === null || rawValue === "") && detailFallback) {
+            rawValue = sectionDef.key === "problemStatement" ? detailFallback : "";
+          }
+          if (rawValue === undefined || rawValue === null || rawValue === "") return "";
+          const value = escapeHtml(rawValue).replace(/\r?\n/g, "<br />");
+          return `<li class="case-bullet-item">${bulletIcon}<div><strong>${sectionDef.label}</strong><p>${value}</p></div></li>`;
+        })
+        .join("");
+
       return `
         <article class="case-study-card">
           <h3>${topic}</h3>
-          <p>${details}</p>
+          ${sectionItems ? `<ul class="case-bullet-list">${sectionItems}</ul>` : ""}
           ${imagesHtml ? `<div class="case-image-grid">${imagesHtml}</div>` : ""}
         </article>
       `;

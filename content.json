@@ -697,19 +697,27 @@
     "items": [
       {
         "topic": "Prithu Homes",
-        "details": "Problem: Rising CRM operating expenses, fragmented workflows, and limited integration with enterprise systems.\n\nSolution: Built an integrated CRM using Microsoft Power Apps, Power Automate, and Azure Cloud services. Licensing cost reduced by 50%, approvals and planning digitized, and reporting automated.",
         "image": [
           "assets/images/sharepoint.webp",
           "assets/images/AzureCloud.webp"
-        ]
+        ],
+        "aboutCustomer": "Real estate development and project delivery organization.",
+        "problemStatement": "Rising CRM operating costs, fragmented workflows, and limited integration with other enterprise systems.",
+        "provideSolution": "Implemented an integrated CRM using Microsoft Power Apps, Power Automate, and Azure Cloud services with digital approvals and automated reporting.",
+        "benefits": "Reduced licensing cost by 50%, improved cross-functional visibility, and strengthened project governance.",
+        "whatNext": "Expand automation coverage to additional planning and execution workflows across teams."
       },
       {
         "topic": "Kashvi Metals",
-        "details": "Problem: Slow decision-making due to paper-based documentation, phone calls, and manual follow-ups.\n\nSolution: Delivered a custom digital platform to centralize approvals, automate key steps, and provide real-time process tracking for improved accountability and control.",
         "image": [
           "assets/images/PowerAutomate_scalable.svg",
           "assets/images/Dataverse_scalable.svg"
-        ]
+        ],
+        "aboutCustomer": "Manufacturing and metals business with process-heavy operational workflows.",
+        "problemStatement": "Manual documentation, phone-based coordination, and disconnected approvals caused slow decisions and limited visibility.",
+        "provideSolution": "Built a custom digital platform to centralize approvals, automate repeatable steps, and enable real-time process tracking.",
+        "benefits": "Faster decisions, better accountability, reduced manual follow-ups, and stronger operational control.",
+        "whatNext": "Integrate the platform with adjacent business systems and scale adoption to more departments."
       }
     ]
   }

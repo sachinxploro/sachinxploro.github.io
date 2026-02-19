@@ -754,9 +754,41 @@ body {
   margin: 0 0 0.6rem;
 }
 
-.case-study-card p {
+.case-bullet-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.case-bullet-item {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  gap: 0.55rem;
+  align-items: start;
+  color: var(--muted);
+}
+
+.case-bullet-icon {
+  width: 16px;
+  height: 16px;
+  color: #88b7ff;
+  margin-top: 0.1rem;
+}
+
+.case-bullet-item strong {
+  display: block;
+  color: #d9e7ff;
+  font-size: 0.88rem;
+  margin-bottom: 0.16rem;
+}
+
+.case-bullet-item p {
   margin: 0;
   color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.45;
 }
 
 .case-image-grid {
