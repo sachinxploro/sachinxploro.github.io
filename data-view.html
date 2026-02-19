@@ -352,7 +352,26 @@
         return JSON.parse(JSON.stringify(value));
       }
 
+      function normalizeToolsSelectors() {
+        const items = contentData?.tools?.items;
+        if (!Array.isArray(items)) return;
+
+        items.forEach(function (item, index) {
+          const n = index + 1;
+          if (item?.logoSrc && typeof item.logoSrc === "object") {
+            item.logoSrc.selector = "#tool-" + n + "-logo";
+          }
+          if (item?.logoAlt && typeof item.logoAlt === "object") {
+            item.logoAlt.selector = "#tool-" + n + "-logo";
+          }
+          if (item?.label && typeof item.label === "object") {
+            item.label.selector = "#tool-" + n + "-label";
+          }
+        });
+      }
+
       function rerender() {
+        normalizeToolsSelectors();
         const rows = [];
         collectRows(contentData, [], rows, null, null, null);
         renderSections(rows);
