@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta id="meta-description" name="description" content="" />
+    <title id="page-title"></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="logo" href="#home">
+          <img src="assets/images/dagLogo.png" alt="Digital AI Garage" />
+          <span id="logo-text"></span>
+        </a>
+        <nav>
+          <ul class="nav-list">
+            <li><a id="nav-services" href="#services"></a></li>
+            <li><a id="nav-about" href="about.html"></a></li>
+            <li><a id="nav-success" href="#success"></a></li>
+            <li><a id="nav-tools" href="#tools"></a></li>
+            <li><a id="nav-contact" href="#contact"></a></li>
+            <!-- Auth Buttons -->
+            <li id="loginItem"><a href="#" id="loginBtn"></a></li>
+            <li id="userItem" class="user-item" style="display: none">
+              <details class="user-menu">
+                <summary>
+                  <span id="userName"></span>
+                </summary>
+                <div class="user-menu-panel">
+                  <a id="dataViewLink" href="data-view.html"></a>
+                  <a href="#" id="logoutBtn"></a>
+                </div>
+              </details>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero container">
+        <div class="hero-copy reveal">
+          <p id="hero-eyebrow" class="eyebrow"></p>
+          <h1 id="hero-title"></h1>
+          <p id="hero-description"></p>
+          <a id="hero-cta" class="primary-btn" href="#contact"></a>
+        </div>
+        <div class="hero-panel reveal">
+          <div class="panel-glow"></div>
+          <h2 id="hero-panel-title"></h2>
+          <p id="hero-panel-description"></p>
+        </div>
+      </section>
+
+      <section id="services" class="section container">
+        <p id="services-eyebrow" class="eyebrow reveal"></p>
+        <h2 id="services-title" class="section-title reveal"></h2>
+        <div class="card-grid">
+          <article class="service-card reveal">
+            <h3 id="service-1-title"></h3>
+            <p id="service-1-description"></p>
+          </article>
+          <article class="service-card reveal">
+            <h3 id="service-2-title"></h3>
+            <p id="service-2-description"></p>
+          </article>
+          <article class="service-card reveal">
+            <h3 id="service-3-title"></h3>
+            <p id="service-3-description"></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-stats">
+        <div class="container stats-grid">
+          <div class="stat reveal">
+            <span id="stat-1-num" class="stat-num" data-target="5">0</span>
+            <p id="stat-1-label"></p>
+          </div>
+          <div class="stat reveal">
+            <span id="stat-2-num" class="stat-num" data-target="10">0</span
+            ><span id="stat-2-plus" class="plus">+</span>
+            <p id="stat-2-label"></p>
+          </div>
+          <div class="stat reveal">
+            <span id="stat-3-num" class="stat-num" data-target="4">0</span
+            ><span id="stat-3-plus" class="plus">+</span>
+            <p id="stat-3-label"></p>
+          </div>
+          <div class="stat reveal">
+            <span id="stat-4-num" class="stat-num" data-target="10">0</span>
+            <p id="stat-4-label"></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section container">
+        <p id="about-eyebrow" class="eyebrow reveal"></p>
+        <h2 id="about-title" class="section-title reveal"></h2>
+        <div class="about-box reveal">
+          <p id="about-description-1"></p>
+          <p id="about-description-2"></p>
+        </div>
+        <p class="reveal" style="margin-top: 1rem">
+          <a id="about-page-cta" class="primary-btn" href="about.html"></a>
+        </p>
+      </section>
+
+      <section id="success" class="section container">
+        <p id="success-eyebrow" class="eyebrow reveal"></p>
+        <h2 id="success-title" class="section-title reveal"></h2>
+        <!-- Horizontal Scroll Container -->
+        <div class="customer-scroll-wrapper reveal">
+          <div class="customer-scroll-container">
+            <!-- Customer tiles injected by customer.js -->
+          </div>
+        </div>
+      </section>
+
+      <section id="success-videos" class="section container">
+        <h2
+          id="videos-title"
+          class="section-title reveal"
+          style="text-align: center; margin-bottom: 30px"
+        ></h2>
+        <div class="video-grid">
+          <!-- Videos will be injected here by videos.js -->
+        </div>
+      </section>
+
+      <section id="tools" class="section container">
+        <p id="tools-eyebrow" class="eyebrow reveal"></p>
+        <h2 id="tools-title" class="section-title reveal"></h2>
+        <div class="tools-wrap reveal">
+          <img id="tools-brand-logo" class="tools-brand-logo" src="" alt="" />
+          <p id="tools-wrap-text" class="tools-wrap-text"></p>
+        </div>
+        <div id="tools-grid" class="tools-grid"></div>
+      </section>
+
+      <section id="contact" class="section container">
+        <div
+          class="contact-wrap reveal"
+          style="display: block; text-align: center"
+        >
+          <div style="max-width: 700px; margin: 0 auto">
+            <p id="contact-eyebrow" class="eyebrow"></p>
+            <h2 id="contact-title" class="section-title"></h2>
+            <p id="contact-description"></p>
+            <br />
+            <a
+              id="contact-email"
+              href="mailto:info@DigitalAIGarage.com"
+              class="primary-btn"
+              style="text-transform: none; font-size: 1.1rem"
+            ></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          <span id="footer-prefix"></span><span id="year"></span
+          ><span id="footer-suffix"></span>
+        </p>
+      </div>
+    </footer>
+
+    <script src="content.js"></script>
+    <script src="tools.js"></script>
+    <script src="customer.js"></script>
+    <script src="videos.js"></script>
+    <script src="script.js"></script>
+    <!-- MSAL.js Library -->
+    <script
+      type="text/javascript"
+      src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.min.js"
+    ></script>
+    <script src="auth.js"></script>
+  </body>
+</html>

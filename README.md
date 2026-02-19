@@ -11,6 +11,22 @@ This is a simple static website starter.
 
 Just open `index.html` in your browser.
 
+## SEO Build (Recommended)
+
+Content is managed in `content.json`, while SEO pages are generated as static HTML.
+
+Run:
+
+```bash
+node build/generate-pages.js
+```
+
+This updates:
+- `index.html`
+- `about.html`
+- `sitemap.xml`
+- `robots.txt`
+
 ## Deploy to GitHub Pages
 
 1. Create a GitHub repository and upload these files.
