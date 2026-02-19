@@ -326,7 +326,7 @@
         },
         {
           "question": "Is it only digitization ?",
-          "answer": "It goes beyond digitization with automation and integration so approvals, notifications, and data movement happen seamlessly."
+          "answer": "No — it goes beyond digitization. It involves Digitization, Automation, and Integration.\n\n- Digitization converts manual or paper-based processes into structured digital workflows.\n- Automation reduces human intervention by automatically triggering actions, approvals, notifications, and validations.\n- Integration connects systems (ERP, CRM, finance, HR, etc.) so data flows seamlessly across platforms without duplication or manual re-entry."
         },
         {
           "question": "How can we begin ?",
