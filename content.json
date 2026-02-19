@@ -253,6 +253,9 @@
         "label": {
           "selector": "#tool-1-label",
           "value": "Power Apps"
+        },
+        "brandInfo": {
+          "value": "Microsoft Power Apps helps build custom business applications with low-code speed."
         }
       },
       {
@@ -269,70 +272,85 @@
         "label": {
           "selector": "#tool-2-label",
           "value": "Power Automate"
+        },
+        "brandInfo": {
+          "value": "Microsoft Power Automate streamlines approvals and repetitive workflows across systems."
         }
       },
       {
         "logoSrc": {
-          "selector": "#tool-2-logo",
+          "selector": "#tool-3-logo",
           "attribute": "src",
           "value": "assets/images/PowerPages_scalable.svg"
         },
         "logoAlt": {
-          "selector": "#tool-2-logo",
+          "selector": "#tool-3-logo",
           "attribute": "alt",
           "value": "Power Pages Logo"
         },
         "label": {
-          "selector": "#tool-2-label",
+          "selector": "#tool-3-label",
           "value": "Power Pages"
+        },
+        "brandInfo": {
+          "value": "Microsoft Power Pages enables secure, branded external websites connected to business data."
         }
       },
       {
         "logoSrc": {
-          "selector": "#tool-3-logo",
+          "selector": "#tool-4-logo",
           "attribute": "src",
           "value": "assets/images/Dataverse_scalable.svg"
         },
         "logoAlt": {
-          "selector": "#tool-3-logo",
+          "selector": "#tool-4-logo",
           "attribute": "alt",
           "value": "Dataverse logo"
         },
         "label": {
-          "selector": "#tool-3-label",
+          "selector": "#tool-4-label",
           "value": "Dataverse"
+        },
+        "brandInfo": {
+          "value": "Microsoft Dataverse provides secure, relational business data storage for enterprise apps."
         }
       },
       {
         "logoSrc": {
-          "selector": "#tool-4-logo",
+          "selector": "#tool-5-logo",
           "attribute": "src",
           "value": "assets/images/AIBuilder_scalable.svg"
         },
         "logoAlt": {
-          "selector": "#tool-4-logo",
+          "selector": "#tool-5-logo",
           "attribute": "alt",
           "value": "AI Builder logo"
         },
         "label": {
-          "selector": "#tool-4-label",
+          "selector": "#tool-5-label",
           "value": "AI Builder"
+        },
+        "brandInfo": {
+          "value": "Microsoft AI Builder adds intelligent prediction, extraction, and document automation to workflows."
         }
       },
       {
         "logoSrc": {
-          "selector": "#tool-4-logo",
+          "selector": "#tool-6-logo",
           "attribute": "src",
           "value": "assets/images/AzureCloud.webp"
         },
         "logoAlt": {
-          "selector": "#tool-4-logo",
+          "selector": "#tool-6-logo",
           "attribute": "alt",
           "value": "Azure Logo"
         },
         "label": {
-          "selector": "#tool-4-label",
+          "selector": "#tool-6-label",
           "value": "Azure Cloud Services"
+        },
+        "brandInfo": {
+          "value": "Microsoft Azure delivers scalable cloud infrastructure, security, integration, and analytics services."
         }
       }
     ]
