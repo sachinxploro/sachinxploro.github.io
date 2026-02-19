@@ -15,6 +15,9 @@ Just open `index.html` in your browser.
 
 Content is managed in `content.json`, while SEO pages are generated as static HTML.
 
+For complete architecture and file-connection documentation, see:
+- `WEBSITE_STRUCTURE.txt`
+
 Run:
 
 ```bash

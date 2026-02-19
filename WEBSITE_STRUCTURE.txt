@@ -1,0 +1,200 @@
+MYWEBSITE CONSTRUCTION GUIDE
+===========================
+
+1) OVERVIEW
+-----------
+This project is a static website with content managed in JSON and rendered into HTML pages.
+It has:
+- Public pages for visitors (`index.html`, `about.html`)
+- An internal data editor view (`data-view.html`)
+- Supporting JavaScript modules for dynamic UI pieces
+- A build step that pre-renders SEO content into final HTML files
+
+Main goal of the current architecture:
+- Keep content editable in one place (`content.json`)
+- Keep public pages SEO-friendly by shipping populated HTML
+
+
+2) HIGH-LEVEL FLOW
+------------------
+Authoring flow:
+1. Update `content.json` (directly or via `data-view.html` table UI)
+2. Run `node build/generate-pages.js`
+3. Script populates `index.html` and `about.html` from template files
+4. Script updates `sitemap.xml` and `robots.txt`
+5. Deploy/push to GitHub Pages
+
+Runtime flow in browser:
+- Visitor opens `index.html` or `about.html`
+- HTML already contains main page text for SEO
+- JS enhances page behavior (animations, tools cards, videos, auth, etc.)
+
+
+3) SOURCE-OF-TRUTH VS GENERATED FILES
+-------------------------------------
+Source-of-truth for content:
+- `content.json`
+
+Source templates (do not treat as deployed pages):
+- `index.template.html`
+- `about.template.html`
+
+Generated/deployable public pages:
+- `index.html`
+- `about.html`
+
+Important:
+- If `content.json` changes, regenerate public pages before deploy.
+- Keep templates and generated pages in sync through the generator.
+
+
+4) FILE-BY-FILE GUIDE
+---------------------
+Core content/build:
+- `content.json`
+  Central structured content for text, attributes, and page metadata.
+
+- `build/generate-pages.js`
+  Build script that:
+  - Reads `content.json`
+  - Injects values into template HTML by selector/id
+  - Writes final `index.html` and `about.html`
+  - Generates `sitemap.xml`
+  - Generates `robots.txt`
+
+- `index.template.html`
+  Homepage template with IDs/placeholders used by content mapping.
+
+- `about.template.html`
+  About page template with IDs/placeholders used by content mapping.
+
+Public pages:
+- `index.html`
+  Generated homepage served to users and crawlers.
+
+- `about.html`
+  Generated about page served to users and crawlers.
+
+Admin/content tools:
+- `data-view.html`
+  Internal tabular content editor/viewer for `content.json`.
+  Includes `noindex,nofollow` meta to avoid search indexing.
+
+Common UI/behavior scripts:
+- `content.js`
+  Runtime content-injection script from `content.json`.
+  Still present for consistency/fallback and dynamic updates.
+
+- `script.js`
+  Shared UI logic (footer year, reveal animation, stats counter).
+
+- `tools.js`
+  Loads tools section cards from `content.json` and manages flip behavior.
+
+- `about-communication.js`
+  Builds communication carousel/cards for About page from `content.json`.
+
+- `customer.js`
+  Renders customer success cards (currently from in-file array).
+
+- `videos.js`
+  Renders video cards and modal playback from in-file list.
+
+Auth/security-related UI:
+- `auth.js`
+  MSAL login/logout handling and user menu visibility.
+
+Styling/assets:
+- `styles.css`
+  Global styling used by major pages.
+
+- `assets/images/*`
+  Logos, avatars, and other image assets.
+
+SEO/crawling files:
+- `sitemap.xml`
+  Generated sitemap submitted to search engines.
+
+- `robots.txt`
+  Crawl directives and sitemap location.
+
+Project docs/config:
+- `README.md`
+  Setup and deployment instructions, including SEO build command.
+
+- `CNAME`
+  Custom domain mapping for GitHub Pages.
+
+
+5) HOW FILES CONNECT TO EACH OTHER
+----------------------------------
+- `content.json` -> consumed by:
+  - `build/generate-pages.js` during build
+  - `content.js`, `tools.js`, `about-communication.js` at runtime
+
+- `index.template.html` + `about.template.html` -> transformed by:
+  - `build/generate-pages.js` -> output `index.html`, `about.html`
+
+- `index.html` includes scripts:
+  - `content.js`, `tools.js`, `customer.js`, `videos.js`, `script.js`, `auth.js`
+
+- `about.html` includes scripts:
+  - `content.js`, `about-communication.js`, `script.js`
+
+- `data-view.html` fetches:
+  - `content.json` for editable rows
+  - `index.html` and `about.html` to map selectors to page links
+
+
+6) SEO CONSTRUCTION NOTES
+-------------------------
+Implemented SEO decisions:
+- Main content is present in server-delivered/generated HTML
+- Page titles and descriptions are pre-rendered
+- Sitemap and robots files exist
+- Editor page is marked noindex
+
+Why this matters:
+- Search engines can index meaningful content immediately
+- Avoids reliance on JS rendering for critical page text
+
+Recommended ongoing SEO practice:
+1. Use unique titles/meta for each page
+2. Add dedicated case study pages with specific outcomes
+3. Add internal links between related sections/pages
+4. Keep content updated and publish regularly
+5. Submit sitemap in Google Search Console
+
+
+7) DEPLOYMENT CONSTRUCTION
+--------------------------
+Current deployment target:
+- GitHub Pages (via `main` branch)
+
+Safe release checklist:
+1. Edit `content.json`
+2. Run `node build/generate-pages.js`
+3. Verify generated `index.html` and `about.html`
+4. Commit templates/content/build outputs together
+5. Push to `main`
+6. Confirm sitemap URL is reachable
+
+
+8) IMPORTANT MAINTENANCE RULES
+------------------------------
+- Do not edit generated page content manually in `index.html`/`about.html` as primary workflow.
+- Prefer editing `content.json` then regenerating.
+- If IDs/selectors change in templates, update JSON mapping accordingly.
+- Keep domain in `build/generate-pages.js` accurate for sitemap.
+- Keep editor (`data-view.html`) internal and not linked publicly in primary navigation.
+
+
+9) FUTURE IMPROVEMENTS (OPTIONAL)
+---------------------------------
+- Add GitHub Action to auto-run build on every push
+- Move `customer.js` and `videos.js` data into JSON for single-source content management
+- Add schema markup (Organization, Service, Article/CaseStudy)
+- Create separate generated case study pages and include them in sitemap
+
+
+END OF GUIDE
