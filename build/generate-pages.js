@@ -98,7 +98,7 @@ function renderCaseStudyItems(items) {
   const sectionDefs = [
     { key: "aboutCustomer", label: "About Customer" },
     { key: "problemStatement", label: "Problem Statement" },
-    { key: "provideSolution", label: "Provide Solution" },
+    { key: "provideSolution", label: "Implemented Solution" },
     { key: "benefits", label: "Benefits" },
     { key: "whatNext", label: "What Next" },
   ];
