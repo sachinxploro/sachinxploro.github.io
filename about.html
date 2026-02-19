@@ -95,8 +95,9 @@
       }
 
       .communication-list {
-        display: grid;
-        gap: 0.7rem;
+        position: relative;
+        overflow: hidden;
+        border-radius: 14px;
       }
 
       .communication-card {
@@ -105,6 +106,17 @@
         border-radius: 14px;
         color: #0f1723;
         overflow: hidden;
+      }
+
+      .communication-track {
+        display: flex;
+        transition: transform 0.35s ease;
+        will-change: transform;
+      }
+
+      .communication-slide {
+        min-width: 100%;
+        width: 100%;
       }
 
       .communication-top,
@@ -119,6 +131,8 @@
       .communication-bottom {
         grid-template-columns: auto 1fr;
         border-top: 1px solid rgba(24, 44, 94, 0.18);
+        max-height: 170px;
+        overflow-y: auto;
       }
 
       .communication-question {
@@ -140,6 +154,28 @@
         object-fit: cover;
         border: 1px solid rgba(24, 44, 94, 0.15);
         background: #dce7ff;
+      }
+
+      .communication-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 0.7rem;
+      }
+
+      .communication-dot {
+        width: 9px;
+        height: 9px;
+        border: 0;
+        border-radius: 50%;
+        background: rgba(163, 184, 224, 0.65);
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .communication-dot.active {
+        background: #3f7dfa;
+        transform: scale(1.12);
       }
 
       .about-grid {
@@ -284,6 +320,7 @@
           <aside class="communication-panel fade-up">
             <h2 id="about-communication-title" class="communication-title"></h2>
             <div id="about-communication-cards" class="communication-list"></div>
+            <div id="about-communication-dots" class="communication-dots"></div>
           </aside>
         </div>
       </section>
