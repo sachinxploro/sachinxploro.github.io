@@ -259,6 +259,22 @@
       },
       {
         "logoSrc": {
+          "selector": "#tool-2-logo",
+          "attribute": "src",
+          "value": "assets/images/PowerPages_scalable.svg"
+        },
+        "logoAlt": {
+          "selector": "#tool-2-logo",
+          "attribute": "alt",
+          "value": "Power Pages Logo"
+        },
+        "label": {
+          "selector": "#tool-2-label",
+          "value": "Power Pages"
+        }
+      },
+      {
+        "logoSrc": {
           "selector": "#tool-3-logo",
           "attribute": "src",
           "value": "assets/images/Dataverse_scalable.svg"
