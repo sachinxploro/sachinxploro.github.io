@@ -748,6 +748,13 @@ body {
   border: 1px solid var(--line);
   border-radius: 14px;
   padding: 1rem;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.case-study-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  border-color: rgba(125, 163, 255, 0.55);
+  box-shadow: 0 14px 24px rgba(2, 8, 22, 0.35);
 }
 
 .case-study-card h3 {
@@ -789,6 +796,7 @@ body {
   color: var(--muted);
   font-size: 0.94rem;
   line-height: 1.45;
+  text-align: justify;
 }
 
 .case-image-grid {
