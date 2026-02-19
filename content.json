@@ -701,11 +701,11 @@
           "assets/images/sharepoint.webp",
           "assets/images/AzureCloud.webp"
         ],
-        "aboutCustomer": "Real estate development and project delivery organization.",
-        "problemStatement": "Rising CRM operating costs, fragmented workflows, and limited integration with other enterprise systems.",
-        "provideSolution": "Implemented an integrated CRM using Microsoft Power Apps, Power Automate, and Azure Cloud services with digital approvals and automated reporting.",
-        "benefits": "Reduced licensing cost by 50%, improved cross-functional visibility, and strengthened project governance.",
-        "whatNext": "Expand automation coverage to additional planning and execution workflows across teams."
+        "aboutCustomer": "Largest Design + Build House Redevelopment company in Delhi NCR",
+        "problemStatement": "Rising operating costs of existing SaaS CRM, fragmented workflows, and limited integration with other enterprise systems.",
+        "provideSolution": "Architected and deployed an end-to-end CRM platform leveraging Microsoft Power Apps, Power Automate, and Azure services. Integrated diverse lead channels (website, IVR, social media) into a unified system with automated lead assignment, digital approval workflows, and intelligent reporting. Implemented automated WhatsApp and email notifications to enhance customer engagement and response time. Inbound and outbound customer calls, including call recordings, are automatically associated with the relevant opportunity for complete interaction tracking.",
+        "benefits": "Reduced licensing costs by 70%.\nIncreased lead generation by 50%.",
+        "whatNext": "Closed deals automatially becomes available for project creation (another App being built on Power App, Power Automate and Azure Functions)\nLost deals yet potential future opportunities go the bulk marketing tool (another App being built on Power App, Power Automate, Azure Functions & Azure Communication Services)\n"
       },
       {
         "topic": "Kashvi Metals",
