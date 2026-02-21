@@ -59,9 +59,7 @@ function applyEntryToHtml(html, entry) {
   );
 
   if (entry.attribute) {
-    return html.replace(
-      openTagPattern,
-      (fullTag) => setAttributeOnTag(fullTag, entry.attribute, entry.value),
+    return html.replace(openTagPattern, (fullTag) =>
       setAttributeOnTag(fullTag, entry.attribute, entry.value),
     );
   }
@@ -71,9 +69,7 @@ function applyEntryToHtml(html, entry) {
     "i",
   );
   if (metaPattern.test(html)) {
-    return html.replace(
-      metaPattern,
-      (fullTag) => setAttributeOnTag(fullTag, "content", entry.value),
+    return html.replace(metaPattern, (fullTag) =>
       setAttributeOnTag(fullTag, "content", entry.value),
     );
   }
@@ -236,9 +232,6 @@ renderFromTemplate("case-study.template.html", "case-study.html", {
 generateSitemap();
 generateRobots();
 
-console.log(
-  "Generated index.html, about.html, case-study.html, sitemap.xml, and robots.txt",
-);
 console.log(
   "Generated index.html, about.html, case-study.html, sitemap.xml, and robots.txt",
 );

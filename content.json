@@ -710,6 +710,20 @@
         "whatNext": "Closed deals are automatically transitioned into the project management system, triggering project creation within a separate application built on Power Apps, Power Automate, and Azure Functions.\n\nLost deals with future potential are automatically routed to a bulk marketing platform (developed using Power Apps, Power Automate, Azure Functions, and Azure Communication Services) for structured re-engagement campaigns."
       },
       {
+        "topic": "Prithu Homes",
+        "industry": "Real Estate & Construction",
+        "logo": "https://static.wixstatic.com/media/0a2938_171c080f36db4e27aeb095ca065a1d57~mv2.png/v1/fill/w_348,h_130,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Prithu%20Homes%20Logo.png",
+        "image": [
+          "assets/images/sharepoint.webp",
+          "assets/images/AzureCloud.webp"
+        ],
+        "aboutCustomer": "Largest Design + Build House Redevelopment company in Delhi NCR",
+        "problemStatement": "Rising operating costs of existing SaaS CRM, fragmented workflows, and limited integration with other enterprise systems.",
+        "provideSolution": "Architected and deployed an end-to-end CRM platform leveraging Microsoft Power Apps, Power Automate, and Azure services. Integrated diverse lead channels (website, IVR, social media) into a unified system with automated lead assignment, digital approval workflows, and intelligent reporting. Implemented automated WhatsApp and email notifications to enhance customer engagement and response time. Inbound and outbound customer calls, including call recordings, are automatically associated with the relevant opportunity for complete interaction tracking.",
+        "benefits": "Reduced licensing costs by 70%.\nIncreased lead generation by 50%.",
+        "whatNext": "Closed deals are automatically transitioned into the project management system, triggering project creation within a separate application built on Power Apps, Power Automate, and Azure Functions.\n\nLost deals with future potential are automatically routed to a bulk marketing platform (developed using Power Apps, Power Automate, Azure Functions, and Azure Communication Services) for structured re-engagement campaigns."
+      },
+      {
         "topic": "Kashvi Metals",
         "industry": "Manufacturing & Metals",
         "logo": "",
