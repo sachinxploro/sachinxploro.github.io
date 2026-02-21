@@ -122,7 +122,7 @@ function renderCaseStudyItems(items) {
   ];
 
   return Object.values(grouped)
-    .map((group) => {
+    .map((group, groupIndex) => {
       const topic = escapeHtml(group.topic);
       const industry = escapeHtml(group.industry || "");
       const logo = group.logo || "";
@@ -131,8 +131,15 @@ function renderCaseStudyItems(items) {
         ? `<img src="${escapeHtml(logo)}" alt="${topic} Logo" class="customer-logo-img">`
         : `<div class="customer-logo-placeholder">${topic.charAt(0)}</div>`;
 
+      const indicatorsHtml =
+        group.items.length > 1
+          ? `<div class="carousel-indicators">
+             ${group.items.map((_, i) => `<button class="c-indicator ${i === 0 ? "active" : ""}" data-index="${i}" aria-label="Go to slide ${i + 1}">${i + 1}</button>`).join("")}
+           </div>`
+          : "";
+
       const cardsHtml = group.items
-        .map((item, index) => {
+        .map((item) => {
           const imageList = Array.isArray(item?.image)
             ? item.image
             : item?.image
@@ -173,16 +180,18 @@ function renderCaseStudyItems(items) {
             .join("");
 
           return `
-        <article class="case-study-card">
-          ${sectionItems ? `<ul class="case-bullet-list">${sectionItems}</ul>` : ""}
-          ${imagesHtml ? `<div class="case-image-grid">${imagesHtml}</div>` : ""}
-        </article>
+        <div class="carousel-item">
+          <article class="case-study-card">
+            ${sectionItems ? `<ul class="case-bullet-list">${sectionItems}</ul>` : ""}
+            ${imagesHtml ? `<div class="case-image-grid">${imagesHtml}</div>` : ""}
+          </article>
+        </div>
       `;
         })
         .join("");
 
       return `
-        <section class="customer-section">
+        <section class="customer-section" id="customer-group-${groupIndex}">
           <div class="customer-header">
             ${logoHtml}
             <div>
@@ -190,7 +199,8 @@ function renderCaseStudyItems(items) {
               ${industry ? `<p class="customer-industry">${industry}</p>` : ""}
             </div>
           </div>
-          <div class="case-study-grid">
+          ${indicatorsHtml}
+          <div class="carousel-track">
             ${cardsHtml}
           </div>
         </section>

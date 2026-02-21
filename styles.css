@@ -796,10 +796,61 @@ body {
   letter-spacing: 0.05em;
 }
 
-.case-study-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+/* Carousel Styles */
+.carousel-track {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  scroll-behavior: smooth;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none; /* Chrome Safari */
+}
+
+.carousel-item {
+  min-width: 100%;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  padding: 0.5rem 0.2rem; /* Slight padding to avoid edge clipping */
+}
+
+.carousel-indicators {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  padding-left: 0.2rem;
+}
+
+.c-indicator {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--muted);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.c-indicator:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+}
+
+.c-indicator.active {
+  background: var(--accent);
+  color: #03102b;
+  border-color: var(--accent);
+  transform: scale(1.1);
 }
 
 .case-study-card {
