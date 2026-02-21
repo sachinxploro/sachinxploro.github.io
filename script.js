@@ -3,7 +3,6 @@
 // ---------------------------------------------
 document.getElementById("year").textContent = new Date().getFullYear();
 
-
 // ---------------------------------------------
 // 2️⃣ Scroll reveal animation
 // Adds "in-view" class when element enters viewport
@@ -17,14 +16,13 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.18 } // Trigger when 18% visible
+  { threshold: 0.18 }, // Trigger when 18% visible
 );
 
 // Observe all elements with class "reveal"
 document.querySelectorAll(".reveal").forEach(function (el) {
   observer.observe(el);
 });
-
 
 // ---------------------------------------------
 // 3️⃣ Animated statistics counter
@@ -62,7 +60,7 @@ function initStatsCounter() {
         statObserver.unobserve(el); // Stop observing after animation
       });
     },
-    { threshold: 0.55 } // Trigger when 55% visible
+    { threshold: 0.55 }, // Trigger when 55% visible
   );
 
   // Observe elements with class "stat-num"
@@ -75,9 +73,86 @@ document.addEventListener("contentLoaded", initStatsCounter);
 // Fallback in case content event is missed.
 window.setTimeout(initStatsCounter, 700);
 
+// ---------------------------------------------
+// 4️⃣ Customer Carousel Logic
+// Handles auto-scroll and numbered indicators
+// ---------------------------------------------
+function initCarousels() {
+  const carousels = document.querySelectorAll(".customer-section");
+
+  carousels.forEach((section) => {
+    const track = section.querySelector(".carousel-track");
+    const indicators = section.querySelectorAll(".c-indicator");
+
+    if (!track || indicators.length === 0) return;
+
+    let currentIndex = 0;
+    const count = indicators.length;
+    let timer;
+    const intervalTime = 6000; // 6 seconds per slide
+
+    const updateIndicators = (index) => {
+      indicators.forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+      });
+    };
+
+    const scrollToSlide = (index) => {
+      // Scroll to the specific slide
+      const slideWidth = track.clientWidth;
+      track.scrollTo({
+        left: index * slideWidth,
+        behavior: "smooth",
+      });
+      currentIndex = index;
+      updateIndicators(index);
+    };
+
+    const startAuto = () => {
+      stopAuto();
+      timer = setInterval(() => {
+        const next = (currentIndex + 1) % count;
+        scrollToSlide(next);
+      }, intervalTime);
+    };
+
+    const stopAuto = () => clearInterval(timer);
+
+    // Event listeners for indicators
+    indicators.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        stopAuto();
+        scrollToSlide(i);
+        startAuto();
+      });
+    });
+
+    // Pause on hover
+    track.addEventListener("mouseenter", stopAuto);
+    track.addEventListener("mouseleave", startAuto);
+
+    // Handle manual scroll (update dots)
+    track.addEventListener(
+      "scroll",
+      () => {
+        const index = Math.round(track.scrollLeft / track.clientWidth);
+        if (index !== currentIndex && index < count) {
+          currentIndex = index;
+          updateIndicators(index);
+        }
+      },
+      { passive: true },
+    );
+
+    // Start the carousel
+    startAuto();
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initCarousels);
 
 /* ---------------------------------------------
-// 4️⃣ Contact form email handler
+// 5️⃣ Contact form email handler
 // Prevents default form submit
 // Opens mail client with pre-filled email
 // ---------------------------------------------
