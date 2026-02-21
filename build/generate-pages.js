@@ -96,6 +96,21 @@ function renderCaseStudyItems(items) {
     return '<article class="case-study-card"><h3>No case studies added yet</h3></article>';
   }
 
+  // Group items by topic (Customer Name)
+  const grouped = {};
+  items.forEach((item) => {
+    const key = item.topic || "Other";
+    if (!grouped[key]) {
+      grouped[key] = {
+        topic: key,
+        industry: item.industry,
+        logo: item.logo,
+        items: [],
+      };
+    }
+    grouped[key].items.push(item);
+  });
+
   const bulletIcon =
     '<svg class="case-bullet-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M5 8.3 7 10.3 11.4 5.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
   const sectionDefs = [
@@ -106,47 +121,65 @@ function renderCaseStudyItems(items) {
     { key: "whatNext", label: "What Next" },
   ];
 
-  return items
-    .map((item, index) => {
-      const topic = escapeHtml(item?.topic || `Case Study ${index + 1}`);
-      const industry = escapeHtml(item?.industry || "");
-      const logo = item?.logo || "";
-      const imageList = Array.isArray(item?.image)
-        ? item.image
-        : item?.image
-          ? [item.image]
-          : Array.isArray(item?.images)
-            ? item.images
-            : [];
-
-      const imagesHtml = imageList
-        .map((src, imgIndex) => {
-          const safeSrc = escapeHtml(src);
-          return `<img class="case-image" src="${safeSrc}" alt="${topic} image ${imgIndex + 1}" loading="lazy" />`;
-        })
-        .join("");
-
-      const detailFallback = String(item?.details || "").trim();
-      const sectionItems = sectionDefs
-        .map((sectionDef) => {
-          let rawValue = item?.[sectionDef.key];
-          if (
-            (rawValue === undefined || rawValue === null || rawValue === "") &&
-            detailFallback
-          ) {
-            rawValue =
-              sectionDef.key === "problemStatement" ? detailFallback : "";
-          }
-          if (rawValue === undefined || rawValue === null || rawValue === "")
-            return "";
-          const value = escapeHtml(rawValue).replace(/\r?\n/g, "<br />");
-          return `<li class="case-bullet-item">${bulletIcon}<div><strong>${sectionDef.label}</strong><p>${value}</p></div></li>`;
-        })
-        .join("");
+  return Object.values(grouped)
+    .map((group) => {
+      const topic = escapeHtml(group.topic);
+      const industry = escapeHtml(group.industry || "");
+      const logo = group.logo || "";
 
       const logoHtml = logo
         ? `<img src="${escapeHtml(logo)}" alt="${topic} Logo" class="customer-logo-img">`
         : `<div class="customer-logo-placeholder">${topic.charAt(0)}</div>`;
+
+      const cardsHtml = group.items
+        .map((item, index) => {
+          const imageList = Array.isArray(item?.image)
+            ? item.image
+            : item?.image
+              ? [item.image]
+              : Array.isArray(item?.images)
+                ? item.images
+                : [];
+
+          const imagesHtml = imageList
+            .map((src, imgIndex) => {
+              const safeSrc = escapeHtml(src);
+              return `<img class="case-image" src="${safeSrc}" alt="${topic} image ${imgIndex + 1}" loading="lazy" />`;
+            })
+            .join("");
+
+          const detailFallback = String(item?.details || "").trim();
+          const sectionItems = sectionDefs
+            .map((sectionDef) => {
+              let rawValue = item?.[sectionDef.key];
+              if (
+                (rawValue === undefined ||
+                  rawValue === null ||
+                  rawValue === "") &&
+                detailFallback
+              ) {
+                rawValue =
+                  sectionDef.key === "problemStatement" ? detailFallback : "";
+              }
+              if (
+                rawValue === undefined ||
+                rawValue === null ||
+                rawValue === ""
+              )
+                return "";
+              const value = escapeHtml(rawValue).replace(/\r?\n/g, "<br />");
+              return `<li class="case-bullet-item">${bulletIcon}<div><strong>${sectionDef.label}</strong><p>${value}</p></div></li>`;
+            })
+            .join("");
+
+          return `
+        <article class="case-study-card">
+          ${sectionItems ? `<ul class="case-bullet-list">${sectionItems}</ul>` : ""}
+          ${imagesHtml ? `<div class="case-image-grid">${imagesHtml}</div>` : ""}
+        </article>
+      `;
+        })
+        .join("");
 
       return `
         <section class="customer-section">
@@ -157,10 +190,9 @@ function renderCaseStudyItems(items) {
               ${industry ? `<p class="customer-industry">${industry}</p>` : ""}
             </div>
           </div>
-          <article class="case-study-card">
-            ${sectionItems ? `<ul class="case-bullet-list">${sectionItems}</ul>` : ""}
-            ${imagesHtml ? `<div class="case-image-grid">${imagesHtml}</div>` : ""}
-          </article>
+          <div class="case-study-grid">
+            ${cardsHtml}
+          </div>
         </section>
       `;
     })
