@@ -58,7 +58,7 @@ async function initializeMsal() {
 }
 
 // Run initialization immediately
-initializeMsal();
+const msalInitPromise = initializeMsal();
 
 /**
  * Handle the successful login response
@@ -75,6 +75,9 @@ function handleResponse(response) {
  */
 async function signIn() {
   try {
+    // Ensure MSAL is initialized before attempting to login
+    await msalInitPromise;
+
     const loginRequest = {
       scopes: ["User.Read"], // Request permission to read user profile
     };
@@ -90,6 +93,9 @@ async function signIn() {
  * Sign Out function
  */
 async function signOut() {
+  // Ensure MSAL is initialized before attempting to logout
+  await msalInitPromise;
+
   const logoutRequest = {
     account: myMSALObj.getAccountByUsername(username),
     postLogoutRedirectUri: msalConfig.auth.redirectUri,
