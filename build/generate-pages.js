@@ -34,7 +34,10 @@ function escapeRegExp(value) {
 }
 
 function setAttributeOnTag(openTag, attribute, value) {
-  const attrRegex = new RegExp(`\\s${escapeRegExp(attribute)}=("[^"]*"|'[^']*')`, "i");
+  const attrRegex = new RegExp(
+    `\\s${escapeRegExp(attribute)}=("[^"]*"|'[^']*')`,
+    "i",
+  );
   const safeValue = String(value).replace(/"/g, "&quot;");
 
   if (attrRegex.test(openTag)) {
@@ -52,28 +55,32 @@ function applyEntryToHtml(html, entry) {
 
   const openTagPattern = new RegExp(
     `(<[a-zA-Z][a-zA-Z0-9:-]*[^>]*\\sid=["']${escapeRegExp(id)}["'][^>]*>)`,
-    "i"
+    "i",
   );
 
   if (entry.attribute) {
-    return html.replace(openTagPattern, (fullTag) =>
-      setAttributeOnTag(fullTag, entry.attribute, entry.value)
+    return html.replace(
+      openTagPattern,
+      (fullTag) => setAttributeOnTag(fullTag, entry.attribute, entry.value),
+      setAttributeOnTag(fullTag, entry.attribute, entry.value),
     );
   }
 
   const metaPattern = new RegExp(
     `(<meta[^>]*\\sid=["']${escapeRegExp(id)}["'][^>]*>)`,
-    "i"
+    "i",
   );
   if (metaPattern.test(html)) {
-    return html.replace(metaPattern, (fullTag) =>
-      setAttributeOnTag(fullTag, "content", entry.value)
+    return html.replace(
+      metaPattern,
+      (fullTag) => setAttributeOnTag(fullTag, "content", entry.value),
+      setAttributeOnTag(fullTag, "content", entry.value),
     );
   }
 
   const elementPattern = new RegExp(
     `(<([a-zA-Z][a-zA-Z0-9:-]*)[^>]*\\sid=["']${escapeRegExp(id)}["'][^>]*>)([\\s\\S]*?)(</\\2>)`,
-    "i"
+    "i",
   );
 
   return html.replace(elementPattern, `$1${String(entry.value)}$4`);
@@ -106,6 +113,8 @@ function renderCaseStudyItems(items) {
   return items
     .map((item, index) => {
       const topic = escapeHtml(item?.topic || `Case Study ${index + 1}`);
+      const industry = escapeHtml(item?.industry || "");
+      const logo = item?.logo || "";
       const imageList = Array.isArray(item?.image)
         ? item.image
         : item?.image
@@ -125,21 +134,38 @@ function renderCaseStudyItems(items) {
       const sectionItems = sectionDefs
         .map((sectionDef) => {
           let rawValue = item?.[sectionDef.key];
-          if ((rawValue === undefined || rawValue === null || rawValue === "") && detailFallback) {
-            rawValue = sectionDef.key === "problemStatement" ? detailFallback : "";
+          if (
+            (rawValue === undefined || rawValue === null || rawValue === "") &&
+            detailFallback
+          ) {
+            rawValue =
+              sectionDef.key === "problemStatement" ? detailFallback : "";
           }
-          if (rawValue === undefined || rawValue === null || rawValue === "") return "";
+          if (rawValue === undefined || rawValue === null || rawValue === "")
+            return "";
           const value = escapeHtml(rawValue).replace(/\r?\n/g, "<br />");
           return `<li class="case-bullet-item">${bulletIcon}<div><strong>${sectionDef.label}</strong><p>${value}</p></div></li>`;
         })
         .join("");
 
+      const logoHtml = logo
+        ? `<img src="${escapeHtml(logo)}" alt="${topic} Logo" class="customer-logo-img">`
+        : `<div class="customer-logo-placeholder">${topic.charAt(0)}</div>`;
+
       return `
-        <article class="case-study-card">
-          <h3>${topic}</h3>
-          ${sectionItems ? `<ul class="case-bullet-list">${sectionItems}</ul>` : ""}
-          ${imagesHtml ? `<div class="case-image-grid">${imagesHtml}</div>` : ""}
-        </article>
+        <section class="customer-section">
+          <div class="customer-header">
+            ${logoHtml}
+            <div>
+              <h2 class="customer-name">${topic}</h2>
+              ${industry ? `<p class="customer-industry">${industry}</p>` : ""}
+            </div>
+          </div>
+          <article class="case-study-card">
+            ${sectionItems ? `<ul class="case-bullet-list">${sectionItems}</ul>` : ""}
+            ${imagesHtml ? `<div class="case-image-grid">${imagesHtml}</div>` : ""}
+          </article>
+        </section>
       `;
     })
     .join("");
@@ -162,7 +188,10 @@ function renderFromTemplate(templateFile, outputFile, options = {}) {
   });
 
   if (options.includeCaseItems && html.includes(CASE_ITEMS_TOKEN)) {
-    html = html.replace(CASE_ITEMS_TOKEN, renderCaseStudyItems(content?.caseStudy?.items));
+    html = html.replace(
+      CASE_ITEMS_TOKEN,
+      renderCaseStudyItems(content?.caseStudy?.items),
+    );
   }
 
   fs.writeFileSync(path.join(rootDir, outputFile), html, "utf8");
@@ -178,7 +207,7 @@ function generateSitemap() {
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
     ...pages.map(
       (page) =>
-        `  <url><loc>${domain}${page}</loc><lastmod>${now}</lastmod></url>`
+        `  <url><loc>${domain}${page}</loc><lastmod>${now}</lastmod></url>`,
     ),
     "</urlset>",
     "",
@@ -207,4 +236,9 @@ renderFromTemplate("case-study.template.html", "case-study.html", {
 generateSitemap();
 generateRobots();
 
-console.log("Generated index.html, about.html, case-study.html, sitemap.xml, and robots.txt");
+console.log(
+  "Generated index.html, about.html, case-study.html, sitemap.xml, and robots.txt",
+);
+console.log(
+  "Generated index.html, about.html, case-study.html, sitemap.xml, and robots.txt",
+);

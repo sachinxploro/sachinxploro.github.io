@@ -737,6 +737,65 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.case-study-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.customer-section {
+  background: rgba(15, 23, 48, 0.4);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.customer-header {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.customer-logo-img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.customer-logo-placeholder {
+  height: 50px;
+  width: 50px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+
+.customer-name {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.customer-industry {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 .case-study-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -744,11 +803,8 @@ body {
 }
 
 .case-study-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 1rem;
-  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  /* Removed background/border as it is now inside a section */
+  padding: 0;
 }
 
 .case-study-card:hover {
