@@ -96,9 +96,15 @@ function renderCaseStudyItems(items) {
     return '<article class="case-study-card"><h3>No case studies added yet</h3></article>';
   }
 
+  const visibleItems = items.filter((item) => item.isVisible !== false);
+
+  if (visibleItems.length === 0) {
+    return '<article class="case-study-card"><h3>No case studies added yet</h3></article>';
+  }
+
   // Group items by topic (Customer Name)
   const grouped = {};
-  items.forEach((item) => {
+  visibleItems.forEach((item) => {
     const key = item.topic || "Other";
     if (!grouped[key]) {
       grouped[key] = {

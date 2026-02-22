@@ -1,527 +1,547 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex,nofollow" />
-    <title>Static Content Data</title>
-    <style>
-      :root {
-        --bg: #ececec;
-        --surface: #ffffff;
-        --text: #0f1723;
-        --muted: #3f4a60;
-        --line: #cfd5e0;
-        --accent: #156bc7;
-        --value-bg: #f1efd9;
-      }
 
-      * {
-        box-sizing: border-box;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Static Content Data</title>
+  <style>
+    :root {
+      --bg: #ececec;
+      --surface: #ffffff;
+      --text: #0f1723;
+      --muted: #3f4a60;
+      --line: #cfd5e0;
+      --accent: #156bc7;
+      --value-bg: #f1efd9;
+    }
 
-      body {
-        margin: 0;
-        font-family: "Segoe UI", Tahoma, sans-serif;
-        background: var(--bg);
-        color: var(--text);
-      }
+    * {
+      box-sizing: border-box;
+    }
 
-      .page {
-        max-width: 1240px;
-        margin: 0 auto;
-        padding: 20px 24px 40px;
-      }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
 
-      .back-link {
-        display: inline-block;
-        margin-bottom: 16px;
-        color: var(--text);
-        text-decoration: none;
-        font-weight: 700;
-      }
+    .page {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 20px 24px 40px;
+    }
 
-      .header-box {
-        border-top: 1px solid #ddd;
-        padding-top: 18px;
-        margin-bottom: 22px;
-      }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 16px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+    }
 
-      .header-box h1 {
-        margin: 0 0 6px;
-        font-size: 2rem;
-      }
+    .header-box {
+      border-top: 1px solid #ddd;
+      padding-top: 18px;
+      margin-bottom: 22px;
+    }
 
-      .header-box p {
-        margin: 0 0 10px;
-        color: var(--muted);
-      }
+    .header-box h1 {
+      margin: 0 0 6px;
+      font-size: 2rem;
+    }
 
-      .toolbar {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
+    .header-box p {
+      margin: 0 0 10px;
+      color: var(--muted);
+    }
 
-      .section-links {
-        margin: 12px 0 20px;
-        color: var(--muted);
-        font-size: 0.92rem;
-      }
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-      .section-links a {
-        color: var(--accent);
-        text-decoration: none;
-        font-weight: 700;
-      }
+    .section-links {
+      margin: 12px 0 20px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
 
-      .section-links a:hover,
-      .section-links a:focus-visible {
-        text-decoration: underline;
-      }
+    .section-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
 
-      button {
-        border: 0;
-        border-radius: 3px;
-        padding: 7px 12px;
-        background: var(--accent);
-        color: #fff;
-        font-weight: 700;
-        cursor: pointer;
-      }
+    .section-links a:hover,
+    .section-links a:focus-visible {
+      text-decoration: underline;
+    }
 
-      .status {
-        color: var(--muted);
-        font-size: 0.9rem;
-      }
+    button {
+      border: 0;
+      border-radius: 3px;
+      padding: 7px 12px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
 
-      .section-block + .section-block {
-        margin-top: 26px;
-      }
+    .status {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
 
-      .section-panel {
-        border: 1px solid var(--line);
-        background: var(--surface);
-      }
+    .section-block+.section-block {
+      margin-top: 26px;
+    }
 
-      .section-panel summary {
-        list-style: none;
-        cursor: pointer;
-        padding: 12px 14px;
-        font-size: 1.15rem;
-        font-weight: 700;
-        text-transform: capitalize;
-        border-bottom: 1px solid var(--line);
-        user-select: none;
-      }
+    .section-panel {
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
 
-      .section-panel summary::-webkit-details-marker {
-        display: none;
-      }
+    .section-panel summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 12px 14px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-transform: capitalize;
+      border-bottom: 1px solid var(--line);
+      user-select: none;
+    }
 
-      .section-panel summary::before {
-        content: "+";
-        margin-right: 8px;
-        color: var(--accent);
-      }
+    .section-panel summary::-webkit-details-marker {
+      display: none;
+    }
 
-      .section-panel[open] summary::before {
-        content: "-";
-      }
+    .section-panel summary::before {
+      content: "+";
+      margin-right: 8px;
+      color: var(--accent);
+    }
 
-      .table-wrap {
-        background: var(--surface);
-        border: 1px solid var(--line);
-        overflow: auto;
-      }
+    .section-panel[open] summary::before {
+      content: "-";
+    }
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        min-width: 1000px;
-      }
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      overflow: auto;
+    }
 
-      th,
-      td {
-        padding: 8px 9px;
-        border: 1px solid var(--line);
-        vertical-align: top;
-        text-align: left;
-        font-size: 0.9rem;
-      }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1000px;
+    }
 
-      th {
-        color: #fff;
-        background: var(--accent);
-        font-size: 0.88rem;
-      }
+    th,
+    td {
+      padding: 8px 9px;
+      border: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+      font-size: 0.9rem;
+    }
 
-      td.key {
-        width: 19%;
-        font-family: Consolas, monospace;
-        font-size: 0.85rem;
-      }
+    th {
+      color: #fff;
+      background: var(--accent);
+      font-size: 0.88rem;
+    }
 
-      td.value {
-        width: 36%;
-        background: var(--value-bg);
-      }
+    td.key {
+      width: 19%;
+      font-family: Consolas, monospace;
+      font-size: 0.85rem;
+    }
 
-      td.path {
-        width: 25%;
-        color: var(--muted);
-        font-size: 0.85rem;
-      }
+    td.value {
+      width: 36%;
+      background: var(--value-bg);
+    }
 
-      td.selector {
-        width: 16%;
-        font-family: Consolas, monospace;
-        font-size: 0.85rem;
-      }
+    td.path {
+      width: 25%;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
 
-      td.actions {
-        width: 10%;
-      }
+    td.selector {
+      width: 16%;
+      font-family: Consolas, monospace;
+      font-size: 0.85rem;
+    }
 
-      .selector-id {
-        display: block;
-        margin-bottom: 4px;
-      }
+    td.actions {
+      width: 10%;
+    }
 
-      .selector-links {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        font-family: "Segoe UI", Tahoma, sans-serif;
-      }
+    .selector-id {
+      display: block;
+      margin-bottom: 4px;
+    }
 
-      .selector-links a {
-        color: var(--accent);
-        text-decoration: none;
-        font-size: 0.78rem;
-        font-weight: 700;
-      }
+    .selector-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+    }
 
-      .selector-links a:hover,
-      .selector-links a:focus-visible {
-        text-decoration: underline;
-      }
+    .selector-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
 
-      textarea {
-        width: 100%;
-        min-height: 58px;
-        border: 1px solid #c5c9d3;
-        background: #fffdf3;
-        padding: 8px;
-        font: inherit;
-        resize: vertical;
-      }
+    .selector-links a:hover,
+    .selector-links a:focus-visible {
+      text-decoration: underline;
+    }
 
-      .empty {
-        color: var(--muted);
-        font-style: italic;
-        border: 1px dashed var(--line);
-        padding: 12px;
-        background: #fafafa;
-      }
+    textarea {
+      width: 100%;
+      min-height: 58px;
+      border: 1px solid #c5c9d3;
+      background: #fffdf3;
+      padding: 8px;
+      font: inherit;
+      resize: vertical;
+    }
 
-      .actions-wrap {
-        display: flex;
-        gap: 6px;
-        flex-wrap: wrap;
-      }
+    .empty {
+      color: var(--muted);
+      font-style: italic;
+      border: 1px dashed var(--line);
+      padding: 12px;
+      background: #fafafa;
+    }
 
-      .item-btn {
-        border: 1px solid #8ea3cf;
-        border-radius: 3px;
-        background: #fff;
-        color: #264887;
-        padding: 4px 8px;
-        font-size: 0.78rem;
-        font-weight: 700;
-        cursor: pointer;
-      }
+    .actions-wrap {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
 
-      .item-btn.delete {
-        color: #a11f1f;
-        border-color: #d0a5a5;
-      }
+    .item-btn {
+      border: 1px solid #8ea3cf;
+      border-radius: 3px;
+      background: #fff;
+      color: #264887;
+      padding: 4px 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
 
-      tr.group-start td {
-        border-top: 3px solid #9fb2da;
-      }
+    .item-btn.delete {
+      color: #a11f1f;
+      border-color: #d0a5a5;
+    }
 
-      tr.group-tone-a td:not(.value) {
-        background: #f8f9fc;
-      }
+    tr.group-start td {
+      border-top: 3px solid #9fb2da;
+    }
 
-      tr.group-tone-b td:not(.value) {
-        background: #eef3fb;
-      }
+    tr.group-tone-a td:not(.value) {
+      background: #f8f9fc;
+    }
 
-      tr.group-start td.key {
-        font-weight: 700;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="page">
-      <a class="back-link" href="index.html">Back to Home</a>
+    tr.group-tone-b td:not(.value) {
+      background: #eef3fb;
+    }
 
-      <div class="header-box">
-        <h1>Static Content Data</h1>
-        <p>This page displays the raw data configured in <code>content.json</code>.</p>
-        <div class="toolbar">
-          <button id="downloadBtn" type="button">Download JSON</button>
-          <button id="expandAllBtn" type="button">Expand All</button>
-          <button id="collapseAllBtn" type="button">Collapse All</button>
-          <span id="rowCount" class="status">Loading...</span>
-        </div>
+    tr.group-start td.key {
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <a class="back-link" href="index.html">Back to Home</a>
+
+    <div class="header-box">
+      <h1>Static Content Data</h1>
+      <p>This page displays the raw data configured in <code>content.json</code>.</p>
+      <div class="toolbar">
+        <button id="downloadBtn" type="button">Download JSON</button>
+        <button id="expandAllBtn" type="button">Expand All</button>
+        <button id="collapseAllBtn" type="button">Collapse All</button>
+        <span id="rowCount" class="status">Loading...</span>
       </div>
-
-      <div id="sectionLinks" class="section-links"></div>
-      <div id="sectionsContainer"></div>
     </div>
 
-    <script>
-      let contentData = null;
-      let pageSelectorMap = {
-        index: new Set(),
-        about: new Set(),
-        caseStudy: new Set(),
-      };
-      let sectionOpenState = {};
+    <div id="sectionLinks" class="section-links"></div>
+    <div id="sectionsContainer"></div>
+  </div>
 
-      function normalizePath(pathParts) {
-        return pathParts
-          .map(function (part) {
-            return String(part).replace(/^\[(\d+)\]$/, "item$1");
-          })
-          .join(" > ");
+  <script>
+    let contentData = null;
+    let pageSelectorMap = {
+      index: new Set(),
+      about: new Set(),
+      caseStudy: new Set(),
+    };
+    let sectionOpenState = {};
+
+    function normalizePath(pathParts) {
+      return pathParts
+        .map(function (part) {
+          return String(part).replace(/^\[(\d+)\]$/, "item$1");
+        })
+        .join(" > ");
+    }
+
+    function buildRowGroupKey(pathParts) {
+      const indexPos = pathParts.findIndex(function (part) {
+        return /^\[\d+\]$/.test(String(part));
+      });
+
+      if (indexPos >= 0) {
+        return pathParts.slice(0, indexPos + 1).join(">");
       }
 
-      function buildRowGroupKey(pathParts) {
-        const indexPos = pathParts.findIndex(function (part) {
-          return /^\[\d+\]$/.test(String(part));
+      if (pathParts.length > 1) {
+        return pathParts.slice(0, pathParts.length - 1).join(">");
+      }
+
+      return pathParts.join(">");
+    }
+
+    function snapshotSectionState() {
+      const next = {};
+      document.querySelectorAll(".section-panel").forEach(function (panel) {
+        const key = panel.getAttribute("data-section");
+        if (!key) return;
+        next[key] = panel.open;
+      });
+      if (Object.keys(next).length > 0) {
+        sectionOpenState = next;
+      }
+    }
+
+    function toAnchorId(sectionName) {
+      const clean = String(sectionName)
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+      return "section-" + clean;
+    }
+
+    function collectRows(
+      node,
+      pathParts,
+      rows,
+      parentNode,
+      parentKey,
+      arrayContext
+    ) {
+      if (node === null || node === undefined) return;
+
+      if (typeof node !== "object") {
+        rows.push({
+          path: pathParts.slice(),
+          selector: "",
+          type: "primitive",
+          parentNode: parentNode,
+          parentKey: parentKey,
+          arrayContext: arrayContext || null,
         });
-
-        if (indexPos >= 0) {
-          return pathParts.slice(0, indexPos + 1).join(">");
-        }
-
-        if (pathParts.length > 1) {
-          return pathParts.slice(0, pathParts.length - 1).join(">");
-        }
-
-        return pathParts.join(">");
+        return;
       }
 
-      function snapshotSectionState() {
-        const next = {};
-        document.querySelectorAll(".section-panel").forEach(function (panel) {
-          const key = panel.getAttribute("data-section");
-          if (!key) return;
-          next[key] = panel.open;
-        });
-        if (Object.keys(next).length > 0) {
-          sectionOpenState = next;
-        }
-      }
-
-      function toAnchorId(sectionName) {
-        const clean = String(sectionName)
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/^-+|-+$/g, "");
-        return "section-" + clean;
-      }
-
-      function collectRows(
-        node,
-        pathParts,
-        rows,
-        parentNode,
-        parentKey,
-        arrayContext
+      if (
+        typeof node.selector === "string" &&
+        Object.prototype.hasOwnProperty.call(node, "value")
       ) {
-        if (node === null || node === undefined) return;
+        rows.push({
+          path: pathParts.slice(),
+          selector: node.selector,
+          type: "selectorValue",
+          nodeRef: node,
+          arrayContext: arrayContext || null,
+        });
+        return;
+      }
 
-        if (typeof node !== "object") {
-          rows.push({
-            path: pathParts.slice(),
-            selector: "",
-            type: "primitive",
-            parentNode: parentNode,
-            parentKey: parentKey,
-            arrayContext: arrayContext || null,
-          });
-          return;
+      if (Array.isArray(node)) {
+        node.forEach(function (item, index) {
+          const nextContext = {
+            arrayRef: node,
+            index: index,
+          };
+          collectRows(
+            item,
+            pathParts.concat("[" + (index + 1) + "]"),
+            rows,
+            node,
+            index,
+            nextContext
+          );
+        });
+        return;
+      }
+
+      Object.entries(node).forEach(function ([key, value]) {
+        collectRows(value, pathParts.concat(key), rows, node, key, arrayContext);
+      });
+    }
+
+    function cloneDeep(value) {
+      return JSON.parse(JSON.stringify(value));
+    }
+
+    function normalizeToolsSelectors() {
+      const items = contentData?.tools?.items;
+      if (!Array.isArray(items)) return;
+
+      items.forEach(function (item, index) {
+        const n = index + 1;
+        if (item?.logoSrc && typeof item.logoSrc === "object") {
+          item.logoSrc.selector = "#tool-" + n + "-logo";
+        }
+        if (item?.logoAlt && typeof item.logoAlt === "object") {
+          item.logoAlt.selector = "#tool-" + n + "-logo";
+        }
+        if (item?.label && typeof item.label === "object") {
+          item.label.selector = "#tool-" + n + "-label";
+        }
+      });
+    }
+
+    function rerender() {
+      snapshotSectionState();
+      normalizeToolsSelectors();
+      const rows = [];
+      collectRows(contentData, [], rows, null, null, null);
+      renderSections(rows);
+    }
+
+    function addArrayItem(row) {
+      if (!row.arrayContext || !row.arrayContext.arrayRef) return;
+      const source = row.arrayContext.arrayRef[row.arrayContext.index];
+      const newItem = cloneDeep(source);
+      row.arrayContext.arrayRef.splice(row.arrayContext.index + 1, 0, newItem);
+      rerender();
+    }
+
+    function deleteArrayItem(row) {
+      if (!row.arrayContext || !row.arrayContext.arrayRef) return;
+      row.arrayContext.arrayRef.splice(row.arrayContext.index, 1);
+      rerender();
+    }
+
+    function renderSections(rows) {
+      const container = document.getElementById("sectionsContainer");
+      const linksContainer = document.getElementById("sectionLinks");
+      container.innerHTML = "";
+      linksContainer.innerHTML = "";
+
+      const bySection = {};
+      const sectionOrder = [];
+      rows.forEach(function (row) {
+        const sectionName = row.path.length > 0 ? row.path[0] : "root";
+        if (!bySection[sectionName]) {
+          bySection[sectionName] = [];
+          sectionOrder.push(sectionName);
+        }
+        bySection[sectionName].push(row);
+      });
+
+      sectionOrder.forEach(function (sectionName, sectionIndex) {
+        const sectionAnchorId = toAnchorId(sectionName);
+        const jumpLink = document.createElement("a");
+        jumpLink.href = "#" + sectionAnchorId;
+        jumpLink.textContent = sectionName;
+        linksContainer.appendChild(jumpLink);
+        if (sectionIndex < sectionOrder.length - 1) {
+          linksContainer.appendChild(document.createTextNode(" | "));
         }
 
-        if (
-          typeof node.selector === "string" &&
-          Object.prototype.hasOwnProperty.call(node, "value")
-        ) {
-          rows.push({
-            path: pathParts.slice(),
-            selector: node.selector,
-            type: "selectorValue",
-            nodeRef: node,
-            arrayContext: arrayContext || null,
-          });
-          return;
-        }
+        const block = document.createElement("section");
+        block.className = "section-block";
+        block.id = sectionAnchorId;
 
-        if (Array.isArray(node)) {
-          node.forEach(function (item, index) {
-            const nextContext = {
-              arrayRef: node,
-              index: index,
-            };
-            collectRows(
-              item,
-              pathParts.concat("[" + (index + 1) + "]"),
-              rows,
-              node,
-              index,
-              nextContext
-            );
-          });
-          return;
-        }
-
-        Object.entries(node).forEach(function ([key, value]) {
-          collectRows(value, pathParts.concat(key), rows, node, key, arrayContext);
-        });
-      }
-
-      function cloneDeep(value) {
-        return JSON.parse(JSON.stringify(value));
-      }
-
-      function normalizeToolsSelectors() {
-        const items = contentData?.tools?.items;
-        if (!Array.isArray(items)) return;
-
-        items.forEach(function (item, index) {
-          const n = index + 1;
-          if (item?.logoSrc && typeof item.logoSrc === "object") {
-            item.logoSrc.selector = "#tool-" + n + "-logo";
-          }
-          if (item?.logoAlt && typeof item.logoAlt === "object") {
-            item.logoAlt.selector = "#tool-" + n + "-logo";
-          }
-          if (item?.label && typeof item.label === "object") {
-            item.label.selector = "#tool-" + n + "-label";
-          }
-        });
-      }
-
-      function rerender() {
-        snapshotSectionState();
-        normalizeToolsSelectors();
-        const rows = [];
-        collectRows(contentData, [], rows, null, null, null);
-        renderSections(rows);
-      }
-
-      function addArrayItem(row) {
-        if (!row.arrayContext || !row.arrayContext.arrayRef) return;
-        const source = row.arrayContext.arrayRef[row.arrayContext.index];
-        const newItem = cloneDeep(source);
-        row.arrayContext.arrayRef.splice(row.arrayContext.index + 1, 0, newItem);
-        rerender();
-      }
-
-      function deleteArrayItem(row) {
-        if (!row.arrayContext || !row.arrayContext.arrayRef) return;
-        row.arrayContext.arrayRef.splice(row.arrayContext.index, 1);
-        rerender();
-      }
-
-      function renderSections(rows) {
-        const container = document.getElementById("sectionsContainer");
-        const linksContainer = document.getElementById("sectionLinks");
-        container.innerHTML = "";
-        linksContainer.innerHTML = "";
-
-        const bySection = {};
-        const sectionOrder = [];
-        rows.forEach(function (row) {
-          const sectionName = row.path.length > 0 ? row.path[0] : "root";
-          if (!bySection[sectionName]) {
-            bySection[sectionName] = [];
-            sectionOrder.push(sectionName);
-          }
-          bySection[sectionName].push(row);
+        const details = document.createElement("details");
+        details.className = "section-panel";
+        details.setAttribute("data-section", sectionName);
+        details.open =
+          Object.prototype.hasOwnProperty.call(sectionOpenState, sectionName)
+            ? sectionOpenState[sectionName]
+            : true;
+        details.addEventListener("toggle", function () {
+          sectionOpenState[sectionName] = details.open;
         });
 
-        sectionOrder.forEach(function (sectionName, sectionIndex) {
-          const sectionAnchorId = toAnchorId(sectionName);
-          const jumpLink = document.createElement("a");
-          jumpLink.href = "#" + sectionAnchorId;
-          jumpLink.textContent = sectionName;
-          linksContainer.appendChild(jumpLink);
-          if (sectionIndex < sectionOrder.length - 1) {
-            linksContainer.appendChild(document.createTextNode(" | "));
+        const heading = document.createElement("summary");
+        heading.textContent =
+          sectionName + " (" + bySection[sectionName].length + " items)";
+        details.appendChild(heading);
+
+        const tableWrap = document.createElement("div");
+        tableWrap.className = "table-wrap";
+        const table = document.createElement("table");
+        table.innerHTML =
+          "<thead><tr><th>Key</th><th>Value</th><th>Group Path</th><th>Selector</th><th>Actions</th></tr></thead>";
+        const tbody = document.createElement("tbody");
+
+        const groupToneByKey = {};
+        let previousGroupKey = null;
+
+        bySection[sectionName].forEach(function (row) {
+          const tr = document.createElement("tr");
+          const currentGroupKey = buildRowGroupKey(row.path);
+          const isGroupStart = currentGroupKey !== previousGroupKey;
+          if (isGroupStart) {
+            tr.classList.add("group-start");
           }
 
-          const block = document.createElement("section");
-          block.className = "section-block";
-          block.id = sectionAnchorId;
+          if (!Object.prototype.hasOwnProperty.call(groupToneByKey, currentGroupKey)) {
+            const used = Object.keys(groupToneByKey).length;
+            groupToneByKey[currentGroupKey] = used % 2 === 0 ? "group-tone-a" : "group-tone-b";
+          }
+          tr.classList.add(groupToneByKey[currentGroupKey]);
+          previousGroupKey = currentGroupKey;
 
-          const details = document.createElement("details");
-          details.className = "section-panel";
-          details.setAttribute("data-section", sectionName);
-          details.open =
-            Object.prototype.hasOwnProperty.call(sectionOpenState, sectionName)
-              ? sectionOpenState[sectionName]
-              : true;
-          details.addEventListener("toggle", function () {
-            sectionOpenState[sectionName] = details.open;
-          });
+          const keyTd = document.createElement("td");
+          keyTd.className = "key";
+          keyTd.textContent = row.path[row.path.length - 1] || "";
 
-          const heading = document.createElement("summary");
-          heading.textContent =
-            sectionName + " (" + bySection[sectionName].length + " items)";
-          details.appendChild(heading);
+          const valueTd = document.createElement("td");
+          valueTd.className = "value";
+          const rawValue =
+            row.type === "selectorValue"
+              ? row.nodeRef.value
+              : row.parentNode?.[row.parentKey];
 
-          const tableWrap = document.createElement("div");
-          tableWrap.className = "table-wrap";
-          const table = document.createElement("table");
-          table.innerHTML =
-            "<thead><tr><th>Key</th><th>Value</th><th>Group Path</th><th>Selector</th><th>Actions</th></tr></thead>";
-          const tbody = document.createElement("tbody");
-
-          const groupToneByKey = {};
-          let previousGroupKey = null;
-
-          bySection[sectionName].forEach(function (row) {
-            const tr = document.createElement("tr");
-            const currentGroupKey = buildRowGroupKey(row.path);
-            const isGroupStart = currentGroupKey !== previousGroupKey;
-            if (isGroupStart) {
-              tr.classList.add("group-start");
-            }
-
-            if (!Object.prototype.hasOwnProperty.call(groupToneByKey, currentGroupKey)) {
-              const used = Object.keys(groupToneByKey).length;
-              groupToneByKey[currentGroupKey] = used % 2 === 0 ? "group-tone-a" : "group-tone-b";
-            }
-            tr.classList.add(groupToneByKey[currentGroupKey]);
-            previousGroupKey = currentGroupKey;
-
-            const keyTd = document.createElement("td");
-            keyTd.className = "key";
-            keyTd.textContent = row.path[row.path.length - 1] || "";
-
-            const valueTd = document.createElement("td");
-            valueTd.className = "value";
+          if (typeof rawValue === "boolean") {
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.checked = rawValue;
+            checkbox.style.margin = "10px";
+            checkbox.style.transform = "scale(1.3)";
+            checkbox.addEventListener("change", function () {
+              const newVal = checkbox.checked;
+              if (row.type === "selectorValue") {
+                row.nodeRef.value = newVal;
+              } else if (row.parentNode) {
+                row.parentNode[row.parentKey] = newVal;
+              }
+            });
+            valueTd.appendChild(checkbox);
+          } else {
             const textarea = document.createElement("textarea");
-            textarea.value =
-              row.type === "selectorValue"
-                ? String(row.nodeRef.value ?? "")
-                : String(row.parentNode?.[row.parentKey] ?? "");
+            textarea.value = String(rawValue ?? "");
             textarea.addEventListener("input", function () {
               if (row.type === "selectorValue") {
                 row.nodeRef.value = textarea.value;
@@ -530,187 +550,189 @@
               }
             });
             valueTd.appendChild(textarea);
+          }
 
-            const pathTd = document.createElement("td");
-            pathTd.className = "path";
-            pathTd.textContent = normalizePath(row.path);
+          const pathTd = document.createElement("td");
+          pathTd.className = "path";
+          pathTd.textContent = normalizePath(row.path);
 
-            const selectorTd = document.createElement("td");
-            selectorTd.className = "selector";
-            const idText = document.createElement("span");
-            idText.className = "selector-id";
-            idText.textContent = row.selector || "-";
-            selectorTd.appendChild(idText);
+          const selectorTd = document.createElement("td");
+          selectorTd.className = "selector";
+          const idText = document.createElement("span");
+          idText.className = "selector-id";
+          idText.textContent = row.selector || "-";
+          selectorTd.appendChild(idText);
 
-            const selectorId = String(row.selector || "").replace(/^#/, "");
-            const linksWrap = document.createElement("div");
-            linksWrap.className = "selector-links";
+          const selectorId = String(row.selector || "").replace(/^#/, "");
+          const linksWrap = document.createElement("div");
+          linksWrap.className = "selector-links";
 
-            if (selectorId && pageSelectorMap.index.has(selectorId)) {
-              const indexLink = document.createElement("a");
-              indexLink.href = "index.html#" + selectorId;
-              indexLink.target = "_blank";
-              indexLink.rel = "noopener noreferrer";
-              indexLink.textContent = "Open in Home";
-              linksWrap.appendChild(indexLink);
-            }
+          if (selectorId && pageSelectorMap.index.has(selectorId)) {
+            const indexLink = document.createElement("a");
+            indexLink.href = "index.html#" + selectorId;
+            indexLink.target = "_blank";
+            indexLink.rel = "noopener noreferrer";
+            indexLink.textContent = "Open in Home";
+            linksWrap.appendChild(indexLink);
+          }
 
-            if (selectorId && pageSelectorMap.about.has(selectorId)) {
-              const aboutLink = document.createElement("a");
-              aboutLink.href = "about.html#" + selectorId;
-              aboutLink.target = "_blank";
-              aboutLink.rel = "noopener noreferrer";
-              aboutLink.textContent = "Open in About";
-              linksWrap.appendChild(aboutLink);
-            }
+          if (selectorId && pageSelectorMap.about.has(selectorId)) {
+            const aboutLink = document.createElement("a");
+            aboutLink.href = "about.html#" + selectorId;
+            aboutLink.target = "_blank";
+            aboutLink.rel = "noopener noreferrer";
+            aboutLink.textContent = "Open in About";
+            linksWrap.appendChild(aboutLink);
+          }
 
-            if (selectorId && pageSelectorMap.caseStudy.has(selectorId)) {
-              const caseLink = document.createElement("a");
-              caseLink.href = "case-study.html#" + selectorId;
-              caseLink.target = "_blank";
-              caseLink.rel = "noopener noreferrer";
-              caseLink.textContent = "Open in Case Study";
-              linksWrap.appendChild(caseLink);
-            }
+          if (selectorId && pageSelectorMap.caseStudy.has(selectorId)) {
+            const caseLink = document.createElement("a");
+            caseLink.href = "case-study.html#" + selectorId;
+            caseLink.target = "_blank";
+            caseLink.rel = "noopener noreferrer";
+            caseLink.textContent = "Open in Case Study";
+            linksWrap.appendChild(caseLink);
+          }
 
-            if (!linksWrap.children.length) {
-              const none = document.createElement("span");
-              none.style.color = "var(--muted)";
-              none.style.fontSize = "0.78rem";
-              none.textContent = "No page match";
-              linksWrap.appendChild(none);
-            }
+          if (!linksWrap.children.length) {
+            const none = document.createElement("span");
+            none.style.color = "var(--muted)";
+            none.style.fontSize = "0.78rem";
+            none.textContent = "No page match";
+            linksWrap.appendChild(none);
+          }
 
-            selectorTd.appendChild(linksWrap);
+          selectorTd.appendChild(linksWrap);
 
-            const actionsTd = document.createElement("td");
-            actionsTd.className = "actions";
-            if (row.arrayContext && row.arrayContext.arrayRef) {
-              const actionsWrap = document.createElement("div");
-              actionsWrap.className = "actions-wrap";
+          const actionsTd = document.createElement("td");
+          actionsTd.className = "actions";
+          if (row.arrayContext && row.arrayContext.arrayRef) {
+            const actionsWrap = document.createElement("div");
+            actionsWrap.className = "actions-wrap";
 
-              const addBtn = document.createElement("button");
-              addBtn.type = "button";
-              addBtn.className = "item-btn";
-              addBtn.textContent = "Add";
-              addBtn.addEventListener("click", function () {
-                addArrayItem(row);
-              });
+            const addBtn = document.createElement("button");
+            addBtn.type = "button";
+            addBtn.className = "item-btn";
+            addBtn.textContent = "Add";
+            addBtn.addEventListener("click", function () {
+              addArrayItem(row);
+            });
 
-              const deleteBtn = document.createElement("button");
-              deleteBtn.type = "button";
-              deleteBtn.className = "item-btn delete";
-              deleteBtn.textContent = "Delete";
-              deleteBtn.addEventListener("click", function () {
-                deleteArrayItem(row);
-              });
+            const deleteBtn = document.createElement("button");
+            deleteBtn.type = "button";
+            deleteBtn.className = "item-btn delete";
+            deleteBtn.textContent = "Delete";
+            deleteBtn.addEventListener("click", function () {
+              deleteArrayItem(row);
+            });
 
-              actionsWrap.appendChild(addBtn);
-              actionsWrap.appendChild(deleteBtn);
-              actionsTd.appendChild(actionsWrap);
-            } else {
-              actionsTd.textContent = "-";
-            }
+            actionsWrap.appendChild(addBtn);
+            actionsWrap.appendChild(deleteBtn);
+            actionsTd.appendChild(actionsWrap);
+          } else {
+            actionsTd.textContent = "-";
+          }
 
-            tr.appendChild(keyTd);
-            tr.appendChild(valueTd);
-            tr.appendChild(pathTd);
-            tr.appendChild(selectorTd);
-            tr.appendChild(actionsTd);
-            tbody.appendChild(tr);
-          });
-
-          table.appendChild(tbody);
-          tableWrap.appendChild(table);
-          details.appendChild(tableWrap);
-          block.appendChild(details);
-          container.appendChild(block);
+          tr.appendChild(keyTd);
+          tr.appendChild(valueTd);
+          tr.appendChild(pathTd);
+          tr.appendChild(selectorTd);
+          tr.appendChild(actionsTd);
+          tbody.appendChild(tr);
         });
 
-        if (sectionOrder.length === 0) {
-          const empty = document.createElement("div");
-          empty.className = "empty";
-          empty.textContent = "No content entries found.";
-          container.appendChild(empty);
-        }
+        table.appendChild(tbody);
+        tableWrap.appendChild(table);
+        details.appendChild(tableWrap);
+        block.appendChild(details);
+        container.appendChild(block);
+      });
 
+      if (sectionOrder.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "empty";
+        empty.textContent = "No content entries found.";
+        container.appendChild(empty);
+      }
+
+      document.getElementById("rowCount").textContent =
+        rows.length + " content entries";
+    }
+
+    function getIdSetFromHtml(htmlText) {
+      const doc = new DOMParser().parseFromString(htmlText, "text/html");
+      const ids = new Set();
+      doc.querySelectorAll("[id]").forEach(function (el) {
+        ids.add(el.id);
+      });
+      return ids;
+    }
+
+    function downloadJson() {
+      if (!contentData) return;
+
+      const jsonText = JSON.stringify(contentData, null, 2);
+      const blob = new Blob([jsonText], { type: "application/json" });
+      const objectUrl = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = objectUrl;
+      link.download = "content.json";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(objectUrl);
+    }
+
+    function setAllSectionsExpanded(expanded) {
+      document.querySelectorAll(".section-panel").forEach(function (panel) {
+        panel.open = expanded;
+      });
+    }
+
+    async function init() {
+      try {
+        const responses = await Promise.all([
+          fetch("content.json", { cache: "no-store" }),
+          fetch("index.html", { cache: "no-store" }),
+          fetch("about.html", { cache: "no-store" }),
+          fetch("case-study.html", { cache: "no-store" }),
+        ]);
+
+        if (!responses[0].ok) throw new Error("Could not load content.json");
+
+        contentData = await responses[0].json();
+
+        const indexHtml = responses[1].ok ? await responses[1].text() : "";
+        const aboutHtml = responses[2].ok ? await responses[2].text() : "";
+        const caseHtml = responses[3].ok ? await responses[3].text() : "";
+        pageSelectorMap.index = getIdSetFromHtml(indexHtml);
+        pageSelectorMap.about = getIdSetFromHtml(aboutHtml);
+        pageSelectorMap.caseStudy = getIdSetFromHtml(caseHtml);
+
+        rerender();
+      } catch (error) {
         document.getElementById("rowCount").textContent =
-          rows.length + " content entries";
+          "Failed to load content.json";
+        console.error(error);
       }
+    }
 
-      function getIdSetFromHtml(htmlText) {
-        const doc = new DOMParser().parseFromString(htmlText, "text/html");
-        const ids = new Set();
-        doc.querySelectorAll("[id]").forEach(function (el) {
-          ids.add(el.id);
-        });
-        return ids;
-      }
+    document
+      .getElementById("downloadBtn")
+      .addEventListener("click", downloadJson);
+    document
+      .getElementById("expandAllBtn")
+      .addEventListener("click", function () {
+        setAllSectionsExpanded(true);
+      });
+    document
+      .getElementById("collapseAllBtn")
+      .addEventListener("click", function () {
+        setAllSectionsExpanded(false);
+      });
 
-      function downloadJson() {
-        if (!contentData) return;
+    init();
+  </script>
+</body>
 
-        const jsonText = JSON.stringify(contentData, null, 2);
-        const blob = new Blob([jsonText], { type: "application/json" });
-        const objectUrl = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = objectUrl;
-        link.download = "content.json";
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-        URL.revokeObjectURL(objectUrl);
-      }
-
-      function setAllSectionsExpanded(expanded) {
-        document.querySelectorAll(".section-panel").forEach(function (panel) {
-          panel.open = expanded;
-        });
-      }
-
-      async function init() {
-        try {
-          const responses = await Promise.all([
-            fetch("content.json", { cache: "no-store" }),
-            fetch("index.html", { cache: "no-store" }),
-            fetch("about.html", { cache: "no-store" }),
-            fetch("case-study.html", { cache: "no-store" }),
-          ]);
-
-          if (!responses[0].ok) throw new Error("Could not load content.json");
-
-          contentData = await responses[0].json();
-
-          const indexHtml = responses[1].ok ? await responses[1].text() : "";
-          const aboutHtml = responses[2].ok ? await responses[2].text() : "";
-          const caseHtml = responses[3].ok ? await responses[3].text() : "";
-          pageSelectorMap.index = getIdSetFromHtml(indexHtml);
-          pageSelectorMap.about = getIdSetFromHtml(aboutHtml);
-          pageSelectorMap.caseStudy = getIdSetFromHtml(caseHtml);
-
-          rerender();
-        } catch (error) {
-          document.getElementById("rowCount").textContent =
-            "Failed to load content.json";
-          console.error(error);
-        }
-      }
-
-      document
-        .getElementById("downloadBtn")
-        .addEventListener("click", downloadJson);
-      document
-        .getElementById("expandAllBtn")
-        .addEventListener("click", function () {
-          setAllSectionsExpanded(true);
-        });
-      document
-        .getElementById("collapseAllBtn")
-        .addEventListener("click", function () {
-          setAllSectionsExpanded(false);
-        });
-
-      init();
-    </script>
-  </body>
 </html>

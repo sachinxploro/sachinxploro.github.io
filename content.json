@@ -697,6 +697,7 @@
     "items": [
       {
         "topic": "Prithu Homes",
+        "isVisible": true,
         "industry": "Real Estate & Construction",
         "logo": "https://static.wixstatic.com/media/0a2938_171c080f36db4e27aeb095ca065a1d57~mv2.png/v1/fill/w_348,h_130,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Prithu%20Homes%20Logo.png",
         "image": [
@@ -712,6 +713,7 @@
       },
       {
         "topic": "Prithu Homes",
+        "isVisible": true,
         "industry": "Real Estate & Construction",
         "logo": "https://static.wixstatic.com/media/0a2938_171c080f36db4e27aeb095ca065a1d57~mv2.png/v1/fill/w_348,h_130,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Prithu%20Homes%20Logo.png",
         "image": [
@@ -727,6 +729,7 @@
       },
       {
         "topic": "Kashvi Metals",
+        "isVisible": true,
         "industry": "Manufacturing & Metals",
         "logo": "",
         "image": [
