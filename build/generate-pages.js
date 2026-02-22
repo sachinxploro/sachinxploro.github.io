@@ -200,7 +200,7 @@ function renderCaseStudyItems(items) {
             </div>
           </div>
           ${indicatorsHtml}
-          <div class="carousel-track">
+          <div class="carousel-track" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
             ${cardsHtml}
           </div>
         </section>

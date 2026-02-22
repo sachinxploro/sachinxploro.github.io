@@ -799,6 +799,8 @@ body {
 /* Carousel Styles */
 .carousel-track {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   gap: 0;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -813,6 +815,7 @@ body {
 
 .carousel-item {
   min-width: 100%;
+  width: 100%;
   flex: 0 0 100%;
   scroll-snap-align: start;
   padding: 0.5rem 0.2rem; /* Slight padding to avoid edge clipping */
