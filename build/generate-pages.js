@@ -114,6 +114,7 @@ function renderCaseStudyItems(items) {
   const bulletIcon =
     '<svg class="case-bullet-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M5 8.3 7 10.3 11.4 5.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
   const sectionDefs = [
+    { key: "executiveSummary", label: "Executive Summary" },
     { key: "problemStatement", label: "Problem Statement" },
     { key: "provideSolution", label: "Implemented Solution" },
     { key: "benefits", label: "Benefits" },
