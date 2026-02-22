@@ -724,6 +724,7 @@
         "executiveSummary": "End-to-end custom CRM development and Microsoft Power Platform implementation services, delivering a scalable Power Apps and Dataverse-based CRM solution that replaced legacy SaaS CRM systems. The platform seamlessly integrated social media channels, the company website, and company IVR as centralized lead sources, reduced operational costs by 70%, increased lead generation by 50%, and deployed 15+ business process automations to eliminate manual tasks and improve team productivity.",
         "problemStatement": "Rising operating costs of existing SaaS CRM, fragmented workflows, and limited integration with other enterprise systems.",
         "provideSolution": "Architected and deployed an end-to-end CRM platform leveraging Microsoft Power Apps, Power Automate, and Azure services. Integrated diverse lead channels (website, IVR, social media) into a unified system with automated lead assignment, digital approval workflows, and intelligent reporting. Implemented automated WhatsApp and email notifications to enhance customer engagement and response time. Inbound and outbound customer calls, including call recordings, are automatically associated with the relevant opportunity for complete interaction tracking.",
+        "technologyStack": "Microsoft Power Apps, Power Automate, Azure Cloud Services, SharePoint",
         "benefits": "Reduced licensing costs by 70%.\nIncreased lead generation by 50%.",
         "whatNext": "Closed deals are automatically transitioned into the project management system, triggering project creation within a separate application built on Power Apps, Power Automate, and Azure Functions.\n\nLost deals with future potential are automatically routed to a bulk marketing platform (developed using Power Apps, Power Automate, Azure Functions, and Azure Communication Services) for structured re-engagement campaigns."
       },
@@ -740,6 +741,7 @@
         "executiveSummary": "Transitioned from manual, paper-heavy processes to a centralized digital approval system, significantly improving operational visibility and decision-making speed.",
         "problemStatement": "Manual documentation, phone-based coordination, and disconnected approvals caused slow decisions and limited visibility.",
         "provideSolution": "Built a custom digital platform to centralize approvals, automate repeatable steps, and enable real-time process tracking.",
+        "technologyStack": "Microsoft Power Automate, Dataverse",
         "benefits": "Faster decisions, better accountability, reduced manual follow-ups, and stronger operational control.",
         "whatNext": "Integrate the platform with adjacent business systems and scale adoption to more departments."
       }

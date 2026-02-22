@@ -125,6 +125,7 @@ function renderCaseStudyItems(items) {
     { key: "provideSolution", label: "Implemented Solution" },
     { key: "benefits", label: "Benefits" },
     { key: "whatNext", label: "What Next" },
+    { key: "technologyStack", label: "Technology Stack" },
   ];
 
   return Object.values(grouped)
@@ -148,7 +149,7 @@ function renderCaseStudyItems(items) {
           : "";
 
       const cardsHtml = group.items
-        .map((item) => {
+        .map((item, index) => {
           const imageList = Array.isArray(item?.image)
             ? item.image
             : item?.image
@@ -165,8 +166,24 @@ function renderCaseStudyItems(items) {
             .join("");
 
           const detailFallback = String(item?.details || "").trim();
-          const sectionItems = sectionDefs
-            .map((sectionDef) => {
+
+          // Determine which sections to show based on item position
+          const targetKeys =
+            index === 0
+              ? ["executiveSummary", "provideSolution", "technologyStack"]
+              : [
+                  "executiveSummary",
+                  "problemStatement",
+                  "provideSolution",
+                  "benefits",
+                  "whatNext",
+                ];
+
+          const sectionItems = targetKeys
+            .map((key) => {
+              const sectionDef = sectionDefs.find((d) => d.key === key);
+              if (!sectionDef) return "";
+
               let rawValue = item?.[sectionDef.key];
               if (
                 (rawValue === undefined ||
