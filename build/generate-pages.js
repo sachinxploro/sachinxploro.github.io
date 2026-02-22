@@ -114,7 +114,6 @@ function renderCaseStudyItems(items) {
   const bulletIcon =
     '<svg class="case-bullet-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M5 8.3 7 10.3 11.4 5.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
   const sectionDefs = [
-    { key: "aboutCustomer", label: "About Customer" },
     { key: "problemStatement", label: "Problem Statement" },
     { key: "provideSolution", label: "Implemented Solution" },
     { key: "benefits", label: "Benefits" },
@@ -126,6 +125,9 @@ function renderCaseStudyItems(items) {
       const topic = escapeHtml(group.topic);
       const industry = escapeHtml(group.industry || "");
       const logo = group.logo || "";
+      const aboutCustomer = group.items[0]?.aboutCustomer
+        ? escapeHtml(group.items[0].aboutCustomer)
+        : "";
 
       const logoHtml = logo
         ? `<img src="${escapeHtml(logo)}" alt="${topic} Logo" class="customer-logo-img">`
@@ -197,6 +199,7 @@ function renderCaseStudyItems(items) {
             <div>
               <h2 class="customer-name">${topic}</h2>
               ${industry ? `<p class="customer-industry">${industry}</p>` : ""}
+              ${aboutCustomer ? `<p class="customer-about">${aboutCustomer}</p>` : ""}
             </div>
           </div>
           ${indicatorsHtml}
