@@ -917,6 +917,12 @@ body {
   text-align: justify;
 }
 
+/* Ensure the list is visible immediately, overriding the reveal animation */
+#case-study-list {
+  opacity: 1;
+  transform: none;
+}
+
 .case-image-grid {
   margin-top: 0.95rem;
   display: flex;
@@ -926,6 +932,7 @@ body {
 
 .case-image {
   width: 200px;
+  max-width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 10px;
@@ -937,9 +944,5 @@ body {
   .customer-card {
     width: 300px;
     min-width: 300px;
-  }
-
-  .case-study-grid {
-    grid-template-columns: 1fr;
   }
 }
