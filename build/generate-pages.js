@@ -167,6 +167,9 @@ function renderCaseStudyItems(items) {
 
       const cardsHtml = group.items
         .map((item, index) => {
+          const caseTitle = escapeHtml(
+            String(item?.title || `${group.topic} Transformation Story`).trim(),
+          );
           const imageList = Array.isArray(item?.image)
             ? item.image
             : item?.image
@@ -238,6 +241,7 @@ function renderCaseStudyItems(items) {
           <article class="case-study-card">
             <div class="case-card-layout">
               <div class="case-content-col">
+                <h3 class="case-story-title">${caseTitle}</h3>
                 <div class="case-section-controls" role="group" aria-label="Section controls">
                   <button type="button" class="case-toggle-btn" data-action="expand-all">Expand all</button>
                   <button type="button" class="case-toggle-btn" data-action="collapse-all">Collapse all</button>

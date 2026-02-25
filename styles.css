@@ -887,6 +887,16 @@ body {
   min-width: 0;
 }
 
+.case-story-title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1rem, 2.1vw, 1.22rem);
+  line-height: 1.35;
+  font-weight: 800;
+  color: #eaf3ff;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+}
+
 .case-media-col {
   border-left: 1px solid var(--line);
   padding-left: 1rem;
