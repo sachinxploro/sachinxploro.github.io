@@ -185,6 +185,7 @@ function renderCaseStudyItems(items) {
               return `
                 <figure class="case-image-card">
                   <img class="case-image" src="${safeSrc}" alt="${topic} image ${imgIndex + 1}" loading="lazy" data-image-title="${imageTitle}" />
+                  <button type="button" class="case-image-expand-btn" aria-label="Expand image">⤢</button>
                   <figcaption class="case-image-caption">${imageTitle}</figcaption>
                 </figure>
               `;

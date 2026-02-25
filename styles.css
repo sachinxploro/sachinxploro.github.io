@@ -1003,6 +1003,7 @@ body {
   border-radius: 10px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.04);
+  position: relative;
 }
 
 .case-image {
@@ -1024,6 +1025,21 @@ body {
   padding: 0.44rem 0.55rem 0.5rem;
   color: var(--muted);
   font-size: 0.82rem;
+}
+
+.case-image-expand-btn {
+  position: absolute;
+  top: 0.42rem;
+  right: 0.42rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid rgba(195, 220, 255, 0.5);
+  background: rgba(4, 12, 32, 0.8);
+  color: #e5f0ff;
+  font-size: 0.95rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
 .case-image-overlay {

@@ -59,13 +59,17 @@ function initCaseImageOverlay() {
     isOpen = true;
   }
 
-  list.addEventListener("mouseenter", function (event) {
-    const img = event.target.closest(".case-image");
-    if (!img || isOpen) return;
-    openOverlay(img);
-  }, true);
-
   list.addEventListener("click", function (event) {
+    const expandBtn = event.target.closest(".case-image-expand-btn");
+    if (expandBtn) {
+      const card = expandBtn.closest(".case-image-card");
+      const img = card ? card.querySelector(".case-image") : null;
+      if (!img) return;
+      event.preventDefault();
+      openOverlay(img);
+      return;
+    }
+
     const img = event.target.closest(".case-image");
     if (!img) return;
     event.preventDefault();
