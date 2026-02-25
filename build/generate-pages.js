@@ -108,6 +108,42 @@ function toImageTitle(src, index) {
   }
 }
 
+function getYouTubeEmbedUrl(value) {
+  if (!value) return null;
+
+  const raw = String(value).trim();
+  try {
+    const url = new URL(raw);
+    const host = url.hostname.toLowerCase();
+
+    if (host.includes("youtu.be")) {
+      const id = url.pathname.replace(/^\/+/, "").split("/")[0];
+      return id ? `https://www.youtube.com/embed/${id}` : null;
+    }
+
+    if (host.includes("youtube.com")) {
+      if (url.pathname === "/watch") {
+        const id = url.searchParams.get("v");
+        return id ? `https://www.youtube.com/embed/${id}` : null;
+      }
+
+      if (url.pathname.startsWith("/shorts/")) {
+        const id = url.pathname.split("/")[2];
+        return id ? `https://www.youtube.com/embed/${id}` : null;
+      }
+
+      if (url.pathname.startsWith("/embed/")) {
+        const id = url.pathname.split("/")[2];
+        return id ? `https://www.youtube.com/embed/${id}` : null;
+      }
+    }
+  } catch (_) {
+    return null;
+  }
+
+  return null;
+}
+
 function renderCaseStudyItems(items) {
   if (!Array.isArray(items) || items.length === 0) {
     return '<article class="case-study-card"><h3>No case studies added yet</h3></article>';
@@ -180,13 +216,37 @@ function renderCaseStudyItems(items) {
 
           const imagesHtml = imageList
             .map((src, imgIndex) => {
+              const youtubeEmbed = getYouTubeEmbedUrl(src);
               const safeSrc = escapeHtml(src);
-              const imageTitle = escapeHtml(toImageTitle(src, imgIndex));
+              const mediaTitle = escapeHtml(
+                youtubeEmbed ? `YouTube Video ${imgIndex + 1}` : toImageTitle(src, imgIndex),
+              );
+
+              if (youtubeEmbed) {
+                const safeEmbed = escapeHtml(youtubeEmbed);
+                return `
+                <figure class="case-image-card case-video-card">
+                  <div class="case-video-frame-wrap">
+                    <iframe
+                      class="case-video-frame"
+                      src="${safeEmbed}"
+                      title="${mediaTitle}"
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                  <figcaption class="case-image-caption">${mediaTitle}</figcaption>
+                </figure>
+              `;
+              }
+
               return `
                 <figure class="case-image-card">
-                  <img class="case-image" src="${safeSrc}" alt="${topic} image ${imgIndex + 1}" loading="lazy" data-image-title="${imageTitle}" />
+                  <img class="case-image" src="${safeSrc}" alt="${topic} image ${imgIndex + 1}" loading="lazy" data-image-title="${mediaTitle}" />
                   <button type="button" class="case-image-expand-btn" aria-label="Expand image">⤢</button>
-                  <figcaption class="case-image-caption">${imageTitle}</figcaption>
+                  <figcaption class="case-image-caption">${mediaTitle}</figcaption>
                 </figure>
               `;
             })
