@@ -10,8 +10,10 @@ const msalConfig = {
     // TODO: Replace with your Directory (tenant) ID or "common" for multi-tenant
     authority:
       "https://login.microsoftonline.com/6c09b7e9-1f03-4ab7-85c0-ec02bb2e0bf2",
-    // Must match the Redirect URI registered in Azure Portal
-    redirectUri: window.location.origin,
+    // Dedicated popup callback page (must be registered in Azure Portal)
+    redirectUri: `${window.location.origin}/auth-popup.html`,
+    // Keep logout on the main site
+    postLogoutRedirectUri: window.location.origin,
   },
   cache: {
     cacheLocation: "sessionStorage", // Options: "sessionStorage" or "localStorage"
@@ -21,11 +23,6 @@ const msalConfig = {
 
 // Create the main MSAL instance
 const myMSALObj = new msal.PublicClientApplication(msalConfig);
-
-// Optimization: If this page is loaded in a popup (during login), hide the UI
-if (window.opener && window !== window.opener) {
-  document.documentElement.style.display = "none";
-}
 
 let username = "";
 
@@ -44,7 +41,7 @@ async function initializeMsal() {
 
     if (response) {
       handleResponse(response);
-    } else if (!window.opener) {
+    } else {
       // Check if user is already signed in via cache
       const currentAccounts = myMSALObj.getAllAccounts();
       if (currentAccounts.length > 0) {
@@ -98,7 +95,7 @@ async function signOut() {
 
   const logoutRequest = {
     account: myMSALObj.getAccountByUsername(username),
-    postLogoutRedirectUri: msalConfig.auth.redirectUri,
+    postLogoutRedirectUri: msalConfig.auth.postLogoutRedirectUri,
   };
 
   await myMSALObj.logoutPopup(logoutRequest);
