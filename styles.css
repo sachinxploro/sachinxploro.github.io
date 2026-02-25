@@ -191,6 +191,23 @@ body {
   font-weight: 700;
 }
 
+.hero-eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-eyebrow-row + .hero-eyebrow-row {
+  margin-top: 0.35rem;
+}
+
+.hero-eyebrow-logo {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex: 0 0 18px;
+}
+
 .hero-copy h1 {
   margin: 0;
   font-size: clamp(2rem, 6.4vw, 4.35rem);
