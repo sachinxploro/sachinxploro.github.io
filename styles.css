@@ -939,7 +939,7 @@ body {
     min-width: 300px;
   }
 
-  .case-study-grid,
+  .case-study-grid {
     grid-template-columns: 1fr;
   }
 }
