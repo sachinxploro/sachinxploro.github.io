@@ -91,6 +91,23 @@ function escapeHtml(value) {
     .replace(/'/g, "&#39;");
 }
 
+function toImageTitle(src, index) {
+  if (!src) return `Image ${index + 1}`;
+
+  try {
+    const raw = String(src);
+    const lastPath = raw.split("/").pop() || raw;
+    const withoutQuery = lastPath.split("?")[0];
+    const decoded = decodeURIComponent(withoutQuery);
+    const clean = decoded.replace(/\.[a-zA-Z0-9]+$/, "");
+    const normalized = clean.replace(/[-_]+/g, " ").trim();
+    if (!normalized) return `Image ${index + 1}`;
+    return normalized.charAt(0).toUpperCase() + normalized.slice(1);
+  } catch (_) {
+    return `Image ${index + 1}`;
+  }
+}
+
 function renderCaseStudyItems(items) {
   if (!Array.isArray(items) || items.length === 0) {
     return '<article class="case-study-card"><h3>No case studies added yet</h3></article>';
@@ -161,7 +178,13 @@ function renderCaseStudyItems(items) {
           const imagesHtml = imageList
             .map((src, imgIndex) => {
               const safeSrc = escapeHtml(src);
-              return `<img class="case-image" src="${safeSrc}" alt="${topic} image ${imgIndex + 1}" loading="lazy" />`;
+              const imageTitle = escapeHtml(toImageTitle(src, imgIndex));
+              return `
+                <figure class="case-image-card">
+                  <img class="case-image" src="${safeSrc}" alt="${topic} image ${imgIndex + 1}" loading="lazy" data-image-title="${imageTitle}" />
+                  <figcaption class="case-image-caption">${imageTitle}</figcaption>
+                </figure>
+              `;
             })
             .join("");
 
@@ -201,15 +224,32 @@ function renderCaseStudyItems(items) {
               )
                 return "";
               const value = escapeHtml(rawValue).replace(/\r?\n/g, "<br />");
-              return `<li class="case-bullet-item">${bulletIcon}<div><strong>${sectionDef.label}</strong><p>${value}</p></div></li>`;
+              return `
+                <details class="case-section" open>
+                  <summary class="case-section-summary">${bulletIcon}<span>${sectionDef.label}</span></summary>
+                  <div class="case-section-body"><p>${value}</p></div>
+                </details>
+              `;
             })
             .join("");
 
           return `
         <div class="carousel-item">
           <article class="case-study-card">
-            ${sectionItems ? `<ul class="case-bullet-list">${sectionItems}</ul>` : ""}
-            ${imagesHtml ? `<div class="case-image-grid">${imagesHtml}</div>` : ""}
+            <div class="case-card-layout">
+              <div class="case-content-col">
+                <div class="case-section-controls" role="group" aria-label="Section controls">
+                  <button type="button" class="case-toggle-btn" data-action="expand-all">Expand all</button>
+                  <button type="button" class="case-toggle-btn" data-action="collapse-all">Collapse all</button>
+                </div>
+                ${sectionItems ? `<div class="case-section-list">${sectionItems}</div>` : ""}
+              </div>
+              ${
+                imagesHtml
+                  ? `<aside class="case-media-col"><h3 class="case-media-title">Reference Images</h3><div class="case-image-grid">${imagesHtml}</div></aside>`
+                  : ""
+              }
+            </div>
           </article>
         </div>
       `;
