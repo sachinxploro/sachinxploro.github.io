@@ -54,7 +54,7 @@
   "hero": {
     "eyebrow": {
       "selector": "#hero-eyebrow",
-      "value": "Power Platform Experts"
+      "value": "👉Microsoft Power Platform\n👉Microsoft Cloud Services "
     },
     "title": {
       "selector": "#hero-title",
