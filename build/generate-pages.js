@@ -125,7 +125,7 @@ function renderCaseStudyItems(items) {
     { key: "provideSolution", label: "Implemented Solution" },
     { key: "benefits", label: "Benefits" },
     { key: "whatNext", label: "What Next" },
-    { key: "technologyStack", label: "Technology Stack" },
+      { key: "technologyStack", label: "Technology Stack" },
   ];
 
   return Object.values(grouped)
