@@ -705,6 +705,15 @@ button:focus-visible {
     min-height: calc((100vh - 72px) * 0.85);
   }
 
+  .landing-hero-video {
+    background: #020614;
+  }
+
+  .landing-hero-media {
+    object-fit: contain;
+    object-position: center center;
+  }
+
   .landing-hero-overlay {
     padding: 1rem 1rem 1.4rem;
   }
@@ -744,6 +753,17 @@ button:focus-visible {
 
   .section {
     padding: 3.2rem 0;
+  }
+}
+
+@media (orientation: portrait) {
+  .landing-hero-video {
+    background: #020614;
+  }
+
+  .landing-hero-media {
+    object-fit: contain !important;
+    object-position: center center;
   }
 }
 
