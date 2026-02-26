@@ -220,17 +220,29 @@ body {
 
 .landing-hero-cta {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.85rem;
-  max-width: 46ch;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.6rem;
+  max-width: none;
 }
 
 .landing-hero-overlay p {
   margin: 0;
+  line-height: 1;
   font-size: clamp(1rem, 2.3vw, 1.22rem);
-  max-width: 46ch;
+  max-width: none;
+  white-space: nowrap;
   color: #eaf0ff;
+}
+
+.landing-hero-cta .primary-btn {
+  transform: translateX(-10%);
+}
+
+.landing-hero-cta .primary-btn:hover,
+.landing-hero-cta .primary-btn:focus-visible {
+  transform: translateX(-10%) translateY(-2px) scale(1.02);
 }
 
 .eyebrow {
@@ -675,7 +687,13 @@ button:focus-visible {
   }
 
   .landing-hero-cta {
+    flex-direction: column;
+    align-items: flex-end;
     max-width: 30ch;
+  }
+
+  .landing-hero-overlay p {
+    white-space: normal;
   }
 
   .nav-wrap {
