@@ -766,11 +766,16 @@ button:focus-visible {
 
   .landing-hero-overlay {
     min-height: 100%;
+    padding: 0;
   }
 
   .landing-hero-media {
     object-fit: contain !important;
     object-position: center center;
+  }
+
+  .landing-hero-cta {
+    display: none;
   }
 }
 
