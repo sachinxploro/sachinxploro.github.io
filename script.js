@@ -151,6 +151,32 @@ function initCarousels() {
 
 document.addEventListener("DOMContentLoaded", initCarousels);
 
+function initHeroAudioToggle() {
+  const heroVideo = document.querySelector(".landing-hero-media");
+  const audioToggleBtn = document.getElementById("hero-audio-toggle");
+
+  if (!heroVideo || !audioToggleBtn) return;
+
+  function syncAudioButton() {
+    const isMuted = heroVideo.muted;
+    audioToggleBtn.textContent = isMuted ? "Unmute" : "Mute";
+    audioToggleBtn.setAttribute("aria-pressed", String(!isMuted));
+    audioToggleBtn.setAttribute(
+      "aria-label",
+      isMuted ? "Unmute hero video" : "Mute hero video",
+    );
+  }
+
+  audioToggleBtn.addEventListener("click", function () {
+    heroVideo.muted = !heroVideo.muted;
+    syncAudioButton();
+  });
+
+  syncAudioButton();
+}
+
+document.addEventListener("DOMContentLoaded", initHeroAudioToggle);
+
 /* ---------------------------------------------
 // 5️⃣ Contact form email handler
 // Prevents default form submit
