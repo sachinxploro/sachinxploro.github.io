@@ -759,6 +759,13 @@ button:focus-visible {
 @media (orientation: portrait) {
   .landing-hero-video {
     background: #020614;
+    height: auto;
+    min-height: unset;
+    aspect-ratio: 16 / 9;
+  }
+
+  .landing-hero-overlay {
+    min-height: 100%;
   }
 
   .landing-hero-media {
