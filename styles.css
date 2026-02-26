@@ -779,6 +779,16 @@ button:focus-visible {
   }
 }
 
+@media (orientation: landscape) and (max-height: 600px) {
+  .landing-hero-overlay {
+    padding: 0;
+  }
+
+  .landing-hero-cta {
+    display: none;
+  }
+}
+
 /* Video Modal (Lightbox) */
 .video-modal {
   position: fixed;
