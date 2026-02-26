@@ -91,6 +91,29 @@ body {
   width: auto;
 }
 
+.logo-stack {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.02;
+}
+
+#logo-text {
+  font-family: Orbitron, Manrope, sans-serif;
+  font-size: 1.78rem;
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  color: #f4f8ff;
+}
+
+#logo-tagline {
+  margin-top: 0.22rem;
+  font-family: Sora, Manrope, sans-serif;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #8fd0ff;
+}
+
 .nav-list {
   list-style: none;
   margin: 0;
@@ -701,6 +724,15 @@ button:focus-visible {
     padding: 0.8rem 0;
     gap: 0.6rem;
     flex-direction: column;
+  }
+
+  #logo-text {
+    font-size: 1.2rem;
+  }
+
+  #logo-tagline {
+    font-size: 0.54rem;
+    letter-spacing: 0.09em;
   }
 
   .card-grid,
