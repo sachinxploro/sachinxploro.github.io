@@ -169,6 +169,19 @@ function initHeroAudioToggle() {
 
   audioToggleBtn.addEventListener("click", function () {
     heroVideo.muted = !heroVideo.muted;
+    heroVideo.play().catch(function () {
+      // If user gesture playback is blocked, button state still reflects mute status.
+    });
+    syncAudioButton();
+  });
+
+  // Start unmuted by default; fall back to muted autoplay if browser policy blocks it.
+  heroVideo.muted = false;
+  heroVideo.play().catch(function () {
+    heroVideo.muted = true;
+    heroVideo.play().catch(function () {
+      // Ignore if autoplay is blocked completely.
+    });
     syncAudioButton();
   });
 
