@@ -50,17 +50,23 @@
     </header>
 
     <main id="home">
-      <section class="hero container">
-        <div class="hero-copy reveal">
-          <p id="hero-eyebrow" class="eyebrow"></p>
-          <h1 id="hero-title"></h1>
-          <p id="hero-description"></p>
-          <a id="hero-cta" class="primary-btn" href="#contact"></a>
-        </div>
-        <div class="hero-panel reveal">
-          <div class="panel-glow"></div>
-          <h2 id="hero-panel-title"></h2>
-          <p id="hero-panel-description"></p>
+      <section class="landing-hero-video">
+        <video
+          class="landing-hero-media"
+          src="assets/videos/DAG.Hero.optimized.mp4"
+          autoplay
+          loop
+          playsinline
+          preload="metadata"
+        ></video>
+        <button id="hero-audio-toggle" class="hero-audio-toggle" type="button" aria-pressed="true" aria-label="Mute hero video">
+          Mute
+        </button>
+        <div class="landing-hero-overlay">
+          <div class="landing-hero-cta">
+            <p>Technology-led transformation powered by Microsoft platforms.</p>
+            <a class="primary-btn" href="#services">Explore Services</a>
+          </div>
         </div>
       </section>
 
