@@ -57,7 +57,7 @@ function renderVideoCards(videoList) {
 
   sortedVideos.forEach((video) => {
     const videoCard = document.createElement("div");
-    videoCard.className = "video-card reveal";
+    videoCard.className = "video-card reveal in-view";
 
     videoCard.onclick = () => {
       const embedUrl =
