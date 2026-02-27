@@ -151,11 +151,34 @@ function initCarousels() {
 
 document.addEventListener("DOMContentLoaded", initCarousels);
 
+function getHeroVideoSourceForToday() {
+  const dayOfMonth = new Date().getDate();
+  const firstHalfUrl =
+    "https://digitalaigaragewebsite.blob.core.windows.net/website/DAG.Hero.optimized.mp4?sp=r&st=2026-02-27T03:17:26Z&se=2030-02-27T11:32:26Z&spr=https&sv=2024-11-04&sr=b&sig=gAiUVnrOVDVIlOxXWWxqkK2YqEl%2BZnG3Efj11KuiEcY%3D";
+  const secondHalfUrl =
+    "https://digitalaigaragewebsite1.blob.core.windows.net/website/DAG.Hero.optimized.mp4?sp=r&st=2026-02-27T03:20:38Z&se=2030-02-27T11:35:38Z&spr=https&sv=2024-11-04&sr=b&sig=eYNzfg60n6JAEG4lm8W%2B1nRSKeZZkiTQLEk%2ByGqAyX8%3D";
+
+  return dayOfMonth <= 15 ? firstHalfUrl : secondHalfUrl;
+}
+
+function initHeroVideoSource() {
+  const heroVideo = document.querySelector(".landing-hero-media");
+  if (!heroVideo) return;
+
+  const selectedSrc = getHeroVideoSourceForToday();
+  if (heroVideo.getAttribute("src") !== selectedSrc) {
+    heroVideo.setAttribute("src", selectedSrc);
+    heroVideo.load();
+  }
+}
+
 function initHeroAudioToggle() {
   const heroVideo = document.querySelector(".landing-hero-media");
   const audioToggleBtn = document.getElementById("hero-audio-toggle");
 
   if (!heroVideo || !audioToggleBtn) return;
+
+  initHeroVideoSource();
 
   function syncAudioButton() {
     const isMuted = heroVideo.muted;
