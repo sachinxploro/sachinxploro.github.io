@@ -799,6 +799,28 @@
       }
     }
   },
+  "videos": {
+    "caseStudy": {
+      "title": {
+        "selector": "#case-videos-title",
+        "value": "Digitize. Automate. Dominate."
+      },
+      "items": [
+        {
+          "sequence": 1,
+          "type": "youtube",
+          "link": "oVMiLzE-K1I",
+          "title": "About Us"
+        },
+        {
+          "sequence": 2,
+          "type": "youtube",
+          "link": "8MuTZAbvPAE",
+          "title": "Connect Python with Power Apps"
+        }
+      ]
+    }
+  },
   "caseStudy": {
     "head": {
       "pageTitle": {
