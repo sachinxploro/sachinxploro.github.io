@@ -27,6 +27,10 @@
         "selector": "#nav-success",
         "value": "Case Study"
       },
+      "engagement": {
+        "selector": "#nav-engagement",
+        "value": "Engagement Models"
+      },
       "tools": {
         "selector": "#nav-tools",
         "value": "Tools"
@@ -408,6 +412,10 @@
       "navCaseStudy": {
         "selector": "#about-nav-case-study",
         "value": "Case Study"
+      },
+      "navEngagement": {
+        "selector": "#about-nav-engagement",
+        "value": "Engagement Models"
       }
     },
     "hero": {
@@ -639,6 +647,158 @@
       "value": " by Digital AI Garage."
     }
   },
+  "engagementModels": {
+    "head": {
+      "pageTitle": {
+        "selector": "#engagement-page-title",
+        "value": "Engagement Models | Digital AI Garage"
+      },
+      "metaDescription": {
+        "selector": "#engagement-meta-description",
+        "value": "Flexible engagement models for implementation partnerships with Digital AI Garage."
+      }
+    },
+    "header": {
+      "navHome": {
+        "selector": "#engagement-nav-home",
+        "value": "Home"
+      },
+      "navAbout": {
+        "selector": "#engagement-nav-about",
+        "value": "About"
+      },
+      "navCaseStudy": {
+        "selector": "#engagement-nav-case",
+        "value": "Case Study"
+      },
+      "navCurrent": {
+        "selector": "#engagement-nav-current",
+        "value": "Engagement Models"
+      },
+      "navContact": {
+        "selector": "#engagement-nav-contact",
+        "value": "Contact"
+      }
+    },
+    "hero": {
+      "eyebrow": {
+        "selector": "#engagement-eyebrow",
+        "value": "How We Work"
+      },
+      "title": {
+        "selector": "#engagement-title",
+        "value": "Engagement Models"
+      },
+      "description": {
+        "selector": "#engagement-description",
+        "value": "Pick a model that matches your speed, complexity, and scale goals."
+      }
+    },
+    "cards": {
+      "model1": {
+        "image": {
+          "src": {
+            "selector": "#engagement-model-1-image",
+            "attribute": "src",
+            "value": "assets/images/tool-placeholder.png"
+          },
+          "alt": {
+            "selector": "#engagement-model-1-image",
+            "attribute": "alt",
+            "value": "Digitization model"
+          }
+        },
+        "title": {
+          "selector": "#engagement-model-1-title",
+          "value": "Digitization"
+        },
+        "prompt": {
+          "selector": "#engagement-model-1-prompt",
+          "value": "Convert paper-driven and email-heavy processes into structured digital flows with clear ownership and tracking."
+        },
+        "more": {
+          "selector": "#engagement-model-1-more",
+          "value": "Click to know more"
+        },
+        "detailTitle": {
+          "selector": "#engagement-model-1-detail-title",
+          "value": "Digitization"
+        },
+        "detailText": {
+          "selector": "#engagement-model-1-detail-text",
+          "value": "We map your manual process as-is, redesign it for digital execution, and implement structured forms, statuses, and ownership rules so teams can track every step from intake to completion."
+        }
+      },
+      "model2": {
+        "image": {
+          "src": {
+            "selector": "#engagement-model-2-image",
+            "attribute": "src",
+            "value": "assets/images/tool-placeholder.png"
+          },
+          "alt": {
+            "selector": "#engagement-model-2-image",
+            "attribute": "alt",
+            "value": "Automation model"
+          }
+        },
+        "title": {
+          "selector": "#engagement-model-2-title",
+          "value": "Automation"
+        },
+        "prompt": {
+          "selector": "#engagement-model-2-prompt",
+          "value": "Trigger approvals, notifications, validations, and repetitive actions automatically to reduce delays and errors."
+        },
+        "more": {
+          "selector": "#engagement-model-2-more",
+          "value": "Click to know more"
+        },
+        "detailTitle": {
+          "selector": "#engagement-model-2-detail-title",
+          "value": "Automation"
+        },
+        "detailText": {
+          "selector": "#engagement-model-2-detail-text",
+          "value": "We design rule-based workflow automations for approvals, escalations, reminders, and system updates to remove repetitive effort and improve response times."
+        }
+      },
+      "model3": {
+        "image": {
+          "src": {
+            "selector": "#engagement-model-3-image",
+            "attribute": "src",
+            "value": "assets/images/tool-placeholder.png"
+          },
+          "alt": {
+            "selector": "#engagement-model-3-image",
+            "attribute": "alt",
+            "value": "Integration model"
+          }
+        },
+        "title": {
+          "selector": "#engagement-model-3-title",
+          "value": "Integration"
+        },
+        "prompt": {
+          "selector": "#engagement-model-3-prompt",
+          "value": "Connect systems like ERP, CRM, finance, and HR so data moves across platforms without duplicate entry."
+        },
+        "more": {
+          "selector": "#engagement-model-3-more",
+          "value": "Click to know more"
+        },
+        "detailTitle": {
+          "selector": "#engagement-model-3-detail-title",
+          "value": "Integration"
+        },
+        "detailText": {
+          "selector": "#engagement-model-3-detail-text",
+          "value": "We connect your business tools through APIs and event-based flows, centralizing data movement and eliminating manual reconciliation between disconnected platforms."
+        }
+      }
+    }
+  },
   "caseStudy": {
     "head": {
       "pageTitle": {
@@ -666,6 +826,10 @@
       "navCurrent": {
         "selector": "#case-nav-current",
         "value": "Case Study"
+      },
+      "navEngagement": {
+        "selector": "#case-nav-engagement",
+        "value": "Engagement Models"
       },
       "navContact": {
         "selector": "#case-nav-contact",

@@ -389,6 +389,146 @@ button:focus-visible {
   color: var(--muted);
 }
 
+.engagement-main {
+  padding-bottom: 2rem;
+}
+
+.engagement-description {
+  max-width: 72ch;
+  color: var(--muted);
+}
+
+.engagement-spotlight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.engagement-spotlight-card {
+  background: linear-gradient(155deg, #0b1434, #0a1230);
+  border: 1px solid rgba(111, 148, 255, 0.32);
+  border-radius: 18px;
+  padding: 1.4rem;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.26s ease, border-color 0.26s ease, box-shadow 0.26s ease;
+}
+
+.engagement-spotlight-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(111, 148, 255, 0.58);
+  box-shadow: 0 16px 28px rgba(4, 13, 36, 0.52);
+}
+
+.engagement-spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: -40% -20% auto;
+  height: 65%;
+  background: linear-gradient(135deg, rgba(173, 211, 255, 0.18), rgba(0, 209, 199, 0.05));
+  transform: translateY(-85%);
+  transition: transform 0.4s ease;
+  pointer-events: none;
+}
+
+.engagement-spotlight-card:hover::before {
+  transform: translateY(-58%);
+}
+
+.engagement-thumb {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid rgba(144, 173, 255, 0.45);
+  background: rgba(7, 16, 40, 0.75);
+  padding: 0.3rem;
+  margin-bottom: 0.7rem;
+}
+
+.engagement-spotlight-card h2 {
+  margin: 0 0 0.75rem;
+  font-size: 2.1rem;
+  line-height: 1.08;
+  color: #f4f7ff;
+}
+
+.engagement-spotlight-card p {
+  margin: 0;
+  color: #b9c5de;
+  font-size: 1.08rem;
+  line-height: 1.52;
+  max-width: 38ch;
+}
+
+.engagement-know-more {
+  margin-top: auto;
+  align-self: flex-start;
+  text-decoration: none;
+  color: #91b3ff;
+  border: 1px solid rgba(145, 179, 255, 0.42);
+  border-radius: 10px;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.engagement-know-more:hover,
+.engagement-know-more:focus-visible {
+  color: #e8f0ff;
+  border-color: rgba(145, 179, 255, 0.76);
+}
+
+.engagement-detail-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.engagement-detail-card {
+  scroll-margin-top: 92px;
+  background: rgba(15, 23, 48, 0.9);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.15rem;
+}
+
+.engagement-detail-card h3 {
+  margin: 0 0 0.45rem;
+  color: #dce8ff;
+  font-size: 1.28rem;
+}
+
+.engagement-detail-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Frosted card treatment across site cards */
+.service-card,
+.stat,
+.about-box,
+.success-card,
+.contact-wrap,
+.tool-face,
+.video-card,
+.customer-card,
+.case-study-card,
+.about-card,
+.communication-panel,
+.list-block,
+.journey-step,
+.engagement-spotlight-card,
+.engagement-detail-card,
+.case-image-card {
+  backdrop-filter: blur(9px) saturate(120%);
+  -webkit-backdrop-filter: blur(9px) saturate(120%);
+  box-shadow: 0 8px 24px rgba(6, 15, 38, 0.2);
+}
+
 .section {
   padding: 4.6rem 0;
 }
@@ -712,6 +852,10 @@ button:focus-visible {
   .hero {
     grid-template-columns: 1fr;
     min-height: unset;
+  }
+
+  .engagement-spotlight-grid {
+    grid-template-columns: 1fr;
   }
 
   .card-grid,
