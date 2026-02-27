@@ -809,11 +809,17 @@
         {
           "sequence": 1,
           "type": "youtube",
+          "link": "mC86lyBCCEQ",
+          "title": "Agentic AI Automates Customer Complaints End-to-End | CRM AI Automation Demo"
+        },
+        {
+          "sequence": "2",
+          "type": "youtube",
           "link": "oVMiLzE-K1I",
           "title": "About Us"
         },
         {
-          "sequence": 2,
+          "sequence": "3",
           "type": "youtube",
           "link": "8MuTZAbvPAE",
           "title": "Connect Python with Power Apps"

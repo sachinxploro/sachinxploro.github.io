@@ -1,200 +1,171 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta id="meta-description" name="description" content="Digital AI Garage landing page" />
+    <title id="page-title">Digital AI Garage | Go Digital, Grow Beyond</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta id="meta-description" name="description" content="Digital AI Garage landing page" />
-  <title id="page-title">Digital AI Garage | Go Digital, Grow Beyond</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Sora:wght@400;600&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-
-<body>
-  <div class="bg-orb orb-1"></div>
-  <div class="bg-orb orb-2"></div>
-
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="logo" href="#home">
-        <img src="assets/images/dagLogo-3.png" alt="Digital AI Garage" />
-        <span class="logo-stack">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="logo" href="#home">
+          <img src="assets/images/dagLogo-3.png" alt="Digital AI Garage" />
           <span id="logo-text">Digital AI Garage</span>
-          <span id="logo-tagline">Your Growth Guaranteed..</span>
-        </span>
-      </a>
-      <nav>
-        <ul class="nav-list">
-          <li><a id="nav-services" href="#services">Services</a></li>
-          <li><a id="nav-about" href="about.html">About</a></li>
-          <li><a id="nav-success" href="case-study.html">Case Study</a></li>
-          <li><a id="nav-engagement" href="engagement-models.html">Engagement Models</a></li>
-          <li><a id="nav-tools" href="#tools">Tools</a></li>
-          <li><a id="nav-contact" href="#contact">Contact</a></li>
-          <!-- Auth Buttons -->
-          <li id="loginItem"><a href="#" id="loginBtn">Login</a></li>
-          <li id="userItem" class="user-item" style="display: none">
-            <details class="user-menu">
-              <summary>
-                <span id="userName"></span>
-              </summary>
-              <div class="user-menu-panel">
-                <a id="dataViewLink" href="data-view.html">Data View</a>
-                <a href="#" id="logoutBtn">Logout</a>
-              </div>
-            </details>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+        </a>
+        <nav>
+          <ul class="nav-list">
+            <li><a id="nav-services" href="#services">Services</a></li>
+            <li><a id="nav-about" href="about.html">About</a></li>
+            <li><a id="nav-success" href="case-study.html">Case Study</a></li>
+            <li><a id="nav-engagement" href="engagement-models.html">Engagement Models</a></li>
+            <li><a id="nav-tools" href="#tools">Tools</a></li>
+            <li><a id="nav-contact" href="#contact">Contact</a></li>
+            <!-- Auth Buttons -->
+            <li id="loginItem"><a href="#" id="loginBtn">Login</a></li>
+            <li id="userItem" class="user-item" style="display: none">
+              <details class="user-menu">
+                <summary>
+                  <span id="userName"></span>
+                </summary>
+                <div class="user-menu-panel">
+                  <a id="dataViewLink" href="data-view.html">Data View</a>
+                  <a href="#" id="logoutBtn">Logout</a>
+                </div>
+              </details>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-  <main id="home">
-    <section class="landing-hero-video">
-      <video class="landing-hero-media" autoplay loop playsinline preload="metadata">
-        Your browser does not support the video tag.
-      </video>
-      <button
-        id="hero-audio-toggle"
-        class="hero-audio-toggle"
-        type="button"
-        aria-label="Mute hero video"
-        aria-pressed="true"
-      >
-        Mute
-      </button>
-      <div class="landing-hero-overlay">
-        <div class="landing-hero-cta">
-          <p>Technology-led transformation powered by Microsoft platforms.</p>
-          <a class="primary-btn" href="#services">Explore Services</a>
+    <main id="home">
+      <section class="hero container">
+        <div class="hero-copy reveal">
+          <p id="hero-eyebrow" class="eyebrow"><span class="hero-eyebrow-row"><img id="hero-eyebrow-logo-1" class="hero-eyebrow-logo" src="assets/images/PowerPlatform_scalable.svg" alt="Power Platform logo placeholder" />Microsoft Power Platform</span><span class="hero-eyebrow-row"><img id="hero-eyebrow-logo-2" class="hero-eyebrow-logo" src="assets/images/Microsoft-Azure-Cloud.svg" alt="Cloud Services logo placeholder" />Microsoft Cloud Services</span></p>
+          <h1 id="hero-title">Go Digital,<br />Grow Beyond</h1>
+          <p id="hero-description">At Digital AI Garage, we are committed to solve our customer's business challenges via Technology infusion. Using new age technology platforms s.a. Microsoft's Power Platform, we help customers in their journey of Digital Transformation led growth.</p>
+          <a id="hero-cta" class="primary-btn" href="#contact">Get in Touch</a>
         </div>
-      </div>
-    </section>
+        <div class="hero-panel reveal">
+          <div class="panel-glow"></div>
+          <h2 id="hero-panel-title">Driving Business Innovation</h2>
+          <p id="hero-panel-description">Technology consultation, process digitization, and data-driven decision systems.</p>
+        </div>
+      </section>
 
-    <section class="hero container">
-      <div class="hero-copy reveal">
-        <p id="hero-eyebrow" class="eyebrow"><span class="hero-eyebrow-row"><img id="hero-eyebrow-logo-1"
-              class="hero-eyebrow-logo" src="assets/images/PowerPlatform_scalable.svg"
-              alt="Power Platform logo placeholder" />Microsoft Power Platform</span><span class="hero-eyebrow-row"><img
-              id="hero-eyebrow-logo-2" class="hero-eyebrow-logo" src="assets/images/Microsoft-Azure-Cloud.svg"
-              alt="Cloud Services logo placeholder" />Microsoft Cloud Services</span></p>
-        <h1 id="hero-title">Go Digital,<br />Grow Beyond</h1>
-        <p id="hero-description">At Digital AI Garage, we are committed to solve our customer's business challenges via
-          Technology infusion. Using new age technology platforms s.a. Microsoft's Power Platform, we help customers in
-          their journey of Digital Transformation led growth.</p>
-        <a id="hero-cta" class="primary-btn" href="#contact">Get in Touch</a>
-      </div>
-      <div class="hero-panel reveal">
-        <div class="panel-glow"></div>
-        <h2 id="hero-panel-title">Driving Business Innovation</h2>
-        <p id="hero-panel-description">Technology consultation, process digitization, and data-driven decision systems.
+      <section id="services" class="section container">
+        <p id="services-eyebrow" class="eyebrow reveal">Our Services</p>
+        <h2 id="services-title" class="section-title reveal">Taking Your Business to the Next Level</h2>
+        <div class="card-grid">
+          <article class="service-card reveal">
+            <h3 id="service-1-title">Technology Consultation</h3>
+            <p id="service-1-description">Talk to our consultants about how Microsoft Power Platform can accelerate transformation by 10x.</p>
+          </article>
+          <article class="service-card reveal">
+            <h3 id="service-2-title">Business Process Digitization</h3>
+            <p id="service-2-description">Use plug-and-play components from Microsoft Power Platform to digitize processes in weeks.</p>
+          </article>
+          <article class="service-card reveal">
+            <h3 id="service-3-title">Data-Driven Decision Making</h3>
+            <p id="service-3-description">Turn raw operational data into insights that improve speed, planning, and outcomes.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-stats">
+        <div class="container stats-grid">
+          <div class="stat reveal">
+            <span id="stat-1-num" class="stat-num" data-target="5">0</span>
+            <p id="stat-1-label">Cutting-Edge Technologies</p>
+          </div>
+          <div class="stat reveal">
+            <span id="stat-2-num" class="stat-num" data-target="15  ">0</span
+            ><span id="stat-2-plus" class="plus">+</span>
+            <p id="stat-2-label">Successful Implementations</p>
+          </div>
+          <div class="stat reveal">
+            <span id="stat-3-num" class="stat-num" data-target="10">0</span
+            ><span id="stat-3-plus" class="plus">+</span>
+            <p id="stat-3-label">Satisfied Clients</p>
+          </div>
+          <div class="stat reveal">
+            <span id="stat-4-num" class="stat-num" data-target="10">0</span>
+            <p id="stat-4-label">Industry Partners</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section container">
+        <p id="about-eyebrow" class="eyebrow reveal">About Us</p>
+        <h2 id="about-title" class="section-title reveal">Empowering Business Through Technology</h2>
+        <div class="about-box reveal">
+          <p id="about-description-1">At Digital AI Garage, we are committed to solve our customer's business challenges via Technology infusion. Using new age technology platforms s.a. Microsoft's Power Platform, we help customers in their journey of Digital Transformation led growth.</p>
+          <p id="about-description-2">These platforms have more than enough weapons in its arsenal (in form of Lego1 Blocks) to solve evolving Digital needs of growing businesses.</p>
+        </div>
+        <p class="reveal" style="margin-top: 1rem">
+          <a id="about-page-cta" class="primary-btn" href="about.html">Read Our Full Story</a>
+        </p>
+      </section>
+
+      <section id="tools" class="section container">
+        <p id="tools-eyebrow" class="eyebrow reveal">Tools</p>
+        <h2 id="tools-title" class="section-title reveal">Business Process Digitization Using</h2>
+        <div class="tools-wrap reveal">
+          <img id="tools-brand-logo" class="tools-brand-logo" src="assets/images/microsoft-logo.svg" alt="Microsoft logo" />
+          <p id="tools-wrap-text" class="tools-wrap-text">All listed tools are Microsoft services.</p>
+        </div>
+        <div id="tools-grid" class="tools-grid"></div>
+      </section>
+
+      <section id="contact" class="section container">
+        <div
+          class="contact-wrap reveal"
+          style="display: block; text-align: center"
+        >
+          <div style="max-width: 700px; margin: 0 auto">
+            <p id="contact-eyebrow" class="eyebrow">Get In Touch</p>
+            <h2 id="contact-title" class="section-title">Let's Discuss Your Digital Transformation Journey</h2>
+            <p id="contact-description">Reach out today for a free consulting session on building efficient, scalable digital operations.</p>
+            <br />
+            <a
+              id="contact-email"
+              href="mailto:info@DigitalAIGarage.com"
+              class="primary-btn"
+              style="text-transform: none; font-size: 1.1rem"
+            >info@DigitalAIGarage.com</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          <span id="footer-prefix">&copy; </span><span id="year"></span
+          ><span id="footer-suffix"> by Digital AI Garage.</span>
         </p>
       </div>
-    </section>
+    </footer>
 
-    <section id="services" class="section container">
-      <p id="services-eyebrow" class="eyebrow reveal">Our Services</p>
-      <h2 id="services-title" class="section-title reveal">Taking Your Business to the Next Level</h2>
-      <div class="card-grid">
-        <article class="service-card reveal">
-          <h3 id="service-1-title">Technology Consultation</h3>
-          <p id="service-1-description">Talk to our consultants about how Microsoft Power Platform can accelerate
-            transformation by 10x.</p>
-        </article>
-        <article class="service-card reveal">
-          <h3 id="service-2-title">Business Process Digitization</h3>
-          <p id="service-2-description">Use plug-and-play components from Microsoft Power Platform to digitize processes
-            in weeks.</p>
-        </article>
-        <article class="service-card reveal">
-          <h3 id="service-3-title">Data-Driven Decision Making</h3>
-          <p id="service-3-description">Turn raw operational data into insights that improve speed, planning, and
-            outcomes.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section section-stats">
-      <div class="container stats-grid">
-        <div class="stat reveal">
-          <span id="stat-1-num" class="stat-num" data-target="5">0</span>
-          <p id="stat-1-label">Cutting-Edge Technologies</p>
-        </div>
-        <div class="stat reveal">
-          <span id="stat-2-num" class="stat-num" data-target="15  ">0</span><span id="stat-2-plus" class="plus">+</span>
-          <p id="stat-2-label">Successful Implementations</p>
-        </div>
-        <div class="stat reveal">
-          <span id="stat-3-num" class="stat-num" data-target="10">0</span><span id="stat-3-plus" class="plus">+</span>
-          <p id="stat-3-label">Satisfied Clients</p>
-        </div>
-        <div class="stat reveal">
-          <span id="stat-4-num" class="stat-num" data-target="10">0</span>
-          <p id="stat-4-label">Industry Partners</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section container">
-      <p id="about-eyebrow" class="eyebrow reveal">About Us</p>
-      <h2 id="about-title" class="section-title reveal">Empowering Business Through Technology</h2>
-      <div class="about-box reveal">
-        <p id="about-description-1">At Digital AI Garage, we are committed to solve our customer's business challenges
-          via Technology infusion. Using new age technology platforms s.a. Microsoft's Power Platform, we help customers
-          in their journey of Digital Transformation led growth.</p>
-        <p id="about-description-2">These platforms have more than enough weapons in its arsenal (in form of Lego1
-          Blocks) to solve evolving Digital needs of growing businesses.</p>
-      </div>
-      <p class="reveal" style="margin-top: 1rem">
-        <a id="about-page-cta" class="primary-btn" href="about.html">Read Our Full Story</a>
-      </p>
-    </section>
-
-    <section id="tools" class="section container">
-      <p id="tools-eyebrow" class="eyebrow reveal">Tools</p>
-      <h2 id="tools-title" class="section-title reveal">Business Process Digitization Using</h2>
-      <div class="tools-wrap reveal">
-        <img id="tools-brand-logo" class="tools-brand-logo" src="assets/images/microsoft-logo.svg"
-          alt="Microsoft logo" />
-        <p id="tools-wrap-text" class="tools-wrap-text">All listed tools are Microsoft services.</p>
-      </div>
-      <div id="tools-grid" class="tools-grid"></div>
-    </section>
-
-    <section id="contact" class="section container">
-      <div class="contact-wrap reveal" style="display: block; text-align: center">
-        <div style="max-width: 700px; margin: 0 auto">
-          <p id="contact-eyebrow" class="eyebrow">Get In Touch</p>
-          <h2 id="contact-title" class="section-title">Let's Discuss Your Digital Transformation Journey</h2>
-          <p id="contact-description">Reach out today for a free consulting session on building efficient, scalable
-            digital operations.</p>
-          <br />
-          <a id="contact-email" href="mailto:info@DigitalAIGarage.com" class="primary-btn"
-            style="text-transform: none; font-size: 1.1rem">info@DigitalAIGarage.com</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>
-        <span id="footer-prefix">&copy; </span><span id="year"></span><span id="footer-suffix"> by Digital AI
-          Garage.</span>
-      </p>
-    </div>
-  </footer>
-
-  <script src="content.js"></script>
-  <script src="tools.js"></script>
-  <script src="script.js"></script>
-  <!-- MSAL.js Library -->
-  <script type="text/javascript" src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.min.js"></script>
-  <script src="auth.js"></script>
-</body>
-
+    <script src="content.js"></script>
+    <script src="tools.js"></script>
+    <script src="script.js"></script>
+    <!-- MSAL.js Library -->
+    <script
+      type="text/javascript"
+      src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.min.js"
+    ></script>
+    <script src="auth.js"></script>
+  </body>
 </html>
