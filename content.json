@@ -799,6 +799,53 @@
       }
     }
   },
+  "salesCrm": {
+    "hero": {
+      "text": {
+        "selector": "#sales-crm-hero-text",
+        "value": "Exploring Custom Sales CRM for Your Business Needs"
+      },
+      "primaryButtonText": {
+        "selector": "#sales-crm-hero-primary",
+        "value": "Explore Custom CRM"
+      },
+      "primaryButtonLink": {
+        "selector": "#sales-crm-hero-primary",
+        "attribute": "href",
+        "value": "#sales-crm-offering"
+      },
+      "secondaryButtonText": {
+        "selector": "#sales-crm-hero-secondary",
+        "value": "See It in Action"
+      },
+      "secondaryButtonLink": {
+        "selector": "#sales-crm-hero-secondary",
+        "attribute": "href",
+        "value": "case-study.html#success-videos"
+      },
+      "images": [
+        "assets/images/sales-crm-1.jpg",
+        "assets/images/sales-crm-2.jpg",
+        "assets/images/sales-crm-3.jpg",
+        "assets/images/sales-crm-4.jpg",
+        "assets/images/sales-crm-5.jpg"
+      ]
+    },
+    "content": {
+      "eyebrow": {
+        "selector": "#sales-crm-eyebrow",
+        "value": "Service Offering"
+      },
+      "title": {
+        "selector": "#sales-crm-title",
+        "value": "Sales CRM"
+      },
+      "description": {
+        "selector": "#sales-crm-description",
+        "value": "We design and implement custom Sales CRM solutions on Microsoft Power Platform to centralize leads, automate follow-ups, and improve win-rate visibility from first touch to deal closure."
+      }
+    }
+  },
   "videos": {
     "caseStudy": {
       "title": {
