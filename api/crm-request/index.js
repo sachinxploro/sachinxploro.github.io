@@ -43,10 +43,10 @@ function validatePayload(payload) {
 
 module.exports = async function (context, req) {
   if (req.method === "OPTIONS") {
-    return {
-      status: 204,
-      headers: corsHeaders,
-    };
+    return jsonResponse(200, {
+      success: true,
+      preflight: true,
+    });
   }
 
   let payload = req.body;
