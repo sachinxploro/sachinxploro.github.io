@@ -538,10 +538,10 @@
 <div class="page-wrap">
 
   <div class="header">
-    <div class="header-tag">CRM Implementation Services</div>
-    <h1>What do you need<br>from your <em>CRM?</em></h1>
+    <div id="crm-form-header-tag" class="header-tag">CRM Implementation Services</div>
+    <h1 id="crm-form-header-title">What do you need<br>from your <em>CRM?</em></h1>
     <div class="divider"></div>
-    <p>Select the customizations you're looking for and submit your requirements. Our team will get back to you with a tailored proposal.</p>
+    <p id="crm-form-header-description">Select the customizations you're looking for and submit your requirements. Our team will get back to you with a tailored proposal.</p>
   </div>
 
   <div class="form-card" id="formCard">
@@ -556,7 +556,7 @@
 
     <!-- Contact fields -->
     <div class="contact-section">
-      <div class="contact-title">Your Details</div>
+      <div id="crm-form-contact-title" class="contact-title">Your Details</div>
       <div class="fields-row">
         <div class="field-group">
           <label>Full Name *</label>
@@ -583,7 +583,7 @@
 
     <!-- Submit -->
     <div class="submit-wrap">
-      <p class="submit-note">We'll review your requirements and reach out within 1–2 business days with a tailored scope and estimate.</p>
+      <p id="crm-form-submit-note" class="submit-note">We'll review your requirements and reach out within 1–2 business days with a tailored scope and estimate.</p>
       <div class="captcha-wrap">
         <span class="captcha-label">Human verification</span>
         <span class="captcha-question" id="captchaQuestion">Loading...</span>
@@ -612,7 +612,7 @@
 </div>
 
 <script>
-const sections = [
+let sections = [
   {
     num: 1,
     title: "Sales Process Configuration",
@@ -742,6 +742,50 @@ const sections = [
 
 let captchaAnswer = null;
 
+async function loadFormContentJson() {
+  try {
+    const response = await fetch('../../content.json', { cache: 'no-store' });
+    if (!response.ok) return null;
+    return response.json();
+  } catch (_) {
+    return null;
+  }
+}
+
+function applyEntry(root, entry) {
+  if (!entry || typeof entry.selector !== 'string') return;
+  const el = root.querySelector(entry.selector);
+  if (!el) return;
+
+  if (typeof entry.attribute === 'string') {
+    el.setAttribute(entry.attribute, String(entry.value ?? ''));
+    return;
+  }
+
+  el.innerHTML = String(entry.value ?? '');
+}
+
+function applyFormContentConfig(content) {
+  const cfg = content?.crmCustomizationForm;
+  if (!cfg || typeof cfg !== 'object') return;
+
+  const entries = cfg.entries;
+  if (Array.isArray(entries)) {
+    entries.forEach((entry) => applyEntry(document, entry));
+  }
+
+  if (Array.isArray(cfg.sections) && cfg.sections.length > 0) {
+    sections = cfg.sections.map((section, index) => ({
+      num: Number(section?.num) || index + 1,
+      title: String(section?.title || `Section ${index + 1}`),
+      desc: String(section?.desc || ''),
+      items: Array.isArray(section?.items)
+        ? section.items.map((item) => String(item))
+        : [],
+    }));
+  }
+}
+
 // Render sections
 function renderSections() {
   const container = document.getElementById('sectionsContainer');
@@ -865,10 +909,16 @@ function generateCaptcha() {
   document.getElementById('captchaQuestion').textContent = question;
 }
 
+async function initForm() {
+  const content = await loadFormContentJson();
+  applyFormContentConfig(content);
+  renderSections();
+  document.getElementById('btnSubmit').disabled = true;
+  generateCaptcha();
+}
+
 // Init
-renderSections();
-document.getElementById('btnSubmit').disabled = true;
-generateCaptcha();
+initForm();
 </script>
 </body>
 </html>

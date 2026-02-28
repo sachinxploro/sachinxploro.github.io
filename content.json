@@ -844,6 +844,12 @@
         "selector": "#sales-crm-description",
         "value": "We design and implement custom Sales CRM solutions on Microsoft Power Platform to centralize leads, automate follow-ups, and improve win-rate visibility from first touch to deal closure."
       }
+    },
+    "crmCustomization": {
+      "visible": true,
+      "title": "CRM Customization Request",
+      "description": "Share your exact CRM customization needs. This request form is embedded from your source file and rendered within your website layout.",
+      "iframeSrc": "assets/html/crm_customization_request.html"
     }
   },
   "salesCrmDriverService": {
@@ -921,6 +927,35 @@
         "value": "🎯 Bet on the Expert"
       }
     ]
+  },
+  "crmCustomizationForm": {
+    "entries": [
+      {
+        "selector": "#crm-form-header-tag",
+        "value": "CRM Implementation Services"
+      },
+      {
+        "selector": "#crm-form-header-title",
+        "value": "What do you need<br>from your <em>CRM?</em>"
+      },
+      {
+        "selector": "#crm-form-header-description",
+        "value": "Select the customizations you're looking for and submit your requirements. Our team will get back to you with a tailored proposal."
+      },
+      {
+        "selector": "#crm-form-contact-title",
+        "value": "Your Details"
+      },
+      {
+        "selector": "#crm-form-submit-note",
+        "value": "We'll review your requirements and reach out within 1–2 business days with a tailored scope and estimate."
+      },
+      {
+        "selector": "#btnSubmit",
+        "value": "Submit Requirements →"
+      }
+    ],
+    "sections": []
   },
   "videos": {
     "caseStudy": {

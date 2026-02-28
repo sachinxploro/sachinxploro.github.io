@@ -14,6 +14,23 @@ function vote(type) {
   el.className = "vote-result skill-win";
 }
 
+let contentPromise = null;
+
+function loadContentJson() {
+  if (!contentPromise) {
+    contentPromise = fetch("content.json", { cache: "no-store" })
+      .then(function (response) {
+        if (!response.ok) return null;
+        return response.json();
+      })
+      .catch(function () {
+        return null;
+      });
+  }
+
+  return contentPromise;
+}
+
 function initCrmCustomizationFrame() {
   const frame = document.getElementById("crmCustomizationFrame");
   if (!frame) return;
@@ -40,6 +57,36 @@ function initCrmCustomizationFrame() {
   });
 
   window.addEventListener("resize", syncHeight);
+}
+
+async function initSalesCrmCustomizationConfig() {
+  const section = document.getElementById("crm-customization");
+  if (!section) return;
+
+  const content = await loadContentJson();
+  const cfg = content?.salesCrm?.crmCustomization;
+  if (!cfg || typeof cfg !== "object") return;
+
+  if (cfg.visible === false) {
+    section.style.display = "none";
+    return;
+  }
+
+  const title = document.getElementById("crm-customization-title");
+  const description = document.getElementById("crm-customization-description");
+  const frame = document.getElementById("crmCustomizationFrame");
+
+  if (title && typeof cfg.title === "string") {
+    title.innerHTML = cfg.title;
+  }
+
+  if (description && typeof cfg.description === "string") {
+    description.innerHTML = cfg.description;
+  }
+
+  if (frame && typeof cfg.iframeSrc === "string" && cfg.iframeSrc.trim()) {
+    frame.setAttribute("src", cfg.iframeSrc.trim());
+  }
 }
 
 async function loadDriverServiceMarkup() {
@@ -80,24 +127,21 @@ async function loadDriverServiceMarkup() {
     window.vote = vote;
 
     try {
-      const contentResponse = await fetch("content.json", { cache: "no-store" });
-      if (contentResponse.ok) {
-        const content = await contentResponse.json();
-        const entries = content?.salesCrmDriverService?.entries;
-        if (Array.isArray(entries)) {
-          entries.forEach(function (entry) {
-            if (!entry || typeof entry.selector !== "string") return;
-            const el = root.querySelector(entry.selector);
-            if (!el) return;
+      const content = await loadContentJson();
+      const entries = content?.salesCrmDriverService?.entries;
+      if (Array.isArray(entries)) {
+        entries.forEach(function (entry) {
+          if (!entry || typeof entry.selector !== "string") return;
+          const el = root.querySelector(entry.selector);
+          if (!el) return;
 
-            if (typeof entry.attribute === "string") {
-              el.setAttribute(entry.attribute, String(entry.value ?? ""));
-              return;
-            }
+          if (typeof entry.attribute === "string") {
+            el.setAttribute(entry.attribute, String(entry.value ?? ""));
+            return;
+          }
 
-            el.innerHTML = String(entry.value ?? "");
-          });
-        }
+          el.innerHTML = String(entry.value ?? "");
+        });
       }
     } catch (_) {
       // If JSON mapping fails, keep source HTML defaults.
@@ -110,5 +154,6 @@ async function loadDriverServiceMarkup() {
 
 window.vote = vote;
 
+document.addEventListener("DOMContentLoaded", initSalesCrmCustomizationConfig);
 document.addEventListener("DOMContentLoaded", loadDriverServiceMarkup);
 document.addEventListener("DOMContentLoaded", initCrmCustomizationFrame);
