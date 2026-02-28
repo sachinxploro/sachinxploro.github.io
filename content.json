@@ -930,6 +930,7 @@
   },
   "crmCustomizationForm": {
     "apiEndpoint": "https://website-crm-form-d3c0fqfchhd0abeg.centralindia-01.azurewebsites.net/api/crm-request",
+    "emailVerificationRequired": true,
     "entries": [
       {
         "selector": "#crm-form-header-tag",

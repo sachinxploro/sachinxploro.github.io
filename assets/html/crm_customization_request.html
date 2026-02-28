@@ -413,6 +413,65 @@
     display: none;
   }
 
+  .verify-wrap {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .verify-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .verify-btn {
+    border: 1px solid var(--border);
+    background: #f8f9fd;
+    color: #1f2937;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  .verify-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .verify-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+
+  .verify-code-input {
+    width: 122px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 7px 10px;
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .verify-status {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .verify-status.error {
+    color: #b42318;
+  }
+
+  .verify-status.ok {
+    color: var(--check-green);
+    font-weight: 600;
+  }
+
   .btn-submit {
     background: var(--ink);
     color: white;
@@ -569,6 +628,16 @@
         <div class="field-group">
           <label>Email Address *</label>
           <input type="email" id="fieldEmail" placeholder="you@company.com" required>
+          <div class="verify-wrap">
+            <div class="verify-row">
+              <button class="verify-btn" type="button" id="btnSendOtp" onclick="sendEmailOtp()">Send verification code</button>
+              <span class="verify-status" id="emailVerifyStatus">Verify your email before submitting.</span>
+            </div>
+            <div class="verify-row" id="emailOtpRow" style="display:none;">
+              <input class="verify-code-input" id="emailOtpInput" type="text" inputmode="numeric" maxlength="6" placeholder="6-digit code" aria-label="Email OTP code">
+              <button class="verify-btn" type="button" id="btnVerifyOtp" onclick="verifyEmailOtp()">Verify code</button>
+            </div>
+          </div>
         </div>
         <div class="field-group">
           <label>Phone Number</label>
@@ -742,6 +811,10 @@ let sections = [
 
 let captchaAnswer = null;
 let formApiEndpoint = '/api/crm-request';
+let emailVerificationRequired = false;
+let emailVerificationToken = '';
+let emailVerifiedProofToken = '';
+let emailVerifiedFor = '';
 
 async function loadFormContentJson() {
   try {
@@ -789,6 +862,9 @@ function applyFormContentConfig(content) {
   if (typeof cfg.apiEndpoint === 'string' && cfg.apiEndpoint.trim()) {
     formApiEndpoint = cfg.apiEndpoint.trim();
   }
+  if (typeof cfg.emailVerificationRequired === 'boolean') {
+    emailVerificationRequired = cfg.emailVerificationRequired;
+  }
 }
 
 // Render sections
@@ -829,7 +905,113 @@ function updateCounter() {
   badge.textContent = count;
   badge.classList.add('bump');
   setTimeout(() => badge.classList.remove('bump'), 200);
-  document.getElementById('btnSubmit').disabled = count === 0;
+  updateSubmitButtonState();
+}
+
+function isCurrentEmailVerified() {
+  const email = document.getElementById('fieldEmail').value.trim().toLowerCase();
+  return Boolean(email && emailVerifiedProofToken && emailVerifiedFor === email);
+}
+
+function updateSubmitButtonState() {
+  const count = getChecked().length;
+  const verifiedOk = !emailVerificationRequired || isCurrentEmailVerified();
+  document.getElementById('btnSubmit').disabled = count === 0 || !verifiedOk;
+}
+
+function setEmailVerifyStatus(message, variant) {
+  const statusEl = document.getElementById('emailVerifyStatus');
+  statusEl.textContent = message;
+  statusEl.classList.remove('error', 'ok');
+  if (variant === 'error') statusEl.classList.add('error');
+  if (variant === 'ok') statusEl.classList.add('ok');
+}
+
+function resetEmailVerificationState(message) {
+  emailVerificationToken = '';
+  emailVerifiedProofToken = '';
+  emailVerifiedFor = '';
+  document.getElementById('emailOtpRow').style.display = 'none';
+  document.getElementById('emailOtpInput').value = '';
+  setEmailVerifyStatus(message || 'Verify your email before submitting.');
+  updateSubmitButtonState();
+}
+
+async function sendEmailOtp() {
+  if (!emailVerificationRequired) return;
+  const email = document.getElementById('fieldEmail').value.trim();
+  const sendBtn = document.getElementById('btnSendOtp');
+
+  if (!email) {
+    setEmailVerifyStatus('Enter email first.', 'error');
+    return;
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    setEmailVerifyStatus('Enter a valid email address.', 'error');
+    return;
+  }
+
+  sendBtn.disabled = true;
+  const oldText = sendBtn.textContent;
+  sendBtn.textContent = 'Sending...';
+  setEmailVerifyStatus('Sending verification code...');
+
+  try {
+    const result = await submitFormToApi({
+      action: 'send-email-otp',
+      email: email,
+    });
+    emailVerificationToken = String(result?.verificationToken || '');
+    emailVerifiedProofToken = '';
+    emailVerifiedFor = '';
+    document.getElementById('emailOtpRow').style.display = 'flex';
+    setEmailVerifyStatus(`Code sent to ${result?.emailMasked || email}.`, 'ok');
+  } catch (error) {
+    setEmailVerifyStatus(error?.message || 'Could not send verification code.', 'error');
+  } finally {
+    sendBtn.disabled = false;
+    sendBtn.textContent = oldText;
+    updateSubmitButtonState();
+  }
+}
+
+async function verifyEmailOtp() {
+  if (!emailVerificationRequired) return;
+  const email = document.getElementById('fieldEmail').value.trim();
+  const code = document.getElementById('emailOtpInput').value.trim();
+  const verifyBtn = document.getElementById('btnVerifyOtp');
+
+  if (!emailVerificationToken) {
+    setEmailVerifyStatus('Please send code first.', 'error');
+    return;
+  }
+  if (!/^\d{6}$/.test(code)) {
+    setEmailVerifyStatus('Enter the 6-digit code.', 'error');
+    return;
+  }
+
+  verifyBtn.disabled = true;
+  const oldText = verifyBtn.textContent;
+  verifyBtn.textContent = 'Verifying...';
+
+  try {
+    const result = await submitFormToApi({
+      action: 'verify-email-otp',
+      email: email,
+      code: code,
+      verificationToken: emailVerificationToken,
+    });
+    emailVerifiedProofToken = String(result?.proofToken || '');
+    emailVerifiedFor = email.trim().toLowerCase();
+    setEmailVerifyStatus('Email verified successfully.', 'ok');
+  } catch (error) {
+    setEmailVerifyStatus(error?.message || 'Verification failed.', 'error');
+  } finally {
+    verifyBtn.disabled = false;
+    verifyBtn.textContent = oldText;
+    updateSubmitButtonState();
+  }
 }
 
 async function submitFormToApi(payload) {
@@ -869,6 +1051,11 @@ async function handleSubmit() {
     return;
   }
 
+  if (emailVerificationRequired && !isCurrentEmailVerified()) {
+    alert('Please verify your email with the 6-digit code before submitting.');
+    return;
+  }
+
   const selected = getChecked();
   if (selected.length === 0) {
     alert('Please select at least one customization area.');
@@ -895,6 +1082,11 @@ async function handleSubmit() {
     },
     notes: notes,
     selectedRequirements: selected,
+    emailVerification: emailVerificationRequired
+      ? {
+          proofToken: emailVerifiedProofToken,
+        }
+      : undefined,
     meta: {
       source: 'crm_customization_form',
       submittedAt: new Date().toISOString(),
@@ -954,6 +1146,11 @@ function resetForm() {
   document.getElementById('btnSubmit').textContent = 'Submit Requirements →';
   document.getElementById('captchaInput').value = '';
   document.getElementById('captchaError').style.display = 'none';
+  if (emailVerificationRequired) {
+    resetEmailVerificationState('Verify your email before submitting.');
+  } else {
+    resetEmailVerificationState('');
+  }
   generateCaptcha();
 }
 
@@ -978,7 +1175,17 @@ async function initForm() {
   const content = await loadFormContentJson();
   applyFormContentConfig(content);
   renderSections();
-  document.getElementById('btnSubmit').disabled = true;
+  const verifyWrap = document.querySelector('.verify-wrap');
+  if (emailVerificationRequired) {
+    document.getElementById('fieldEmail').addEventListener('input', () => {
+      resetEmailVerificationState('Email changed. Please verify again.');
+    });
+    resetEmailVerificationState('Verify your email before submitting.');
+  } else {
+    if (verifyWrap) verifyWrap.style.display = 'none';
+    setEmailVerifyStatus('');
+  }
+  updateSubmitButtonState();
   generateCaptcha();
 }
 
