@@ -741,6 +741,7 @@ let sections = [
 ];
 
 let captchaAnswer = null;
+let formApiEndpoint = '/api/crm-request';
 
 async function loadFormContentJson() {
   try {
@@ -783,6 +784,10 @@ function applyFormContentConfig(content) {
         ? section.items.map((item) => String(item))
         : [],
     }));
+  }
+
+  if (typeof cfg.apiEndpoint === 'string' && cfg.apiEndpoint.trim()) {
+    formApiEndpoint = cfg.apiEndpoint.trim();
   }
 }
 
@@ -827,10 +832,37 @@ function updateCounter() {
   document.getElementById('btnSubmit').disabled = count === 0;
 }
 
-function handleSubmit() {
+async function submitFormToApi(payload) {
+  const response = await fetch(formApiEndpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+
+  let body = null;
+  try {
+    body = await response.json();
+  } catch (_) {
+    body = null;
+  }
+
+  if (!response.ok) {
+    const msg = body?.message || 'Unable to submit form right now.';
+    throw new Error(msg);
+  }
+
+  return body;
+}
+
+async function handleSubmit() {
   const name = document.getElementById('fieldName').value.trim();
   const company = document.getElementById('fieldCompany').value.trim();
   const email = document.getElementById('fieldEmail').value.trim();
+  const phone = document.getElementById('fieldPhone').value.trim();
+  const notes = document.getElementById('fieldNotes').value.trim();
+  const submitBtn = document.getElementById('btnSubmit');
 
   if (!name || !company || !email) {
     alert('Please fill in your Name, Company, and Email before submitting.');
@@ -854,15 +886,47 @@ function handleSubmit() {
   }
   captchaError.style.display = 'none';
 
+  const payload = {
+    contact: {
+      name: name,
+      company: company,
+      email: email,
+      phone: phone,
+    },
+    notes: notes,
+    selectedRequirements: selected,
+    meta: {
+      source: 'crm_customization_form',
+      submittedAt: new Date().toISOString(),
+      userAgent: navigator.userAgent,
+      page: window.location.href,
+    },
+  };
+
+  submitBtn.disabled = true;
+  const originalBtnText = submitBtn.textContent;
+  submitBtn.textContent = 'Submitting...';
+
+  let apiResult = null;
+  try {
+    apiResult = await submitFormToApi(payload);
+  } catch (error) {
+    alert(error?.message || 'Unable to submit form right now. Please try again.');
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalBtnText;
+    return;
+  }
+
   // Build summary
   const summary = document.getElementById('selectedSummary');
+  const requestMeta = apiResult?.requestId
+    ? `<p style="margin:0 0 10px;font-size:12px;color:#6b7080;">Request ID: ${apiResult.requestId}</p>`
+    : '';
   summary.innerHTML = `
+    ${requestMeta}
     <h4>${selected.length} requirement${selected.length > 1 ? 's' : ''} selected</h4>
     <ul>${selected.map(s => `<li>${s}</li>`).join('')}</ul>
   `;
-
-  // Log to console (in real usage, this would be a fetch/POST)
-  console.log('CRM Request Submitted:', { name, company, email, selected });
 
   // Show success
   document.getElementById('sectionsContainer').style.display = 'none';
@@ -887,6 +951,7 @@ function resetForm() {
   document.getElementById('counterBar').style.display = 'none';
   document.getElementById('counterBadge').textContent = '0';
   document.getElementById('btnSubmit').disabled = true;
+  document.getElementById('btnSubmit').textContent = 'Submit Requirements →';
   document.getElementById('captchaInput').value = '';
   document.getElementById('captchaError').style.display = 'none';
   generateCaptcha();

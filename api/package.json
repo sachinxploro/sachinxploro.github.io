@@ -1,0 +1,16 @@
+{
+  "name": "digitalaigarage-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Azure Functions API for CRM request processing",
+  "main": "crm-request/index.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "func start",
+    "test": "echo \"No tests configured\""
+  },
+  "dependencies": {}
+}
