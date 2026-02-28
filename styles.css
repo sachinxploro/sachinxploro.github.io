@@ -973,6 +973,17 @@ body {
   padding: 3rem 1rem;
 }
 
+.sales-crm-more {
+  text-align: center;
+  padding-top: 1.2rem;
+}
+
+.sales-crm-more p {
+  color: var(--muted);
+  max-width: 68ch;
+  margin: 0.6rem auto 0;
+}
+
 button {
   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }

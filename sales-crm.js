@@ -10,7 +10,7 @@ function vote(type) {
   }
 
   el.innerHTML =
-    'Smart. Skill beats chrome every time. 🏆 <a href="case-study.html">Continue to explore more.</a>';
+    'Smart. Skill beats chrome every time. 🏆 <a href="#sales-crm-more">Continue to explore more.</a>';
   el.className = "vote-result skill-win";
 }
 
