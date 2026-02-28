@@ -774,6 +774,199 @@ body {
   }
 }
 
+.driver-service-import {
+  --gold: #8fd0ff;
+  --red: #ff6f79;
+  --green: #34d39a;
+  --dark: transparent;
+  --off-white: #f4f8ff;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1.8rem 1rem 3.5rem;
+}
+
+.driver-service-import header {
+  text-align: center;
+  padding: 22px 20px 30px;
+}
+
+.driver-service-import header::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--gold);
+  margin: 20px auto 0;
+}
+
+.driver-service-import .tagline {
+  letter-spacing: 0.3em;
+  font-size: 0.75rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.driver-service-import header h1 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.1;
+  font-weight: 900;
+}
+
+.driver-service-import .cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  max-width: 1100px;
+  margin: 60px auto 0;
+}
+
+.driver-service-import .card {
+  padding: 50px 40px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 0.8s ease both;
+}
+
+.driver-service-import .card:first-child {
+  background: #121b36;
+  border: 1px solid rgba(111, 148, 255, 0.35);
+  border-right: none;
+  animation-delay: 0.1s;
+}
+
+.driver-service-import .card:last-child {
+  background: #0f2132;
+  border: 1px solid rgba(52, 211, 154, 0.35);
+  animation-delay: 0.3s;
+}
+
+.driver-service-import .card-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 2px;
+  font-weight: 500;
+  margin-bottom: 28px;
+}
+
+.driver-service-import .card:first-child .card-label {
+  background: var(--red);
+  color: #fff;
+}
+
+.driver-service-import .card:last-child .card-label {
+  background: var(--green);
+  color: #05271b;
+}
+
+.driver-service-import .scene {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 30px;
+}
+
+.driver-service-import .road,
+.driver-service-import .lane-center {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55px;
+  background: #283248;
+  border-top: 3px solid rgba(157, 200, 255, 0.35);
+}
+
+.driver-service-import .road-line {
+  position: absolute;
+  bottom: 20px;
+  width: 40px;
+  height: 5px;
+  background: #9dc8ff;
+  border-radius: 2px;
+}
+
+.driver-service-import .lane-dot {
+  position: absolute;
+  bottom: 20px;
+  height: 5px;
+  width: 30px;
+  background: rgba(52, 211, 154, 0.6);
+  border-radius: 2px;
+}
+
+.driver-service-import .cta-section {
+  text-align: center;
+  padding: 70px 20px 50px;
+}
+
+.driver-service-import .cta-section h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  margin-bottom: 12px;
+}
+
+.driver-service-import .cta-section h2 em {
+  color: var(--gold);
+}
+
+.driver-service-import .cta-section p {
+  color: rgba(244, 248, 255, 0.7);
+  margin-bottom: 40px;
+}
+
+.driver-service-import .bet-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.driver-service-import .btn {
+  padding: 16px 40px;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.driver-service-import .btn-risk {
+  background: var(--red);
+  color: #fff;
+}
+
+.driver-service-import .btn-skill {
+  background: var(--gold);
+  color: #041127;
+}
+
+.driver-service-import .vote-result {
+  margin-top: 28px;
+  font-size: 1.1rem;
+  min-height: 28px;
+  font-weight: 500;
+}
+
+.driver-service-import .vote-result.risk-win {
+  color: var(--red);
+}
+
+.driver-service-import .vote-result.skill-win {
+  color: var(--green);
+}
+
+.driver-service-import .driver-service-fallback {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
 button {
   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
@@ -1338,6 +1531,10 @@ button:focus-visible {
 
   .driver-service-header h1 {
     font-size: clamp(1.8rem, 9vw, 2.8rem);
+  }
+
+  .driver-service-import .cards {
+    grid-template-columns: 1fr;
   }
 
   .landing-hero-overlay p {
