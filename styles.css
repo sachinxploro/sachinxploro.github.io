@@ -984,6 +984,25 @@ body {
   margin: 0.6rem auto 0;
 }
 
+.crm-customization-section {
+  padding-top: 1rem;
+}
+
+.crm-customization-description {
+  color: var(--muted);
+  max-width: 76ch;
+  margin: 0 0 1rem;
+}
+
+.crm-customization-frame {
+  width: 100%;
+  min-height: 900px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 26px rgba(5, 18, 44, 0.2);
+}
+
 button {
   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
