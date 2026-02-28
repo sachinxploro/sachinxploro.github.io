@@ -52,10 +52,41 @@
     </header>
 
     <main>
-      <section class="section container" style="padding-bottom: 1.2rem">
-        <p class="eyebrow reveal">Service Offering</p>
-        <h1 class="section-title reveal">Sales CRM</h1>
-        <p class="reveal" style="max-width: 78ch; color: var(--muted)">
+      <section class="sales-crm-hero-video">
+        <div id="sales-crm-hero-track" class="sales-crm-hero-track"></div>
+        <div class="sales-crm-hero-overlay">
+          <p id="sales-crm-hero-text">
+            Exploring Custom Sales CRM for Your Business Needs
+          </p>
+          <div class="sales-crm-hero-actions">
+            <a
+              id="sales-crm-hero-primary"
+              class="primary-btn"
+              href="#sales-crm-offering"
+              >Explore Custom CRM</a
+            >
+            <a
+              id="sales-crm-hero-secondary"
+              class="secondary-btn"
+              href="case-study.html#success-videos"
+              >See It in Action</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="sales-crm-offering"
+        class="section container"
+        style="padding-bottom: 1.2rem"
+      >
+        <p id="sales-crm-eyebrow" class="eyebrow reveal">Service Offering</p>
+        <h1 id="sales-crm-title" class="section-title reveal">Sales CRM</h1>
+        <p
+          id="sales-crm-description"
+          class="reveal"
+          style="max-width: 78ch; color: var(--muted)"
+        >
           We design and implement custom Sales CRM solutions on Microsoft Power
           Platform to centralize leads, automate follow-ups, and improve win-rate
           visibility from first touch to deal closure.
@@ -112,6 +143,8 @@
       </div>
     </footer>
 
+    <script src="content.js"></script>
+    <script src="sales-crm.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
