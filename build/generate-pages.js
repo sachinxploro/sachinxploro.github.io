@@ -370,7 +370,13 @@ function renderFromTemplate(templateFile, outputFile, options = {}) {
 function generateSitemap() {
   const domain = "https://www.digitalaigarage.com";
   const now = new Date().toISOString().slice(0, 10);
-  const pages = ["/", "/about.html", "/case-study.html", "/engagement-models.html"];
+  const pages = [
+    "/",
+    "/about.html",
+    "/case-study.html",
+    "/engagement-models.html",
+    "/sales-crm.html",
+  ];
 
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
@@ -404,9 +410,10 @@ renderFromTemplate("case-study.template.html", "case-study.html", {
   includeCaseItems: true,
 });
 renderFromTemplate("engagement-models.template.html", "engagement-models.html");
+renderFromTemplate("sales-crm.template.html", "sales-crm.html");
 generateSitemap();
 generateRobots();
 
 console.log(
-  "Generated index.html, about.html, case-study.html, engagement-models.html, sitemap.xml, and robots.txt",
+  "Generated index.html, about.html, case-study.html, engagement-models.html, sales-crm.html, sitemap.xml, and robots.txt",
 );
