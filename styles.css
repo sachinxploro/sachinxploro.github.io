@@ -962,6 +962,12 @@ body {
   color: var(--green);
 }
 
+.driver-service-import .vote-result a {
+  color: #8fd0ff;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
 .driver-service-import .driver-service-fallback {
   text-align: center;
   padding: 3rem 1rem;
