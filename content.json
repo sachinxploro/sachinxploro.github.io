@@ -846,6 +846,82 @@
       }
     }
   },
+  "salesCrmDriverService": {
+    "entries": [
+      {
+        "selector": "#ds-tagline",
+        "value": "CRM Is Only as Powerful as Its Implementation"
+      },
+      {
+        "selector": "#ds-main-title",
+        "value": "The Car Doesn't<br>Win The Race."
+      },
+      {
+        "selector": "#ds-risk-label",
+        "value": "❌ The Liability"
+      },
+      {
+        "selector": "#ds-risk-title",
+        "value": "Incompetent Driver<br><span style=\"font-size:.82rem;opacity:.7;\">🏎️ Mercedes-Benz S-Class</span>"
+      },
+      {
+        "selector": "#ds-risk-item-1",
+        "value": "😰 Panicked, swerving wildly across lanes"
+      },
+      {
+        "selector": "#ds-risk-item-2",
+        "value": "💸 Near-misses every few seconds"
+      },
+      {
+        "selector": "#ds-risk-item-3",
+        "value": "🔧 Ends in a full crash — bonnet crumpled"
+      },
+      {
+        "selector": "#ds-risk-item-4",
+        "value": "⚠️ Beautiful car. Catastrophic risk."
+      },
+      {
+        "selector": "#ds-skill-label",
+        "value": "✅ The Pro"
+      },
+      {
+        "selector": "#ds-skill-title",
+        "value": "Expert Driver<br><span style=\"font-size:.82rem;opacity:.7;\">🚗 Ordinary Hatchback</span>"
+      },
+      {
+        "selector": "#ds-skill-item-1",
+        "value": "🎯 Calm, perfectly centered at all times"
+      },
+      {
+        "selector": "#ds-skill-item-2",
+        "value": "🌳 Trees glide by — effortless control"
+      },
+      {
+        "selector": "#ds-skill-item-3",
+        "value": "⏱️ Arrives on time, zero incidents, every time"
+      },
+      {
+        "selector": "#ds-skill-item-4",
+        "value": "🏆 Modest car. Elite skill."
+      },
+      {
+        "selector": "#ds-cta-title",
+        "value": "So — <em>which one would<br>you prefer to bet on?</em>"
+      },
+      {
+        "selector": "#ds-cta-description",
+        "value": "Premium badges won't save you in a crisis. But mastery will. Every. Single. Time."
+      },
+      {
+        "selector": "#ds-btn-risk",
+        "value": "🏎️ Bet on the Mercedes"
+      },
+      {
+        "selector": "#ds-btn-skill",
+        "value": "🎯 Bet on the Expert"
+      }
+    ]
+  },
   "videos": {
     "caseStudy": {
       "title": {
