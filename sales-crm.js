@@ -37,20 +37,6 @@ async function loadDriverServiceMarkup() {
       script.remove();
     });
 
-    // Bring in the source styles so original animations are preserved.
-    doc.querySelectorAll("head style, head link[rel='stylesheet']").forEach(
-      function (node, index) {
-        const marker = `driver-service-style-${index}`;
-        if (document.head.querySelector(`[data-driver-service='${marker}']`)) {
-          return;
-        }
-
-        const cloned = node.cloneNode(true);
-        cloned.setAttribute("data-driver-service", marker);
-        document.head.appendChild(cloned);
-      },
-    );
-
     root.innerHTML = doc.body ? doc.body.innerHTML : html;
 
     // Execute source scripts (canvas animation + interactions) after markup is mounted.
