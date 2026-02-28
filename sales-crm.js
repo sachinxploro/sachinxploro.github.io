@@ -14,6 +14,34 @@ function vote(type) {
   el.className = "vote-result skill-win";
 }
 
+function initCrmCustomizationFrame() {
+  const frame = document.getElementById("crmCustomizationFrame");
+  if (!frame) return;
+
+  function syncHeight() {
+    try {
+      const doc = frame.contentDocument || frame.contentWindow?.document;
+      if (!doc || !doc.body) return;
+      const nextHeight = Math.max(
+        doc.body.scrollHeight || 0,
+        doc.documentElement?.scrollHeight || 0,
+        900,
+      );
+      frame.style.height = `${nextHeight + 8}px`;
+    } catch (_) {
+      // Ignore cross-context errors; same-origin expected here.
+    }
+  }
+
+  frame.addEventListener("load", function () {
+    syncHeight();
+    window.setTimeout(syncHeight, 200);
+    window.setTimeout(syncHeight, 700);
+  });
+
+  window.addEventListener("resize", syncHeight);
+}
+
 async function loadDriverServiceMarkup() {
   const root = document.getElementById("driverServiceRoot");
   if (!root) return;
@@ -83,3 +111,4 @@ async function loadDriverServiceMarkup() {
 window.vote = vote;
 
 document.addEventListener("DOMContentLoaded", loadDriverServiceMarkup);
+document.addEventListener("DOMContentLoaded", initCrmCustomizationFrame);

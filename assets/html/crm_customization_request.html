@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRM Customization Request</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f1923;
+    --paper: #f7f4ef;
+    --accent: #1a4fdb;
+    --accent-light: #e8eeff;
+    --gold: #c8a84b;
+    --muted: #6b7080;
+    --border: #d8d3ca;
+    --check-green: #1a7a4a;
+    --check-green-bg: #e8f5ee;
+    --shadow: 0 2px 12px rgba(15,25,35,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* Background texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8a84b' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .header-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 4px 14px;
+    margin-bottom: 20px;
+    border-radius: 2px;
+  }
+
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .header h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .header p {
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .divider {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin: 24px auto;
+  }
+
+  /* Form */
+  .form-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 28px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--ink);
+  }
+
+  .section-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-left: auto;
+    font-style: italic;
+  }
+
+  .checks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0;
+    padding: 4px 16px 16px;
+  }
+
+  /* Checkbox items */
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.15s;
+    user-select: none;
+  }
+
+  .check-item:hover {
+    background: var(--accent-light);
+  }
+
+  .check-item input[type="checkbox"] {
+    display: none;
+  }
+
+  .check-box {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--border);
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    background: white;
+  }
+
+  .check-item input:checked ~ .check-box {
+    background: var(--check-green);
+    border-color: var(--check-green);
+  }
+
+  .check-item input:checked ~ .check-box::after {
+    content: '';
+    width: 10px;
+    height: 6px;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(-45deg) translateY(-1px);
+    display: block;
+  }
+
+  .check-item input:checked ~ .check-label {
+    color: var(--check-green);
+    font-weight: 500;
+  }
+
+  .check-label {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.4;
+    transition: color 0.15s;
+  }
+
+  /* Section block */
+  .form-section {
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .form-section:last-of-type { border-bottom: none; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .form-section:nth-child(1) { animation-delay: 0.05s; }
+  .form-section:nth-child(2) { animation-delay: 0.1s; }
+  .form-section:nth-child(3) { animation-delay: 0.15s; }
+  .form-section:nth-child(4) { animation-delay: 0.2s; }
+  .form-section:nth-child(5) { animation-delay: 0.25s; }
+  .form-section:nth-child(6) { animation-delay: 0.3s; }
+  .form-section:nth-child(7) { animation-delay: 0.35s; }
+  .form-section:nth-child(8) { animation-delay: 0.4s; }
+  .form-section:nth-child(9) { animation-delay: 0.45s; }
+  .form-section:nth-child(10) { animation-delay: 0.5s; }
+
+  /* Contact section */
+  .contact-section {
+    padding: 28px;
+    background: #fafaf8;
+    border-top: 2px solid var(--ink);
+  }
+
+  .contact-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+
+  .fields-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 560px) {
+    .fields-row { grid-template-columns: 1fr; }
+    .section-desc { display: none; }
+  }
+
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .field-group label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .field-group input,
+  .field-group textarea {
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 10px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .field-group input:focus,
+  .field-group textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(26,79,219,0.1);
+  }
+
+  .field-group textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+
+  .field-full { grid-column: 1 / -1; }
+
+  /* Counter bar */
+  .counter-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    background: var(--accent-light);
+    border-top: 1px solid rgba(26,79,219,0.15);
+  }
+
+  .counter-text {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .counter-badge {
+    background: var(--accent);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    min-width: 24px;
+    text-align: center;
+    transition: transform 0.2s;
+  }
+
+  .counter-badge.bump {
+    transform: scale(1.3);
+  }
+
+  /* Submit button */
+  .submit-wrap {
+    padding: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .submit-note {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 360px;
+  }
+
+  .captcha-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .captcha-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+
+  .captcha-question {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: #fff;
+    min-width: 120px;
+    text-align: center;
+    filter: blur(1px);
+    letter-spacing: 0.08em;
+    text-shadow: 0.5px 0 #8a8f9b, -0.5px 0 #8a8f9b;
+    user-select: none;
+  }
+
+  .captcha-input {
+    width: 90px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 10px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    background: white;
+    outline: none;
+  }
+
+  .captcha-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(26,79,219,0.1);
+  }
+
+  .captcha-refresh {
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--ink);
+    font-size: 13px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .captcha-refresh:hover { border-color: var(--ink); }
+
+  .captcha-error {
+    width: 100%;
+    font-size: 12px;
+    color: #b42318;
+    display: none;
+  }
+
+  .btn-submit {
+    background: var(--ink);
+    color: white;
+    border: none;
+    padding: 14px 36px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    white-space: nowrap;
+  }
+
+  .btn-submit:hover { background: var(--accent); }
+  .btn-submit:active { transform: scale(0.98); }
+
+  .btn-submit:disabled {
+    background: var(--border);
+    color: var(--muted);
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Success state */
+  .success-overlay {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 72px 40px;
+    animation: fadeUp 0.5s ease;
+  }
+
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--check-green-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .success-icon svg { width: 32px; height: 32px; }
+
+  .success-overlay h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .success-overlay p {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 400px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .selected-summary {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px 24px;
+    text-align: left;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 28px;
+  }
+
+  .selected-summary h4 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .selected-summary ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .selected-summary li {
+    font-size: 13px;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .selected-summary li::before {
+    content: '✓';
+    color: var(--check-green);
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  .btn-reset {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--ink);
+    padding: 10px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+
+  .btn-reset:hover { border-color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <div class="header">
+    <div class="header-tag">CRM Implementation Services</div>
+    <h1>What do you need<br>from your <em>CRM?</em></h1>
+    <div class="divider"></div>
+    <p>Select the customizations you're looking for and submit your requirements. Our team will get back to you with a tailored proposal.</p>
+  </div>
+
+  <div class="form-card" id="formCard">
+    <!-- Dynamic sections rendered by JS -->
+    <div id="sectionsContainer"></div>
+
+    <!-- Counter -->
+    <div class="counter-bar" id="counterBar" style="display:none;">
+      <span class="counter-text">Selected requirements:</span>
+      <span class="counter-badge" id="counterBadge">0</span>
+    </div>
+
+    <!-- Contact fields -->
+    <div class="contact-section">
+      <div class="contact-title">Your Details</div>
+      <div class="fields-row">
+        <div class="field-group">
+          <label>Full Name *</label>
+          <input type="text" id="fieldName" placeholder="e.g. Rajan Mehta" required>
+        </div>
+        <div class="field-group">
+          <label>Company *</label>
+          <input type="text" id="fieldCompany" placeholder="e.g. Acme Pvt Ltd" required>
+        </div>
+        <div class="field-group">
+          <label>Email Address *</label>
+          <input type="email" id="fieldEmail" placeholder="you@company.com" required>
+        </div>
+        <div class="field-group">
+          <label>Phone Number</label>
+          <input type="tel" id="fieldPhone" placeholder="+91 98765 43210">
+        </div>
+        <div class="field-group field-full">
+          <label>Additional Notes</label>
+          <textarea id="fieldNotes" placeholder="Any specific requirements, integrations, or context about your business..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-wrap">
+      <p class="submit-note">We'll review your requirements and reach out within 1–2 business days with a tailored scope and estimate.</p>
+      <div class="captcha-wrap">
+        <span class="captcha-label">Human verification</span>
+        <span class="captcha-question" id="captchaQuestion">Loading...</span>
+        <input class="captcha-input" id="captchaInput" type="number" placeholder="Answer" aria-label="Captcha answer">
+        <button class="captcha-refresh" type="button" onclick="generateCaptcha()">↻ New</button>
+        <div class="captcha-error" id="captchaError">Incorrect answer. Please try again.</div>
+      </div>
+      <button class="btn-submit" id="btnSubmit" onclick="handleSubmit()">Submit Requirements →</button>
+    </div>
+
+    <!-- Success state -->
+    <div class="success-overlay" id="successOverlay">
+      <div class="success-icon">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="16" fill="#1a7a4a"/>
+          <path d="M8 16l6 6 10-12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>Request Submitted!</h2>
+      <p>Thank you. We've received your CRM requirements and will be in touch shortly with a proposal tailored to your needs.</p>
+      <div class="selected-summary" id="selectedSummary"></div>
+      <button class="btn-reset" onclick="resetForm()">Submit Another Request</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const sections = [
+  {
+    num: 1,
+    title: "Sales Process Configuration",
+    desc: "Lead to Order pipeline",
+    items: [
+      "Lead capture & auto-assignment rules",
+      "Opportunity tracking with Business Process Flow",
+      "Quote templates (branded, dynamic fields)",
+      "Quotation approval workflow",
+      "Order & invoice generation",
+      "Renewal workflow with auto-reminders",
+      "Goal management & sales targets"
+    ]
+  },
+  {
+    num: 2,
+    title: "Customer & Contact Management",
+    desc: "Accounts, contacts, profiles",
+    items: [
+      "Custom account & contact profile fields",
+      "Stakeholder mapping (R&D, technical, procurement)",
+      "Activity timeline (calls, emails, meetings)",
+      "Duplicate detection & data hygiene rules",
+      "Customer production capacity tracking"
+    ]
+  },
+  {
+    num: 3,
+    title: "Security & Access Control",
+    desc: "Roles, permissions, data access",
+    items: [
+      "Role-based security (Sales, Service, Manager roles)",
+      "Business unit / product-line data segregation",
+      "Queue-based access for service agents",
+      "Cross-team access for leadership/IT"
+    ]
+  },
+  {
+    num: 4,
+    title: "Customer Service / Case Management",
+    desc: "Support ticketing & SLA",
+    items: [
+      "Case form layout & custom categories",
+      "Agent queue setup & routing rules",
+      "Priority-based case routing",
+      "SLA configuration (response & resolution KPIs)",
+      "SLA escalation automation",
+      "Knowledge base setup",
+      "Automated case closure email to customer"
+    ]
+  },
+  {
+    num: 5,
+    title: "Marketing & Journey Automation",
+    desc: "Email, SMS, campaigns",
+    items: [
+      "Email domain & DNS configuration",
+      "SMS channel setup for campaigns",
+      "Email templates (branded)",
+      "Customer journey / drip campaigns",
+      "Segment creation from CRM data",
+      "GDPR / consent & opt-out compliance profiles",
+      "Marketing analytics dashboard"
+    ]
+  },
+  {
+    num: 6,
+    title: "Sample & Document Management",
+    desc: "Document lifecycle & tracking",
+    items: [
+      "Sample request tracking (quantity, COA, status)",
+      "Multi-round sample & re-testing cycle history",
+      "Document storage linked to customer/opportunity",
+      "Version-controlled technical documents",
+      "NDA & agreement document management"
+    ]
+  },
+  {
+    num: 7,
+    title: "Product & Pricing Customization",
+    desc: "Catalogue & commercial terms",
+    items: [
+      "Dynamic product catalogue (add variants over time)",
+      "Customer-specific pricing per deal",
+      "Product linkage to opportunities & accounts",
+      "Quotation templates with auto-population"
+    ]
+  },
+  {
+    num: 8,
+    title: "Goals, Dashboards & Reporting",
+    desc: "Visibility & analytics",
+    items: [
+      "Sales goal configuration by rep / team / period",
+      "OOB Sales pipeline dashboard",
+      "Customer Service performance dashboard",
+      "Custom filtered views (product, region, stage)",
+      "Search & reporting across customers & opportunities"
+    ]
+  },
+  {
+    num: 9,
+    title: "Notifications & Reminders",
+    desc: "Alerts & automated comms",
+    items: [
+      "Quote follow-up & renewal reminders",
+      "Order confirmation notifications",
+      "SLA breach escalation alerts",
+      "Customer Voice surveys (post-event triggers)",
+      "Case closure email automation"
+    ]
+  },
+  {
+    num: 10,
+    title: "Integrations",
+    desc: "Third-party & legacy systems",
+    items: [
+      "Microsoft Teams / Google Meet integration",
+      "WhatsApp messaging connector",
+      "Maps integration",
+      "Legacy data migration (Accounts, Contacts, Leads)",
+      "Email server & DNS setup for outbound",
+      "ERP / third-party system integration (discuss)"
+    ]
+  }
+];
+
+let captchaAnswer = null;
+
+// Render sections
+function renderSections() {
+  const container = document.getElementById('sectionsContainer');
+  sections.forEach((section, si) => {
+    const div = document.createElement('div');
+    div.className = 'form-section';
+    div.innerHTML = `
+      <div class="section-header">
+        <div class="section-num">${section.num}</div>
+        <div class="section-title">${section.title}</div>
+        <div class="section-desc">${section.desc}</div>
+      </div>
+      <div class="checks-grid">
+        ${section.items.map((item, ii) => `
+          <label class="check-item">
+            <input type="checkbox" name="crm" value="${item}" onchange="updateCounter()">
+            <span class="check-box"></span>
+            <span class="check-label">${item}</span>
+          </label>
+        `).join('')}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function getChecked() {
+  return [...document.querySelectorAll('input[name="crm"]:checked')].map(cb => cb.value);
+}
+
+function updateCounter() {
+  const count = getChecked().length;
+  const bar = document.getElementById('counterBar');
+  const badge = document.getElementById('counterBadge');
+  bar.style.display = count > 0 ? 'flex' : 'none';
+  badge.textContent = count;
+  badge.classList.add('bump');
+  setTimeout(() => badge.classList.remove('bump'), 200);
+  document.getElementById('btnSubmit').disabled = count === 0;
+}
+
+function handleSubmit() {
+  const name = document.getElementById('fieldName').value.trim();
+  const company = document.getElementById('fieldCompany').value.trim();
+  const email = document.getElementById('fieldEmail').value.trim();
+
+  if (!name || !company || !email) {
+    alert('Please fill in your Name, Company, and Email before submitting.');
+    return;
+  }
+
+  const selected = getChecked();
+  if (selected.length === 0) {
+    alert('Please select at least one customization area.');
+    return;
+  }
+
+  const captchaInput = document.getElementById('captchaInput');
+  const captchaError = document.getElementById('captchaError');
+  const entered = Number(captchaInput.value);
+  if (Number.isNaN(entered) || entered !== captchaAnswer) {
+    captchaError.style.display = 'block';
+    generateCaptcha();
+    captchaInput.focus();
+    return;
+  }
+  captchaError.style.display = 'none';
+
+  // Build summary
+  const summary = document.getElementById('selectedSummary');
+  summary.innerHTML = `
+    <h4>${selected.length} requirement${selected.length > 1 ? 's' : ''} selected</h4>
+    <ul>${selected.map(s => `<li>${s}</li>`).join('')}</ul>
+  `;
+
+  // Log to console (in real usage, this would be a fetch/POST)
+  console.log('CRM Request Submitted:', { name, company, email, selected });
+
+  // Show success
+  document.getElementById('sectionsContainer').style.display = 'none';
+  document.getElementById('counterBar').style.display = 'none';
+  document.querySelector('.contact-section').style.display = 'none';
+  document.querySelector('.submit-wrap').style.display = 'none';
+  const overlay = document.getElementById('successOverlay');
+  overlay.style.display = 'flex';
+}
+
+function resetForm() {
+  document.querySelectorAll('input[name="crm"]').forEach(cb => cb.checked = false);
+  document.getElementById('fieldName').value = '';
+  document.getElementById('fieldCompany').value = '';
+  document.getElementById('fieldEmail').value = '';
+  document.getElementById('fieldPhone').value = '';
+  document.getElementById('fieldNotes').value = '';
+  document.getElementById('sectionsContainer').style.display = 'block';
+  document.querySelector('.contact-section').style.display = 'block';
+  document.querySelector('.submit-wrap').style.display = 'flex';
+  document.getElementById('successOverlay').style.display = 'none';
+  document.getElementById('counterBar').style.display = 'none';
+  document.getElementById('counterBadge').textContent = '0';
+  document.getElementById('btnSubmit').disabled = true;
+  document.getElementById('captchaInput').value = '';
+  document.getElementById('captchaError').style.display = 'none';
+  generateCaptcha();
+}
+
+function generateCaptcha() {
+  const a = Math.floor(Math.random() * 9) + 1;
+  const b = Math.floor(Math.random() * 9) + 1;
+  const useSubtraction = Math.random() > 0.5;
+  let x = a;
+  let y = b;
+
+  if (useSubtraction && b > a) {
+    x = b;
+    y = a;
+  }
+
+  const question = useSubtraction ? `${x} - ${y} = ?` : `${x} + ${y} = ?`;
+  captchaAnswer = useSubtraction ? x - y : x + y;
+  document.getElementById('captchaQuestion').textContent = question;
+}
+
+// Init
+renderSections();
+document.getElementById('btnSubmit').disabled = true;
+generateCaptcha();
+</script>
+</body>
+</html>
