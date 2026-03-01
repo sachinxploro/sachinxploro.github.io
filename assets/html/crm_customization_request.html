@@ -230,6 +230,7 @@
   .form-section:nth-child(8) { animation-delay: 0.4s; }
   .form-section:nth-child(9) { animation-delay: 0.45s; }
   .form-section:nth-child(10) { animation-delay: 0.5s; }
+  .form-section:nth-child(11) { animation-delay: 0.55s; }
 
   /* Contact section */
   .contact-section {
@@ -349,68 +350,101 @@
 
   .captcha-wrap {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 8px;
   }
 
   .captcha-label {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--muted);
   }
 
-  .captcha-question {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--ink);
-    padding: 8px 10px;
+  .captcha-card {
+    display: flex;
+    align-items: center;
     border: 1px solid var(--border);
-    border-radius: 3px;
-    background: #fff;
-    min-width: 120px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 1px 4px rgba(15,25,35,0.06);
+    width: fit-content;
+  }
+
+  .captcha-question {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--ink);
+    padding: 12px 20px;
+    background: var(--accent-light);
+    border-right: 1px solid var(--border);
+    min-width: 110px;
     text-align: center;
-    filter: blur(1px);
-    letter-spacing: 0.08em;
-    text-shadow: 0.5px 0 #8a8f9b, -0.5px 0 #8a8f9b;
+    letter-spacing: 0.06em;
+    user-select: none;
+  }
+
+  .captcha-equals {
+    padding: 0 12px;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--muted);
     user-select: none;
   }
 
   .captcha-input {
-    width: 90px;
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 10px 12px;
+    width: 72px;
+    border: none;
+    border-left: 1px solid var(--border);
+    padding: 12px 10px;
     font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--ink);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
     background: white;
     outline: none;
+    text-align: center;
   }
 
   .captcha-input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(26,79,219,0.1);
+    background: var(--accent-light);
+  }
+
+  .captcha-input::placeholder {
+    font-size: 13px;
+    font-weight: 400;
+    color: #bbb;
   }
 
   .captcha-refresh {
-    border: 1px solid var(--border);
-    background: #fff;
-    color: var(--ink);
-    font-size: 13px;
-    padding: 8px 10px;
-    border-radius: 3px;
+    border: none;
+    border-left: 1px solid var(--border);
+    background: #fafaf8;
+    color: var(--muted);
+    font-size: 16px;
+    padding: 12px 14px;
     cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    line-height: 1;
   }
 
-  .captcha-refresh:hover { border-color: var(--ink); }
+  .captcha-refresh:hover {
+    background: var(--accent-light);
+    color: var(--accent);
+  }
 
   .captcha-error {
-    width: 100%;
+    display: none;
     font-size: 12px;
     color: #b42318;
-    display: none;
+    background: #fff5f5;
+    border: 1px solid #fecaca;
+    border-radius: 4px;
+    padding: 7px 12px;
+    width: fit-content;
   }
 
   .verify-wrap {
@@ -590,6 +624,111 @@
   }
 
   .btn-reset:hover { border-color: var(--ink); }
+
+  /* Business context block */
+  .business-context {
+    padding: 28px;
+    background: #fafaf8;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .business-context-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+
+  .business-context-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .radio-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    background: white;
+    user-select: none;
+  }
+
+  .radio-item:hover {
+    background: var(--accent-light);
+    border-color: var(--accent);
+  }
+
+  .radio-item input[type="radio"] { display: none; }
+
+  .radio-dot {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    background: white;
+  }
+
+  .radio-item input:checked ~ .radio-dot {
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+
+  .radio-item input:checked ~ .radio-dot::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: white;
+    display: block;
+  }
+
+  .radio-item input:checked ~ .radio-label {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .radio-label {
+    font-size: 14px;
+    color: #374151;
+    transition: color 0.15s;
+  }
+
+  .context-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .context-grid { grid-template-columns: 1fr; }
+  }
+
+  .context-field-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
 </style>
 </head>
 <body>
@@ -601,6 +740,91 @@
     <h1 id="crm-form-header-title">What do you need<br>from your <em>CRM?</em></h1>
     <div class="divider"></div>
     <p id="crm-form-header-description">Select the customizations you're looking for and submit your requirements. Our team will get back to you with a tailored proposal.</p>
+  </div>
+
+  <!-- Business Context Block -->
+  <div class="form-card" id="businessContextCard" style="margin-bottom: 20px;">
+    <div class="business-context">
+      <div class="business-context-title">Tell us about your business</div>
+      <div class="business-context-desc">Help us understand your situation so we can tailor the right CRM solution for you.</div>
+
+      <div class="context-grid">
+
+        <!-- Company Size -->
+        <div>
+          <div class="context-field-title">Company Size</div>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="companySize" value="1–10 employees"><span class="radio-dot"></span><span class="radio-label">1–10 employees</span></label>
+            <label class="radio-item"><input type="radio" name="companySize" value="11–50 employees"><span class="radio-dot"></span><span class="radio-label">11–50 employees</span></label>
+            <label class="radio-item"><input type="radio" name="companySize" value="51–200 employees"><span class="radio-dot"></span><span class="radio-label">51–200 employees</span></label>
+            <label class="radio-item"><input type="radio" name="companySize" value="200+ employees"><span class="radio-dot"></span><span class="radio-label">200+ employees</span></label>
+          </div>
+        </div>
+
+        <!-- Industry -->
+        <div>
+          <div class="context-field-title">Industry</div>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="industry" value="Manufacturing"><span class="radio-dot"></span><span class="radio-label">Manufacturing</span></label>
+            <label class="radio-item"><input type="radio" name="industry" value="Retail / E-commerce"><span class="radio-dot"></span><span class="radio-label">Retail / E-commerce</span></label>
+            <label class="radio-item"><input type="radio" name="industry" value="Professional Services"><span class="radio-dot"></span><span class="radio-label">Professional Services</span></label>
+            <label class="radio-item"><input type="radio" name="industry" value="Healthcare"><span class="radio-dot"></span><span class="radio-label">Healthcare</span></label>
+            <label class="radio-item"><input type="radio" name="industry" value="Finance / Insurance"><span class="radio-dot"></span><span class="radio-label">Finance / Insurance</span></label>
+            <label class="radio-item"><input type="radio" name="industry" value="Real Estate"><span class="radio-dot"></span><span class="radio-label">Real Estate</span></label>
+            <label class="radio-item"><input type="radio" name="industry" value="Other"><span class="radio-dot"></span><span class="radio-label">Other</span></label>
+          </div>
+        </div>
+
+        <!-- Current CRM -->
+        <div>
+          <div class="context-field-title">Current System</div>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="currentCrm" value="Excel / Spreadsheets"><span class="radio-dot"></span><span class="radio-label">Excel / Spreadsheets</span></label>
+            <label class="radio-item"><input type="radio" name="currentCrm" value="Zoho CRM"><span class="radio-dot"></span><span class="radio-label">Zoho CRM</span></label>
+            <label class="radio-item"><input type="radio" name="currentCrm" value="Salesforce"><span class="radio-dot"></span><span class="radio-label">Salesforce</span></label>
+            <label class="radio-item"><input type="radio" name="currentCrm" value="HubSpot"><span class="radio-dot"></span><span class="radio-label">HubSpot</span></label>
+            <label class="radio-item"><input type="radio" name="currentCrm" value="No system yet"><span class="radio-dot"></span><span class="radio-label">No system yet</span></label>
+            <label class="radio-item"><input type="radio" name="currentCrm" value="Other / Custom"><span class="radio-dot"></span><span class="radio-label">Other / Custom</span></label>
+          </div>
+        </div>
+
+        <!-- Timeline & Budget -->
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div>
+            <div class="context-field-title">Timeline</div>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="timeline" value="ASAP (within 1 month)"><span class="radio-dot"></span><span class="radio-label">ASAP (within 1 month)</span></label>
+              <label class="radio-item"><input type="radio" name="timeline" value="1–3 months"><span class="radio-dot"></span><span class="radio-label">1–3 months</span></label>
+              <label class="radio-item"><input type="radio" name="timeline" value="3–6 months"><span class="radio-dot"></span><span class="radio-label">3–6 months</span></label>
+              <label class="radio-item"><input type="radio" name="timeline" value="Just exploring"><span class="radio-dot"></span><span class="radio-label">Just exploring</span></label>
+            </div>
+          </div>
+          <div>
+            <div class="context-field-title">Budget Range</div>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="budget" value="Under ₹2 Lakhs"><span class="radio-dot"></span><span class="radio-label">Under ₹2 Lakhs</span></label>
+              <label class="radio-item"><input type="radio" name="budget" value="₹2–5 Lakhs"><span class="radio-dot"></span><span class="radio-label">₹2–5 Lakhs</span></label>
+              <label class="radio-item"><input type="radio" name="budget" value="₹5–10 Lakhs"><span class="radio-dot"></span><span class="radio-label">₹5–10 Lakhs</span></label>
+              <label class="radio-item"><input type="radio" name="budget" value="₹10 Lakhs+"><span class="radio-dot"></span><span class="radio-label">₹10 Lakhs+</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pain Points -->
+        <div style="grid-column: 1 / -1;">
+          <div class="context-field-title">What's your biggest pain point right now?</div>
+          <div class="radio-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <label class="radio-item"><input type="radio" name="painPoint" value="Losing leads / poor follow-up"><span class="radio-dot"></span><span class="radio-label">Losing leads / poor follow-up</span></label>
+            <label class="radio-item"><input type="radio" name="painPoint" value="No visibility on sales pipeline"><span class="radio-dot"></span><span class="radio-label">No visibility on sales pipeline</span></label>
+            <label class="radio-item"><input type="radio" name="painPoint" value="Team not aligned / no collaboration"><span class="radio-dot"></span><span class="radio-label">Team not aligned / no collaboration</span></label>
+            <label class="radio-item"><input type="radio" name="painPoint" value="Manual processes / too much Excel"><span class="radio-dot"></span><span class="radio-label">Manual processes / too much Excel</span></label>
+            <label class="radio-item"><input type="radio" name="painPoint" value="No reporting or data insights"><span class="radio-dot"></span><span class="radio-label">No reporting or data insights</span></label>
+            <label class="radio-item"><input type="radio" name="painPoint" value="Scaling up and need structure"><span class="radio-dot"></span><span class="radio-label">Scaling up and need structure</span></label>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 
   <div class="form-card" id="formCard">
@@ -654,11 +878,14 @@
     <div class="submit-wrap">
       <p id="crm-form-submit-note" class="submit-note">We'll review your requirements and reach out within 1–2 business days with a tailored scope and estimate.</p>
       <div class="captcha-wrap">
-        <span class="captcha-label">Human verification</span>
-        <span class="captcha-question" id="captchaQuestion">Loading...</span>
-        <input class="captcha-input" id="captchaInput" type="number" placeholder="Answer" aria-label="Captcha answer">
-        <button class="captcha-refresh" type="button" onclick="generateCaptcha()">↻ New</button>
-        <div class="captcha-error" id="captchaError">Incorrect answer. Please try again.</div>
+        <span class="captcha-label">Human Verification</span>
+        <div class="captcha-card">
+          <span class="captcha-question" id="captchaQuestion">Loading...</span>
+          <span class="captcha-equals">=</span>
+          <input class="captcha-input" id="captchaInput" type="number" placeholder="?" aria-label="Captcha answer">
+          <button class="captcha-refresh" type="button" onclick="generateCaptcha()" title="New question">↻</button>
+        </div>
+        <div class="captcha-error" id="captchaError">✕ Incorrect answer. Please try again.</div>
       </div>
       <button class="btn-submit" id="btnSubmit" onclick="handleSubmit()">Submit Requirements →</button>
     </div>
@@ -719,36 +946,8 @@ let sections = [
       "Cross-team access for leadership/IT"
     ]
   },
-  {
+{
     num: 4,
-    title: "Customer Service / Case Management",
-    desc: "Support ticketing & SLA",
-    items: [
-      "Case form layout & custom categories",
-      "Agent queue setup & routing rules",
-      "Priority-based case routing",
-      "SLA configuration (response & resolution KPIs)",
-      "SLA escalation automation",
-      "Knowledge base setup",
-      "Automated case closure email to customer"
-    ]
-  },
-  {
-    num: 5,
-    title: "Marketing & Journey Automation",
-    desc: "Email, SMS, campaigns",
-    items: [
-      "Email domain & DNS configuration",
-      "SMS channel setup for campaigns",
-      "Email templates (branded)",
-      "Customer journey / drip campaigns",
-      "Segment creation from CRM data",
-      "GDPR / consent & opt-out compliance profiles",
-      "Marketing analytics dashboard"
-    ]
-  },
-  {
-    num: 6,
     title: "Sample & Document Management",
     desc: "Document lifecycle & tracking",
     items: [
@@ -760,7 +959,7 @@ let sections = [
     ]
   },
   {
-    num: 7,
+    num: 5,
     title: "Product & Pricing Customization",
     desc: "Catalogue & commercial terms",
     items: [
@@ -771,7 +970,7 @@ let sections = [
     ]
   },
   {
-    num: 8,
+    num: 6,
     title: "Goals, Dashboards & Reporting",
     desc: "Visibility & analytics",
     items: [
@@ -783,7 +982,7 @@ let sections = [
     ]
   },
   {
-    num: 9,
+    num: 7,
     title: "Notifications & Reminders",
     desc: "Alerts & automated comms",
     items: [
@@ -795,7 +994,7 @@ let sections = [
     ]
   },
   {
-    num: 10,
+    num: 8,
     title: "Integrations",
     desc: "Third-party & legacy systems",
     items: [
@@ -805,6 +1004,40 @@ let sections = [
       "Legacy data migration (Accounts, Contacts, Leads)",
       "Email server & DNS setup for outbound",
       "ERP / third-party system integration (discuss)"
+    ]
+  },
+  {
+    num: 9,
+    title: "CRM User Types",
+    desc: "Who will use the CRM?",
+    items: [
+      "Sales Representatives",
+      "Sales Managers / Team Leads",
+      "Customer Service Agents",
+      "Customer Service Supervisors",
+      "Marketing Team",
+      "Finance / Billing Team",
+      "Field Sales / On-ground Executives",
+      "Senior Leadership / C-Suite (read-only dashboards)",
+      "IT Administrators",
+      "External Partners / Distributors (portal access)"
+    ]
+  },
+  {
+    num: 10,
+    title: "Future CRM Extensions",
+    desc: "Planned growth areas",
+    items: [
+      "Customer Service module (case management & support flows)",
+      "Field Service management & scheduling",
+      "ERP integration (finance, inventory & operations)",
+      "Marketing automation (email, SMS & campaign flows)",
+      "Customer Insights (AI-driven segmentation & analytics)",
+      "Power BI embedded reporting & dashboards",
+      "Customer self-service portal (Power Pages)",
+      "AI Copilot / chatbot for sales & service agents",
+      "E-commerce / online order integration",
+      "Partner / channel management portal"
     ]
   }
 ];
@@ -1073,12 +1306,27 @@ async function handleSubmit() {
   }
   captchaError.style.display = 'none';
 
+  const companySize = document.querySelector('input[name="companySize"]:checked')?.value || '';
+  const industry = document.querySelector('input[name="industry"]:checked')?.value || '';
+  const currentCrm = document.querySelector('input[name="currentCrm"]:checked')?.value || '';
+  const timeline = document.querySelector('input[name="timeline"]:checked')?.value || '';
+  const budget = document.querySelector('input[name="budget"]:checked')?.value || '';
+  const painPoint = document.querySelector('input[name="painPoint"]:checked')?.value || '';
+
   const payload = {
     contact: {
       name: name,
       company: company,
       email: email,
       phone: phone,
+    },
+    businessContext: {
+      companySize,
+      industry,
+      currentCrm,
+      timeline,
+      budget,
+      painPoint,
     },
     notes: notes,
     selectedRequirements: selected,
@@ -1131,6 +1379,7 @@ async function handleSubmit() {
 
 function resetForm() {
   document.querySelectorAll('input[name="crm"]').forEach(cb => cb.checked = false);
+  document.querySelectorAll('input[type="radio"]').forEach(rb => rb.checked = false);
   document.getElementById('fieldName').value = '';
   document.getElementById('fieldCompany').value = '';
   document.getElementById('fieldEmail').value = '';
