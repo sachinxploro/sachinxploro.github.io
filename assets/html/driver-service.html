@@ -164,6 +164,11 @@ function drawHatchback(ctx,cx,cy,sc){
   ctx.fillStyle='rgba(176,224,248,0.85)';
   ctx.beginPath();ctx.roundRect(-W*0.31,-H*0.22,W*0.28,H*0.38,3);ctx.fill();
   ctx.beginPath();ctx.roundRect(W*0.01,-H*0.22,W*0.28,H*0.38,3);ctx.fill();
+  // Driver drawn after glass so the person is clearly visible in front.
+  ctx.fillStyle='#f4c77a';ctx.beginPath();ctx.arc(-W*0.06,-H*0.11,5.5,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#2b4258';ctx.beginPath();ctx.roundRect(-W*0.13,-H*0.01,14,12,3);ctx.fill();
+  ctx.strokeStyle='rgba(244,199,122,0.65)';ctx.lineWidth=2;
+  ctx.beginPath();ctx.arc(-W*0.06,H*0.03,7,0,Math.PI*2);ctx.stroke();
   ctx.fillStyle='rgba(255,253,220,0.92)';ctx.beginPath();ctx.arc(W*0.5,H*0.35,7,0,Math.PI*2);ctx.fill();
   ctx.fillStyle='#ffe082';ctx.beginPath();ctx.arc(W*0.5,H*0.35,3.5,0,Math.PI*2);ctx.fill();
   ctx.fillStyle='rgba(255,50,50,0.7)';ctx.beginPath();ctx.roundRect(-W*0.52,H*0.2,W*0.06,H*0.22,2);ctx.fill();
@@ -173,8 +178,6 @@ function drawHatchback(ctx,cx,cy,sc){
     ctx.beginPath();ctx.arc(wx,wy,6,0,Math.PI*2);ctx.fillStyle='#777';ctx.fill();
     ctx.beginPath();ctx.arc(wx,wy,2.5,0,Math.PI*2);ctx.fillStyle='#aaa';ctx.fill();
   }
-  ctx.fillStyle='#f4c77a';ctx.beginPath();ctx.arc(-W*0.08,-H*0.1,5,0,Math.PI*2);ctx.fill();
-  ctx.strokeStyle='rgba(244,199,122,0.55)';ctx.lineWidth=2.5;ctx.beginPath();ctx.arc(-W*0.08,H*0.02,6,0,Math.PI*2);ctx.stroke();
   ctx.restore();
 }
 
@@ -307,7 +310,7 @@ function renderGood(t,dt){
   gX.fillStyle='#2e2e2e';gX.fillRect(0,roadY,W,roadH);
   gX.strokeStyle='#484848';gX.lineWidth=2;gX.beginPath();gX.moveTo(0,roadY);gX.lineTo(W,roadY);gX.stroke();
   let dOff=(t*185)%48;
-  gX.strokeStyle='rgba(46,204,113,0.82)';gX.lineWidth=3;gX.setLineDash([28,20]);gX.lineDashOffset=-dOff;
+  gX.strokeStyle='rgba(46,204,113,0.82)';gX.lineWidth=3;gX.setLineDash([28,20]);gX.lineDashOffset=dOff;
   gX.beginPath();gX.moveTo(0,roadY+roadH*0.48);gX.lineTo(W,roadY+roadH*0.48);gX.stroke();
   gX.setLineDash([]);gX.lineDashOffset=0;
   trees.filter(tr=>tr.near).forEach(tr=>{tr.x-=tr.spd*dt;if(tr.x<-80)tr.x=W+80;drawTree(gX,tr.x,roadY-tr.sc*14,tr.sc);});
