@@ -10,8 +10,29 @@ function vote(type) {
   }
 
   el.innerHTML =
-    'Smart. Skill beats chrome every time. 🏆 <a href="#sales-crm-more">Continue to explore more.</a>';
+    'Smart. Skill beats chrome every time. 🏆 <a href="#" onclick="openCrmCasesModal();return false;">View CRM Case Studies</a>';
   el.className = "vote-result skill-win";
+}
+
+let crmCasesLoaded = false;
+
+function openCrmCasesModal() {
+  const modal = document.getElementById("crmCasesModal");
+  if (!modal) return;
+  if (!crmCasesLoaded) {
+    const frame = document.getElementById("crmCasesFrame");
+    if (frame) frame.src = "case-study.html";
+    crmCasesLoaded = true;
+  }
+  modal.classList.add("is-open");
+  document.body.classList.add("case-overlay-open");
+}
+
+function closeCrmCasesModal() {
+  const modal = document.getElementById("crmCasesModal");
+  if (!modal) return;
+  modal.classList.remove("is-open");
+  document.body.classList.remove("case-overlay-open");
 }
 
 let contentPromise = null;
@@ -152,8 +173,28 @@ async function loadDriverServiceMarkup() {
   }
 }
 
+function initCrmCasesModal() {
+  const modal = document.getElementById("crmCasesModal");
+  if (!modal) return;
+
+  document.getElementById("closeCrmCasesBtn")?.addEventListener("click", closeCrmCasesModal);
+
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) closeCrmCasesModal();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) {
+      closeCrmCasesModal();
+    }
+  });
+}
+
 window.vote = vote;
+window.openCrmCasesModal = openCrmCasesModal;
+window.closeCrmCasesModal = closeCrmCasesModal;
 
 document.addEventListener("DOMContentLoaded", initSalesCrmCustomizationConfig);
 document.addEventListener("DOMContentLoaded", loadDriverServiceMarkup);
 document.addEventListener("DOMContentLoaded", initCrmCustomizationFrame);
+document.addEventListener("DOMContentLoaded", initCrmCasesModal);
