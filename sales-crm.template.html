@@ -59,23 +59,11 @@
       <section class="driver-service-import">
         <div id="driverServiceRoot" class="driver-service-root"></div>
       </section>
-      <section id="sales-crm-more" class="section container sales-crm-more">
-        <h2 class="section-title">Continue Exploring</h2>
-        <p>
-          Explore more CRM implementation examples, outcomes, and transformation
-          use-cases across our case studies.
-        </p>
-        <p>
-          <a class="primary-btn" href="case-study.html">View Case Studies</a>
-        </p>
-      </section>
+      <div class="crm-cases-popup" aria-label="View CRM case studies">
+        <button type="button" class="crm-cases-popup-btn" onclick="openCrmCasesModal()">View CRM Case Studies</button>
+      </div>
 
       <section id="crm-customization" class="section container crm-customization-section">
-        <h2 id="crm-customization-title" class="section-title">CRM Customization Request</h2>
-        <p id="crm-customization-description" class="crm-customization-description">
-          Share your exact CRM customization needs. This request form is embedded
-          from your source file and rendered within your website layout.
-        </p>
         <iframe
           id="crmCustomizationFrame"
           class="crm-customization-frame"
@@ -85,6 +73,17 @@
         ></iframe>
       </section>
     </main>
+
+    <!-- CRM Case Studies Modal -->
+    <div class="crm-cases-modal" id="crmCasesModal" role="dialog" aria-modal="true" aria-label="CRM Case Studies">
+      <div class="crm-cases-panel">
+        <div class="crm-cases-head">
+          <span class="crm-cases-title">CRM Case Studies</span>
+          <button type="button" class="crm-cases-close" id="closeCrmCasesBtn" aria-label="Close">&times;</button>
+        </div>
+        <iframe class="crm-cases-iframe" id="crmCasesFrame" src="" title="CRM Case Studies"></iframe>
+      </div>
+    </div>
 
     <footer class="site-footer">
       <div class="container">
