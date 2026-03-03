@@ -25,7 +25,7 @@
       },
       "success": {
         "selector": "#nav-success",
-        "value": "Case Study"
+        "value": "Case Studies"
       },
       "engagement": {
         "selector": "#nav-engagement",
@@ -411,7 +411,7 @@
       },
       "navCaseStudy": {
         "selector": "#about-nav-case-study",
-        "value": "Case Study"
+        "value": "Case Studies"
       },
       "navEngagement": {
         "selector": "#about-nav-engagement",
@@ -669,7 +669,7 @@
       },
       "navCaseStudy": {
         "selector": "#engagement-nav-case",
-        "value": "Case Study"
+        "value": "Case Studies"
       },
       "navCurrent": {
         "selector": "#engagement-nav-current",
@@ -796,6 +796,46 @@
           "selector": "#engagement-model-3-detail-text",
           "value": "We connect your business tools through APIs and event-based flows, centralizing data movement and eliminating manual reconciliation between disconnected platforms."
         }
+      }
+    }
+  },
+  "digitalTransformationPage": {
+    "head": {
+      "pageTitle": {
+        "selector": "#digital-transformation-page-title",
+        "value": "Digital Transformation | Digital AI Garage"
+      },
+      "metaDescription": {
+        "selector": "#digital-transformation-meta-description",
+        "value": "Digital Transformation walkthrough and digital maturity assessment by Digital AI Garage."
+      }
+    },
+    "hero": {
+      "eyebrow": {
+        "selector": "#digital-transformation-eyebrow",
+        "value": "Services"
+      },
+      "title": {
+        "selector": "#digital-transformation-title",
+        "value": "Digital Transformation"
+      },
+      "description": {
+        "selector": "#digital-transformation-description",
+        "value": "Start with the digital maturity quiz, then review the walkthrough and SaaS chaos section to map the right transformation path for your business."
+      }
+    },
+    "sections": {
+      "storyHeading": {
+        "selector": "#digital-transformation-story-heading",
+        "value": "Part 2: Digital Transformation Walkthrough"
+      },
+      "quizHeading": {
+        "selector": "#digital-transformation-quiz-heading",
+        "value": "Part 1: Digital Maturity Quiz"
+      },
+      "saasHeading": {
+        "selector": "#digital-transformation-saas-heading",
+        "value": "Part 3: SaaS Chaos vs Unified Platform"
       }
     }
   },
@@ -997,7 +1037,7 @@
     "head": {
       "pageTitle": {
         "selector": "#case-page-title",
-        "value": "Case Study | Digital AI Garage"
+        "value": "Case Studies | Digital AI Garage"
       },
       "metaDescription": {
         "selector": "#case-meta-description",
@@ -1019,7 +1059,7 @@
       },
       "navCurrent": {
         "selector": "#case-nav-current",
-        "value": "Case Study"
+        "value": "Case Studies"
       },
       "navEngagement": {
         "selector": "#case-nav-engagement",

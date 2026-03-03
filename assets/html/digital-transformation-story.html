@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Transformation | Digital AI Garage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:#080e1c; --surface:rgba(15,23,48,0.88); --surface-2:rgba(24,36,72,0.55);
+      --line:rgba(100,130,200,0.18); --teal:#00D1C7; --blue:#2E72FF;
+      --blue-soft:#7ea7ff; --muted:#8899bb; --text:#e8eeff; --radius:14px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;height:100%;overflow:hidden}
+    body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--text)}
+    body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+      background-image:linear-gradient(rgba(100,130,200,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(100,130,200,.025) 1px,transparent 1px);
+      background-size:44px 44px}
+    .about-bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+    .about-shape{position:absolute;border-radius:50%;filter:blur(18px);opacity:.4;animation:aboutFloat 13s ease-in-out infinite}
+    .about-shape.one{width:300px;height:300px;left:-80px;top:10%;background:rgba(0,209,199,.32)}
+    .about-shape.two{width:260px;height:260px;right:-70px;top:35%;background:rgba(46,114,255,.28);animation-delay:-3s}
+    .about-shape.three{width:220px;height:220px;left:35%;bottom:-70px;background:rgba(125,163,255,.24);animation-delay:-6s}
+    @keyframes aboutFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(18px)}}
+    .site-header{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,14,28,.82);border-bottom:1px solid var(--line);backdrop-filter:blur(14px);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 1.8rem}
+    .logo-area{display:flex;align-items:center;gap:10px;font-weight:800;font-size:0.95rem;color:var(--text);text-decoration:none}
+    .logo-dot{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--teal),var(--blue));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff}
+    .eyebrow-tag{font-size:0.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);border:1px solid rgba(0,209,199,.25);background:rgba(0,209,199,.06);border-radius:999px;padding:.28rem .85rem}
+    .stage{position:fixed;inset:0;z-index:1}
+    .scene{position:absolute;inset:0;padding:10px 0 78px;display:flex;align-items:flex-start;justify-content:center;opacity:0;pointer-events:none;transition:opacity .55s ease}
+    .scene.active{opacity:1;pointer-events:all}
+    .container{width:100%;max-width:880px;margin:0 auto;padding:0 1.5rem}
+    .eyebrow{font-size:0.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.55rem;display:flex;align-items:center;gap:8px}
+    .eyebrow::before{content:'';display:block;width:20px;height:2px;background:var(--teal);border-radius:2px}
+    .section-title{font-size:clamp(1.6rem,3.8vw,2.4rem);font-weight:800;line-height:1.1;color:#fff;margin-bottom:.65rem}
+    .section-title em{font-style:normal;color:var(--teal)}
+    .lead{color:var(--muted);font-size:0.88rem;line-height:1.7}
+    .glass-panel{background:linear-gradient(150deg,rgba(200,223,255,.1),rgba(255,255,255,.04));border:1px solid rgba(205,225,255,.18);border-radius:16px;backdrop-filter:blur(10px);padding:1.2rem}
+    .chip{border:1px solid var(--line);background:var(--surface-2);border-radius:999px;padding:.38rem .8rem;font-weight:700;font-size:0.9rem}
+    button.chip{color:var(--text);font-family:'Manrope',sans-serif;cursor:pointer}
+    button.chip:hover{border-color:rgba(126,167,255,.5);background:rgba(46,114,255,.18)}
+    .primary-btn{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--teal),var(--blue));color:#fff;font-family:'Manrope',sans-serif;font-size:0.88rem;font-weight:700;border:none;padding:.65rem 1.7rem;border-radius:10px;cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(0,209,199,.22)}
+    .primary-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,209,199,.35)}
+
+    /* S0 INTRO */
+    #s0{text-align:center}
+    .intro-wrap{max-width:640px;margin:0 auto}
+    .intro-wrap>*{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+    #s0.active .intro-wrap>*:nth-child(1){opacity:1;transform:none;transition-delay:.1s}
+    #s0.active .intro-wrap>*:nth-child(2){opacity:1;transform:none;transition-delay:.25s}
+    #s0.active .intro-wrap>*:nth-child(3){opacity:1;transform:none;transition-delay:.4s}
+    #s0.active .intro-wrap>*:nth-child(4){opacity:1;transform:none;transition-delay:.55s}
+    #s0.active .intro-wrap>*:nth-child(5){opacity:1;transform:none;transition-delay:.7s}
+    .intro-graphic{position:relative;width:84px;height:84px;margin:0 auto 1.4rem}
+    .ig-ring{position:absolute;inset:0;border-radius:50%;border:2px solid transparent;animation:spinRing 6s linear infinite}
+    .ig-ring-1{border-top-color:var(--teal);border-right-color:var(--teal)}
+    .ig-ring-2{inset:10px;border-bottom-color:var(--blue);border-left-color:var(--blue);animation-direction:reverse;animation-duration:4s}
+    .ig-core{position:absolute;inset:20px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--blue));display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+    @keyframes spinRing{to{transform:rotate(360deg)}}
+    .intro-eyebrow{font-size:0.82rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:.9rem}
+    .intro-title{font-size:clamp(1.9rem,5vw,3rem);font-weight:800;line-height:1.08;color:#fff;margin-bottom:.9rem}
+    .intro-title em{font-style:normal;color:var(--teal)}
+    .intro-sub{color:var(--muted);font-size:0.92rem;line-height:1.7;margin-bottom:1.6rem}
+    .intro-chips{display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap}
+
+    /* S1 SYMPTOMS */
+    #s1 .inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:1.5rem;align-items:start}
+    #s1 .s1-left>*{opacity:0;transform:translateY(12px);transition:opacity .45s ease,transform .45s ease}
+    #s1.active .s1-left>*:nth-child(1){opacity:1;transform:none;transition-delay:.05s}
+    #s1.active .s1-left>*:nth-child(2){opacity:1;transform:none;transition-delay:.15s}
+    #s1.active .s1-left>*:nth-child(3){opacity:1;transform:none;transition-delay:.28s}
+    #s1.active .s1-left>*:nth-child(4){opacity:1;transform:none;transition-delay:.4s}
+    .symptom-list{display:flex;flex-direction:column;gap:.5rem;position:relative}
+    .scan-line{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,209,199,.4),transparent);animation:scanDown 3.5s ease-in-out infinite;pointer-events:none}
+    @keyframes scanDown{0%{top:0}100%{top:100%}}
+    .symptom-item{display:flex;align-items:flex-start;gap:.85rem;padding:.78rem .95rem;background:rgba(15,23,48,.88);border:1px solid var(--line);border-radius:var(--radius);border-left:3px solid rgba(230,60,60,.55);transform:translateX(28px);opacity:0;transition:transform .45s ease,opacity .45s ease,border-color .2s,background .2s}
+    #s1.active .symptom-item{transform:translateX(0);opacity:1}
+    #s1.active .symptom-item:nth-child(2){transition-delay:.12s}
+    #s1.active .symptom-item:nth-child(3){transition-delay:.24s}
+    #s1.active .symptom-item:nth-child(4){transition-delay:.36s}
+    #s1.active .symptom-item:nth-child(5){transition-delay:.48s}
+    #s1.active .symptom-item:nth-child(6){transition-delay:.6s}
+    .symptom-item:hover{border-left-color:rgba(230,60,60,.85);background:rgba(230,60,60,.06)}
+    .si-icon{width:34px;height:34px;border-radius:9px;background:rgba(230,60,60,.1);border:1px solid rgba(230,60,60,.18);display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0}
+    .si-title{font-size:0.83rem;font-weight:700;color:#fff;margin-bottom:2px}
+    .si-desc{font-size:0.87rem;color:var(--muted);line-height:1.45}
+
+    /* S2 PRODUCTIVITY */
+    .s2-head{margin-bottom:1.2rem}
+    .prod-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem}
+    .prod-card{background:rgba(15,23,48,.88);border:1px solid var(--line);border-radius:var(--radius);padding:.95rem;text-align:center;transform:translateY(18px);opacity:0;transition:transform .4s ease,opacity .4s ease,border-color .2s,background .2s}
+    #s2.active .prod-card{transform:translateY(0);opacity:1}
+    #s2.active .prod-card:nth-child(1){transition-delay:.08s}
+    #s2.active .prod-card:nth-child(2){transition-delay:.18s}
+    #s2.active .prod-card:nth-child(3){transition-delay:.28s}
+    #s2.active .prod-card:nth-child(4){transition-delay:.38s}
+    #s2.active .prod-card:nth-child(5){transition-delay:.48s}
+    #s2.active .prod-card:nth-child(6){transition-delay:.58s}
+    .prod-card:hover{border-color:rgba(0,209,199,.28);background:rgba(0,209,199,.05)}
+    .prod-num{font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--teal),var(--blue-soft));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1}
+    .prod-unit{font-size:0.77rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:3px 0 6px}
+    .prod-label{font-size:0.88rem;color:var(--text);opacity:.75;line-height:1.4}
+
+    /* S3 COSTS */
+    .s3-head{text-align:center;margin-bottom:1.2rem}
+    .s3-head .eyebrow{justify-content:center}
+    .balance-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .bal-col-head{font-size:0.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem;display:flex;align-items:center;gap:8px}
+    .bal-col-head::before{content:'';display:block;width:14px;height:2px;border-radius:2px}
+    .costs-head{color:#f87171}.costs-head::before{background:#f87171}
+    .benefits-head{color:#34d399}.benefits-head::before{background:#34d399}
+    .bal-item{display:flex;align-items:flex-start;gap:.7rem;padding:.7rem .85rem;border-radius:10px;margin-bottom:.48rem;transform:translateY(14px);opacity:0;transition:transform .4s ease,opacity .4s ease}
+    #s3.active .bal-item{transform:translateY(0);opacity:1}
+    .costs-col .bal-item{background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.12)}
+    .benefits-col .bal-item{background:rgba(52,211,153,.05);border:1px solid rgba(52,211,153,.12)}
+    .costs-col .bal-item:nth-child(2){transition-delay:.1s}.costs-col .bal-item:nth-child(3){transition-delay:.25s}.costs-col .bal-item:nth-child(4){transition-delay:.4s}
+    .benefits-col .bal-item:nth-child(2){transition-delay:.15s}.benefits-col .bal-item:nth-child(3){transition-delay:.3s}.benefits-col .bal-item:nth-child(4){transition-delay:.45s}
+    .bal-icon{font-size:1rem;flex-shrink:0;margin-top:2px}
+    .bal-title{font-size:0.92rem;font-weight:700;margin-bottom:2px}
+    .costs-col .bal-title{color:#f87171}.benefits-col .bal-title{color:#34d399}
+    .bal-desc{font-size:0.86rem;color:var(--muted);line-height:1.45}
+    .roi-row{margin-top:.9rem;padding:.85rem 1rem;background:linear-gradient(155deg,rgba(46,114,255,.1),rgba(0,209,199,.07));border:1px solid var(--line);border-radius:var(--radius);opacity:0;transform:translateY(10px);transition:opacity .5s .85s,transform .5s .85s}
+    #s3.active .roi-row{opacity:1;transform:translateY(0)}
+    .roi-label-row{display:flex;justify-content:space-between;font-size:0.82rem;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.45rem}
+    .roi-label-row span:last-child{color:#34d399}
+    .roi-track{height:5px;background:var(--line);border-radius:999px;overflow:hidden}
+    .roi-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--teal),var(--blue));width:0%;transition:width 1.5s 1.1s cubic-bezier(.4,0,.2,1)}
+    #s3.active .roi-fill{width:78%}
+
+    /* S4 CTA */
+    #s4{text-align:center}
+    .cta-wrap{max-width:600px;margin:0 auto}
+    .cta-wrap>*{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+    #s4.active .cta-wrap>*:nth-child(1){opacity:1;transform:none;transition-delay:.1s}
+    #s4.active .cta-wrap>*:nth-child(2){opacity:1;transform:none;transition-delay:.22s}
+    #s4.active .cta-wrap>*:nth-child(3){opacity:1;transform:none;transition-delay:.36s}
+    #s4.active .cta-wrap>*:nth-child(4){opacity:1;transform:none;transition-delay:.5s}
+    #s4.active .cta-wrap>*:nth-child(5){opacity:1;transform:none;transition-delay:.64s}
+    #s4.active .cta-wrap>*:nth-child(6){opacity:1;transform:none;transition-delay:.78s}
+    .journey-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin:1.2rem 0}
+    .journey-step{background:linear-gradient(155deg,rgba(46,114,255,.2),rgba(0,209,199,.13));border:1px solid var(--line);border-radius:var(--radius);padding:.85rem .95rem;text-align:left}
+    .journey-step strong{display:block;font-size:0.9rem;font-weight:700;color:var(--blue-soft);margin-bottom:4px}
+    .journey-step span{font-size:0.9rem;color:var(--muted);line-height:1.5}
+
+    /* FOOTER */
+    .site-footer{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(8,14,28,.82);border-top:1px solid var(--line);backdrop-filter:blur(14px);height:50px;display:flex;align-items:center;justify-content:center;gap:16px}
+    .nav-btn{background:none;border:1px solid var(--line);color:var(--muted);padding:.32rem .85rem;border-radius:7px;font-family:'Manrope',sans-serif;font-size:0.87rem;font-weight:600;cursor:pointer;transition:all .2s}
+    .nav-btn:hover:not(:disabled){border-color:var(--blue-soft);color:var(--blue-soft)}
+    .nav-btn:disabled{opacity:.28;cursor:default}
+    .auto-btn{background:none;border:1px solid rgba(0,209,199,.28);color:var(--teal);padding:.32rem .85rem;border-radius:7px;font-family:'Manrope',sans-serif;font-size:0.84rem;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.04em}
+    .auto-btn:hover{background:rgba(0,209,199,.07)}
+    .nav-dots{display:flex;gap:7px;align-items:center}
+    .ndot{width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(126,167,255,.38);background:transparent;cursor:pointer;transition:all .28s;padding:0}
+    .ndot.active{background:var(--teal);border-color:var(--teal);transform:scale(1.35)}
+    .scene-num{font-size:0.82rem;font-weight:700;color:var(--muted);letter-spacing:.08em;min-width:40px;text-align:center}
+    .footer-progress{position:fixed;bottom:50px;left:0;right:0;height:3px;z-index:200}
+    .footer-progress-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--blue));transition:width .55s cubic-bezier(.4,0,.2,1);width:0%}
+    .ticker-bar{position:fixed;bottom:50px;left:0;right:0;height:22px;z-index:190;overflow:hidden;background:rgba(8,14,28,.65);border-top:1px solid var(--line);display:flex;align-items:center}
+    .ticker-inner{display:flex;white-space:nowrap;animation:ticker 30s linear infinite;font-size:0.78rem;font-weight:600;letter-spacing:.08em;color:rgba(136,153,187,.5)}
+    .ticker-item{padding:0 26px}
+    .ticker-item b{color:var(--teal)}
+    .side-rail{position:fixed;top:0;right:0;bottom:72px;z-index:195;width:86px;display:flex;justify-content:center;align-items:flex-start;padding-top:10px}
+    .side-rail-inner{width:74px;height:100%;border-left:1px solid var(--line);background:rgba(8,14,28,.55);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;padding:10px 6px;gap:10px}
+    .side-rail .nav-btn,.side-rail .auto-btn{width:100%;padding:.38rem .2rem;font-size:0.82rem;line-height:1.1;text-align:center}
+    .side-rail .nav-dots{flex-direction:column;gap:8px}
+    .side-rail .scene-num{min-width:0;font-size:0.8rem}
+    @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @media(max-width:900px){.side-rail{display:none}}
+    @media(max-width:680px){#s1 .inner,.balance-grid{grid-template-columns:1fr}.prod-grid{grid-template-columns:repeat(2,1fr)}.journey-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="about-bg">
+  <div class="about-shape one"></div>
+  <div class="about-shape two"></div>
+  <div class="about-shape three"></div>
+</div>
+<div class="stage">
+
+  <div class="scene active" id="s0">
+    <div class="container">
+      <div class="intro-wrap">
+        <div class="intro-graphic">
+          <div class="ig-ring ig-ring-1"></div>
+          <div class="ig-ring ig-ring-2"></div>
+          <div class="ig-core">&#9889;</div>
+        </div>
+        <p class="intro-eyebrow">Digital AI Garage &middot; SMB Series</p>
+        <h1 class="intro-title">Is Your Business Ready<br>for <em>Digital Transformation?</em></h1>
+        <p class="intro-sub">A practical walkthrough for small and medium organisations &mdash; the warning signs, the productivity gains, and the real cost-benefit picture.</p>
+        <div class="intro-chips">
+          <button type="button" class="chip intro-chip-btn" data-scene="1">01 &middot; Symptoms</button>
+          <button type="button" class="chip intro-chip-btn" data-scene="2">02 &middot; Productivity</button>
+          <button type="button" class="chip intro-chip-btn" data-scene="3">03 &middot; Cost vs Benefit</button>
+          <button type="button" class="chip intro-chip-btn" data-scene="4">04 &middot; Next Steps</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene" id="s1">
+    <div class="container">
+      <div class="inner">
+        <div class="s1-left">
+          <p class="eyebrow">Chapter 01</p>
+          <h2 class="section-title">Warning<br><em>Symptoms</em></h2>
+          <p class="lead" style="margin-bottom:1rem;">These are the signals your organisation is falling behind &mdash; one manual process at a time.</p>
+          <div class="glass-panel">
+            <p style="font-size:0.82rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--blue-soft);margin-bottom:.45rem;">What this reveals</p>
+            <p style="font-size:0.92rem;color:var(--muted);line-height:1.6;">Each symptom maps to a gap in system maturity, process visibility, or automation readiness.</p>
+          </div>
+        </div>
+        <div>
+          <div class="symptom-list">
+            <div class="scan-line"></div>
+            <div class="symptom-item"><div class="si-icon">&#128203;</div><div><div class="si-title">Death by Spreadsheet</div><div class="si-desc">Critical data lives in emailed Excel files. Version confusion costs hours every week.</div></div></div>
+            <div class="symptom-item"><div class="si-icon">&#128012;</div><div><div class="si-title">Slow Customer Response</div><div class="si-desc">Days to confirm orders or quotes &mdash; while competitors respond in minutes.</div></div></div>
+            <div class="symptom-item"><div class="si-icon">&#127787;&#65039;</div><div><div class="si-title">Zero Data Visibility</div><div class="si-desc">You don't know which products are most profitable. Decisions are gut-based.</div></div></div>
+            <div class="symptom-item"><div class="si-icon">&#128260;</div><div><div class="si-title">Repetitive Manual Work</div><div class="si-desc">Your team re-enters the same data, sends the same emails, copies between systems.</div></div></div>
+            <div class="symptom-item"><div class="si-icon">&#128279;</div><div><div class="si-title">Disconnected Systems</div><div class="si-desc">Sales, inventory, and accounts don't talk &mdash; so everything stays manual.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene" id="s2">
+    <div class="container">
+      <div class="s2-head">
+        <p class="eyebrow">Chapter 02</p>
+        <h2 class="section-title">How It Improves <em>Productivity</em></h2>
+        <p class="lead">Real, measurable gains that digitally-enabled SMBs see within the first 12 months.</p>
+      </div>
+      <div class="prod-grid">
+        <div class="prod-card"><div class="prod-num">47%</div><div class="prod-unit">avg. gain</div><div class="prod-label">More output per team member per week</div></div>
+        <div class="prod-card"><div class="prod-num">8 hrs</div><div class="prod-unit">saved / week</div><div class="prod-label">Freed from repetitive manual tasks per person</div></div>
+        <div class="prod-card"><div class="prod-num">3&times;</div><div class="prod-unit">faster</div><div class="prod-label">Customer response time with CRM + automation</div></div>
+        <div class="prod-card"><div class="prod-num">60%</div><div class="prod-unit">fewer errors</div><div class="prod-label">Reduction in data-entry mistakes via cloud tools</div></div>
+        <div class="prod-card"><div class="prod-num">24/7</div><div class="prod-unit">availability</div><div class="prod-label">Orders and bookings processed while you sleep</div></div>
+        <div class="prod-card"><div class="prod-num">2&times;</div><div class="prod-unit">revenue</div><div class="prod-label">Potential uplift for digitally-mature SMBs in 3 yrs</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene" id="s3">
+    <div class="container">
+      <div class="s3-head">
+        <p class="eyebrow">Chapter 03</p>
+        <h2 class="section-title">Costs <em>vs</em> Benefits</h2>
+      </div>
+      <div class="balance-grid">
+        <div class="costs-col">
+          <div class="bal-col-head costs-head">What it costs</div>
+          <div class="bal-item"><div class="bal-icon">&#128176;</div><div><div class="bal-title">Upfront Tool Costs</div><div class="bal-desc">Basic digital stack: &#8377;2,000&ndash;8,000/month. Many tools have generous free tiers.</div></div></div>
+          <div class="bal-item"><div class="bal-icon">&#9201;</div><div><div class="bal-title">Implementation Time</div><div class="bal-desc">Expect 2&ndash;4 weeks of transition. Slower initially, then permanently faster.</div></div></div>
+          <div class="bal-item"><div class="bal-icon">&#127891;</div><div><div class="bal-title">Training Investment</div><div class="bal-desc">30&ndash;60 mins/week for 6&ndash;8 weeks. Most platforms provide free guided tutorials.</div></div></div>
+        </div>
+        <div class="benefits-col">
+          <div class="bal-col-head benefits-head">What you gain</div>
+          <div class="bal-item"><div class="bal-icon">&#128201;</div><div><div class="bal-title">30&ndash;40% Ops Cost Reduction</div><div class="bal-desc">Automate manual tasks. Cut paper, printing, overtime, and costly rework.</div></div></div>
+          <div class="bal-item"><div class="bal-icon">&#128200;</div><div><div class="bal-title">20&ndash;80% Revenue Growth</div><div class="bal-desc">Online presence + digital payments drive measurable growth within 18 months.</div></div></div>
+          <div class="bal-item"><div class="bal-icon">&#129504;</div><div><div class="bal-title">Data-Driven Decisions</div><div class="bal-desc">Know your best customers, peak hours, top products. Stop guessing &mdash; start knowing.</div></div></div>
+        </div>
+      </div>
+      <div class="roi-row">
+        <div class="roi-label-row">
+          <span>Typical SMB Digital Investment ROI</span>
+          <span>Payback in 12&ndash;18 months &middot; then pure gain</span>
+        </div>
+        <div class="roi-track"><div class="roi-fill"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene" id="s4">
+    <div class="container">
+      <div class="cta-wrap">
+        <p class="eyebrow" style="justify-content:center;">How To Begin</p>
+        <h2 class="section-title" style="margin-bottom:.4rem;">Start Small,<br><em>Scale With Confidence</em></h2>
+        <p class="lead" style="text-align:center;">The same 3-step approach we use with every client &mdash; regardless of size or sector.</p>
+        <div class="journey-grid">
+          <div class="journey-step"><strong>Step 1 &mdash; Identify</strong><span>Pick one high-impact process that is manual, repetitive, or approval-heavy.</span></div>
+          <div class="journey-step"><strong>Step 2 &mdash; Deploy</strong><span>Ship a focused solution fast. Measure speed, visibility, and control improvements.</span></div>
+          <div class="journey-step"><strong>Step 3 &mdash; Expand</strong><span>Roll out across departments with deeper automation and system integration.</span></div>
+        </div>
+        <div><a class="primary-btn" href="index.html#contact">Talk to Us &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="ticker-bar">
+  <div class="ticker-inner">
+    <span class="ticker-item">DIGITAL AI GARAGE</span>
+    <span class="ticker-item">&middot; Digitization &middot; Automation &middot; Integration &middot;</span>
+    <span class="ticker-item">Power Platform &amp; Azure <b>specialists</b></span>
+    <span class="ticker-item">&middot; SMB productivity gains <b>up to 47%</b></span>
+    <span class="ticker-item">&middot; Ops cost reduction <b>30&ndash;40%</b></span>
+    <span class="ticker-item">&middot; ROI payback <b>12&ndash;18 months</b></span>
+    <span class="ticker-item">&middot; Start small. Scale fast. &middot;</span>
+    <span class="ticker-item">DIGITAL AI GARAGE</span>
+    <span class="ticker-item">&middot; Digitization &middot; Automation &middot; Integration &middot;</span>
+    <span class="ticker-item">Power Platform &amp; Azure <b>specialists</b></span>
+    <span class="ticker-item">&middot; SMB productivity gains <b>up to 47%</b></span>
+    <span class="ticker-item">&middot; Ops cost reduction <b>30&ndash;40%</b></span>
+    <span class="ticker-item">&middot; ROI payback <b>12&ndash;18 months</b></span>
+    <span class="ticker-item">&middot; Start small. Scale fast. &middot;</span>
+  </div>
+</div>
+<div class="footer-progress"><div class="footer-progress-fill" id="fpfill"></div></div>
+<footer class="site-footer">
+  <button class="nav-btn js-prev" id="btn-prev" disabled>&larr; Back</button>
+  <div class="nav-dots js-ndots" id="ndots"></div>
+  <span class="scene-num js-scenenum" id="scenenum">1 / 5</span>
+  <button class="nav-btn js-next" id="btn-next">Next &rarr;</button>
+  <button class="auto-btn js-auto" id="btn-auto">▶ Auto</button>
+</footer>
+<aside class="side-rail" aria-label="Scene navigation controls">
+  <div class="side-rail-inner">
+    <button class="nav-btn js-prev" type="button" disabled>&larr; Back</button>
+    <div class="nav-dots js-ndots"></div>
+    <span class="scene-num js-scenenum">1 / 5</span>
+    <button class="nav-btn js-next" type="button">Next &rarr;</button>
+    <button class="auto-btn js-auto" type="button">▶ Auto</button>
+  </div>
+</aside>
+<script>
+  const SCENES=['s0','s1','s2','s3','s4'];
+  const DURATIONS=[5500,7000,7000,8000,8000];
+  let cur=0,autoTimer=null,autoOn=false;
+  const fpfill=document.getElementById('fpfill');
+  const scenenumEls=[...document.querySelectorAll('.js-scenenum')];
+  const ndotsEls=[...document.querySelectorAll('.js-ndots')];
+  const btnPrevEls=[...document.querySelectorAll('.js-prev')];
+  const btnNextEls=[...document.querySelectorAll('.js-next')];
+  const btnAutoEls=[...document.querySelectorAll('.js-auto')];
+  ndotsEls.forEach((dotsWrap)=>{
+    SCENES.forEach((_,i)=>{
+      const d=document.createElement('button');
+      d.className='ndot'+(i===0?' active':'');
+      d.onclick=()=>{stopAuto();goTo(i)};
+      dotsWrap.appendChild(d);
+    });
+  });
+  function goTo(idx){
+    if(idx<0||idx>=SCENES.length)return;
+    document.getElementById(SCENES[cur]).classList.remove('active');
+    ndotsEls.forEach((dotsWrap)=>{
+      if(dotsWrap.children[cur])dotsWrap.children[cur].classList.remove('active');
+    });
+    cur=idx;
+    document.getElementById(SCENES[cur]).classList.add('active');
+    ndotsEls.forEach((dotsWrap)=>{
+      if(dotsWrap.children[cur])dotsWrap.children[cur].classList.add('active');
+    });
+    fpfill.style.width=(cur/(SCENES.length-1)*100)+'%';
+    scenenumEls.forEach((el)=>{el.textContent=(cur+1)+' / '+SCENES.length;});
+    btnPrevEls.forEach((btn)=>{btn.disabled=cur===0;});
+    btnNextEls.forEach((btn)=>{btn.disabled=cur===SCENES.length-1;});
+  }
+  function startAuto(){autoOn=true;btnAutoEls.forEach((btn)=>{btn.textContent='⏸ Pause';});tick()}
+  function tick(){autoTimer=setTimeout(()=>{if(cur<SCENES.length-1){goTo(cur+1);tick()}else stopAuto()},DURATIONS[cur])}
+  function stopAuto(){autoOn=false;clearTimeout(autoTimer);btnAutoEls.forEach((btn)=>{btn.textContent='▶ Auto';})}
+  btnNextEls.forEach((btn)=>btn.addEventListener('click',()=>{stopAuto();goTo(cur+1)}));
+  btnPrevEls.forEach((btn)=>btn.addEventListener('click',()=>{stopAuto();goTo(cur-1)}));
+  btnAutoEls.forEach((btn)=>btn.addEventListener('click',()=>{autoOn?stopAuto():startAuto()}));
+  document.querySelectorAll('.intro-chip-btn').forEach((btn)=>{
+    btn.addEventListener('click',()=>{
+      const target=Number(btn.getAttribute('data-scene'));
+      if(Number.isNaN(target))return;
+      stopAuto();
+      goTo(target);
+    });
+  });
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'){stopAuto();goTo(cur+1)}
+    if(e.key==='ArrowLeft'){stopAuto();goTo(cur-1)}
+    if(e.key==='p'||e.key==='P'){autoOn?stopAuto():startAuto()}
+  });
+  setTimeout(startAuto,1500);
+</script>
+</body>
+</html>
+
+
+

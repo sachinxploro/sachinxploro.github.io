@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta id="digital-transformation-meta-description" name="description" content="" />
+    <title id="digital-transformation-page-title"></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .dt-main {
+        padding-top: 1.4rem;
+      }
+
+      .dt-folder-shell {
+        border-radius: 16px;
+        background: linear-gradient(
+          150deg,
+          rgba(200, 223, 255, 0.08),
+          rgba(255, 255, 255, 0.03)
+        );
+        overflow: hidden;
+      }
+
+      .dt-folder-tabs {
+        display: flex;
+        gap: 0.35rem;
+        padding: 0.55rem 0.6rem 0;
+        border-bottom: 1px solid var(--line);
+        background: rgba(8, 14, 28, 0.6);
+      }
+
+      .dt-folder-tab {
+        flex: 1 1 0;
+        appearance: none;
+        border: 1px solid var(--line);
+        border-bottom: 0;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        background: rgba(24, 36, 72, 0.62);
+        color: var(--muted);
+        padding: 1.15rem 1rem;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.93rem;
+        font-weight: 700;
+        text-align: center;
+        cursor: pointer;
+        transform: translateY(1px);
+        transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      }
+
+      .dt-folder-tab:hover {
+        color: #e8eeff;
+        background: rgba(32, 49, 94, 0.72);
+      }
+
+      .dt-folder-tab.active {
+        color: #e8eeff;
+        background: rgba(15, 23, 48, 0.95);
+        transform: translateY(0);
+      }
+
+      .dt-folder-body {
+        padding: 0;
+        background: rgba(15, 23, 48, 0.8);
+      }
+
+      .dt-panel {
+        display: none;
+      }
+
+      .dt-panel.active {
+        display: block;
+      }
+
+      .dt-frame {
+        width: 100%;
+        border: 0;
+        display: block;
+      }
+
+      #dt-story-frame {
+        min-height: 760px;
+        height: 92vh;
+      }
+
+      #dt-quiz-frame {
+        min-height: 1200px;
+      }
+
+      #dt-saas-frame {
+        min-height: 760px;
+        height: 92vh;
+      }
+
+      @media (max-width: 980px) {
+        .dt-folder-tab {
+          font-size: 0.84rem;
+          padding: 0.95rem 0.65rem;
+        }
+
+        #dt-story-frame {
+          height: 88vh;
+          min-height: 680px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="logo" href="index.html">
+          <img src="assets/images/dagLogo-3.png" alt="Digital AI Garage" />
+          <span class="logo-stack">
+            <span id="logo-text">Digital AI Garage</span>
+            <span id="logo-tagline">Your Growth Guaranteed..</span>
+          </span>
+        </a>
+        <nav>
+          <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li class="nav-dropdown">
+              <a href="index.html#services">Services</a>
+              <ul class="nav-submenu">
+                <li><a href="DigitalTransformation.html">Digital Transformation</a></li>
+                <li><a href="sales-crm.html">Sales CRM</a></li>
+              </ul>
+            </li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="case-study.html">Case Study</a></li>
+            <li><a href="engagement-models.html">Engagement Models</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="dt-main">
+      <section class="section container" style="padding-bottom: 1rem">
+        <p id="digital-transformation-eyebrow" class="eyebrow reveal"></p>
+        <h1 id="digital-transformation-title" class="section-title reveal"></h1>
+        <p id="digital-transformation-description" class="reveal"></p>
+      </section>
+
+      <section class="section container" style="padding-top: 0.5rem">
+        <div class="dt-folder-shell reveal">
+          <div class="dt-folder-tabs" role="tablist" aria-label="Digital transformation sections">
+            <button
+              type="button"
+              id="dt-tab-quiz"
+              class="dt-folder-tab active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="dt-panel-quiz"
+            >
+              <span id="digital-transformation-quiz-heading"></span>
+            </button>
+            <button
+              type="button"
+              id="dt-tab-story"
+              class="dt-folder-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="dt-panel-story"
+            >
+              <span id="digital-transformation-story-heading"></span>
+            </button>
+            <button
+              type="button"
+              id="dt-tab-saas"
+              class="dt-folder-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="dt-panel-saas"
+            >
+              <span id="digital-transformation-saas-heading"></span>
+            </button>
+          </div>
+
+          <div class="dt-folder-body">
+            <article id="dt-panel-quiz" class="dt-panel active" role="tabpanel" aria-labelledby="dt-tab-quiz">
+              <div style="padding: 0.35rem 0.35rem 0">
+                <iframe
+                  id="dt-quiz-frame"
+                  class="dt-frame"
+                  src="assets/html/digital-transformation-quiz.html"
+                  title="Digital transformation maturity quiz"
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </article>
+
+            <article id="dt-panel-story" class="dt-panel" role="tabpanel" aria-labelledby="dt-tab-story">
+              <div style="padding: 0.35rem 0.35rem 0">
+                <iframe
+                  id="dt-story-frame"
+                  class="dt-frame"
+                  src="assets/html/digital-transformation-story.html"
+                  title="Digital transformation walkthrough"
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </article>
+
+            <article id="dt-panel-saas" class="dt-panel" role="tabpanel" aria-labelledby="dt-tab-saas">
+              <div style="padding: 0.35rem 0.35rem 0">
+                <iframe
+                  id="dt-saas-frame"
+                  class="dt-frame"
+                  src="assets/html/digital-transformation-saas-chaos.html"
+                  title="SaaS chaos vs unified platform"
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          <span id="footer-prefix"></span><span id="year"></span
+          ><span id="footer-suffix"></span>
+        </p>
+      </div>
+    </footer>
+
+    <script src="content.js"></script>
+    <script src="script.js"></script>
+    <script>
+      function resizeFrame(frameId) {
+        const frame = document.getElementById(frameId);
+        if (!frame) return;
+
+        try {
+          const doc = frame.contentDocument || frame.contentWindow.document;
+          if (!doc || !doc.body) return;
+          const nextHeight = Math.max(
+            doc.body.scrollHeight,
+            doc.documentElement ? doc.documentElement.scrollHeight : 0,
+          );
+          if (nextHeight > 0) {
+            frame.style.height = nextHeight + "px";
+          }
+        } catch (_) {
+          // same-origin expected in this project; keep silent if blocked
+        }
+      }
+
+      ["dt-quiz-frame"].forEach(function (id) {
+        const frame = document.getElementById(id);
+        if (!frame) return;
+
+        frame.addEventListener("load", function () {
+          resizeFrame(id);
+          setTimeout(function () {
+            resizeFrame(id);
+          }, 600);
+          setTimeout(function () {
+            resizeFrame(id);
+          }, 1800);
+        });
+      });
+
+      setInterval(function () {
+        resizeFrame("dt-quiz-frame");
+      }, 1200);
+
+      function activateTab(tabName) {
+        const storyTab = document.getElementById("dt-tab-story");
+        const quizTab = document.getElementById("dt-tab-quiz");
+        const saasTab = document.getElementById("dt-tab-saas");
+        const storyPanel = document.getElementById("dt-panel-story");
+        const quizPanel = document.getElementById("dt-panel-quiz");
+        const saasPanel = document.getElementById("dt-panel-saas");
+
+        const isStory = tabName === "story";
+        const isQuiz = tabName === "quiz";
+        const isSaas = tabName === "saas";
+
+        storyTab.classList.toggle("active", isStory);
+        quizTab.classList.toggle("active", isQuiz);
+        saasTab.classList.toggle("active", isSaas);
+        storyTab.setAttribute("aria-selected", isStory ? "true" : "false");
+        quizTab.setAttribute("aria-selected", isQuiz ? "true" : "false");
+        saasTab.setAttribute("aria-selected", isSaas ? "true" : "false");
+
+        storyPanel.classList.toggle("active", isStory);
+        quizPanel.classList.toggle("active", isQuiz);
+        saasPanel.classList.toggle("active", isSaas);
+
+        if (isQuiz) resizeFrame("dt-quiz-frame");
+      }
+
+      document.getElementById("dt-tab-story").addEventListener("click", function () {
+        activateTab("story");
+      });
+
+      document.getElementById("dt-tab-quiz").addEventListener("click", function () {
+        activateTab("quiz");
+      });
+
+      document.getElementById("dt-tab-saas").addEventListener("click", function () {
+        activateTab("saas");
+      });
+    </script>
+  </body>
+</html>

@@ -4,3 +4,17 @@ node_modules/
 .DS_Store
 Thumbs.db
 .vscode/
+
+# Non-site office/presentation files
+*.ppt
+*.pptx
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.xlsm
+*.rtf
+
+# Local dev and documentation artifacts
+api/local.settings.json
+docs/

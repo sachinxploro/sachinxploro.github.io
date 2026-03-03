@@ -375,6 +375,7 @@ function generateSitemap() {
     "/about.html",
     "/case-study.html",
     "/engagement-models.html",
+    "/DigitalTransformation.html",
     "/sales-crm.html",
   ];
 
@@ -410,10 +411,11 @@ renderFromTemplate("case-study.template.html", "case-study.html", {
   includeCaseItems: true,
 });
 renderFromTemplate("engagement-models.template.html", "engagement-models.html");
+renderFromTemplate("DigitalTransformation.template.html", "DigitalTransformation.html");
 renderFromTemplate("sales-crm.template.html", "sales-crm.html");
 generateSitemap();
 generateRobots();
 
 console.log(
-  "Generated index.html, about.html, case-study.html, engagement-models.html, sales-crm.html, sitemap.xml, and robots.txt",
+  "Generated index.html, about.html, case-study.html, engagement-models.html, DigitalTransformation.html, sales-crm.html, sitemap.xml, and robots.txt",
 );
