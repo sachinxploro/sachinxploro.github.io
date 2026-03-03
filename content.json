@@ -390,7 +390,7 @@
     },
     "header": {
       "logoText": {
-        "selector": "#about-logo-text",
+        "selector": "#logo-text",
         "value": "Digital AI Garage"
       },
       "navHome": {

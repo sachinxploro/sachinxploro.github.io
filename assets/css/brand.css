@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Sora:wght@400;600&display=swap");
+
+.logo {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+}
+
+.logo-stack {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.02;
+}
+
+#logo-text {
+  font-family: Orbitron, Manrope, sans-serif;
+  font-size: 1.78rem;
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  color: #f4f8ff;
+}
+
+#logo-tagline {
+  margin-top: 0.22rem;
+  font-family: Sora, Manrope, sans-serif;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #8fd0ff;
+}
+
+html[data-theme="light"] #logo-text {
+  color: #0f1b38;
+}
+
+html[data-theme="light"] #logo-tagline {
+  color: #325aa8;
+}
+
+@media (max-width: 820px) {
+  #logo-text {
+    font-size: 1.2rem;
+  }
+
+  #logo-tagline {
+    font-size: 0.54rem;
+    letter-spacing: 0.09em;
+  }
+}

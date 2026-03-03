@@ -1,7 +1,132 @@
 // ---------------------------------------------
 // 1️⃣ Auto-update footer year
 // ---------------------------------------------
-document.getElementById("year").textContent = new Date().getFullYear();
+const yearEl = document.getElementById("year");
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
+}
+
+// ---------------------------------------------
+// 1.1️⃣ Theme toggle (dark/light)
+// ---------------------------------------------
+function applyTheme(mode) {
+  document.documentElement.setAttribute("data-theme", mode);
+  const themeBtn = document.getElementById("themeToggleBtn");
+  if (themeBtn) {
+    const isLight = mode === "light";
+    themeBtn.textContent = isLight ? "Dark Mode" : "Light Mode";
+    themeBtn.setAttribute(
+      "aria-label",
+      isLight ? "Switch to dark mode" : "Switch to light mode",
+    );
+  }
+}
+
+function initThemeToggle() {
+  const navList = document.querySelector(".nav-list");
+  if (!navList) return;
+
+  let themeBtn = document.getElementById("themeToggleBtn");
+  if (!themeBtn) {
+    const item = document.createElement("li");
+    item.className = "theme-toggle-item";
+
+    themeBtn = document.createElement("button");
+    themeBtn.id = "themeToggleBtn";
+    themeBtn.type = "button";
+    themeBtn.className = "theme-toggle-btn";
+
+    item.appendChild(themeBtn);
+    navList.appendChild(item);
+  }
+
+  const savedTheme = localStorage.getItem("dag-theme");
+  const preferredTheme = window.matchMedia("(prefers-color-scheme: light)")
+    .matches
+    ? "light"
+    : "dark";
+  applyTheme(savedTheme || preferredTheme);
+
+  themeBtn.addEventListener("click", function () {
+    const currentTheme =
+      document.documentElement.getAttribute("data-theme") || "dark";
+    const nextTheme = currentTheme === "dark" ? "light" : "dark";
+    applyTheme(nextTheme);
+    localStorage.setItem("dag-theme", nextTheme);
+  });
+}
+
+// ---------------------------------------------
+// 1.2️⃣ AI Buzz timed popup
+// Shows after 10s and then every 120s
+// ---------------------------------------------
+function initAiBuzzPopup() {
+  const currentPath = (window.location.pathname || "").toLowerCase();
+  if (currentPath.endsWith("/ai-buzz-page.html") || currentPath.endsWith("ai-buzz-page.html")) {
+    return;
+  }
+
+  const popup = document.createElement("div");
+  popup.className = "ai-buzz-popup";
+  popup.setAttribute("aria-hidden", "true");
+  popup.innerHTML = `
+    <div class="ai-buzz-popup-backdrop" data-action="close"></div>
+    <div class="ai-buzz-popup-panel" role="dialog" aria-modal="true" aria-label="AI Buzz update">
+      <h3 class="ai-buzz-popup-title">Busting the AI Buzz</h3>
+      <p class="ai-buzz-popup-text">Everyone's racing to "do AI."<br>But AI without a foundation is a house of cards.<br>The real journey to meaningful AI starts long before the first model is trained.</p>
+      <div class="ai-buzz-popup-actions">
+        <button type="button" class="ai-buzz-popup-btn ai-buzz-popup-cancel" data-action="cancel">Cancel</button>
+        <a class="ai-buzz-popup-btn ai-buzz-popup-open" href="ai-buzz-page.html">Open</a>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(popup);
+
+  let popupVisible = false;
+  let popupTimerId = null;
+
+  function scheduleOpen(delayMs) {
+    if (popupTimerId) {
+      window.clearTimeout(popupTimerId);
+    }
+    popupTimerId = window.setTimeout(openPopup, delayMs);
+  }
+
+  function openPopup() {
+    if (popupVisible) return;
+    popupVisible = true;
+    popup.classList.add("is-open");
+    popup.setAttribute("aria-hidden", "false");
+  }
+
+  function closePopup() {
+    popupVisible = false;
+    popup.classList.remove("is-open");
+    popup.setAttribute("aria-hidden", "true");
+    // After cancel/close, wait a full cooldown before showing again.
+    scheduleOpen(120000);
+  }
+
+  popup.addEventListener("click", function (event) {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    const action = target.getAttribute("data-action");
+    if (action === "close" || action === "cancel") {
+      closePopup();
+    }
+  });
+
+  scheduleOpen(10000);
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initThemeToggle);
+  document.addEventListener("DOMContentLoaded", initAiBuzzPopup);
+} else {
+  initThemeToggle();
+  initAiBuzzPopup();
+}
 
 // ---------------------------------------------
 // 2️⃣ Scroll reveal animation
