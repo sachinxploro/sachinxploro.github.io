@@ -15,7 +15,7 @@
       --bg: #080e1c;
       --card: rgba(15,23,48,0.85);
       --line: rgba(200,223,255,0.1);
-      --muted: rgba(200,223,255,0.45);
+      --muted: rgba(214,230,255,0.78);
       --accent: #4f8ef7;
       --accent2: #7c3aed;
       --text: #e8eeff;
@@ -30,7 +30,7 @@
       --bg: #eef4ff;
       --card: rgba(255,255,255,0.95);
       --line: rgba(45,93,206,0.2);
-      --muted: rgba(40,60,100,0.78);
+      --muted: #3b4f77;
       --accent: #2d5dce;
       --accent2: #5b2bbf;
       --text: #122247;
@@ -208,6 +208,12 @@
     }
     .myth-card h4 { font-size: 0.88rem; font-weight: 700; color: #fca5a5; margin-bottom: 0.4rem; }
     .myth-card p  { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+    html[data-theme="light"] .myth-card {
+      background: rgba(255, 236, 239, 0.72);
+      border-color: rgba(190, 70, 95, 0.3);
+    }
+    html[data-theme="light"] .myth-card h4 { color: #9f2344; }
+    html[data-theme="light"] .myth-card p  { color: #2f436b; }
 
     /* ── Section titles ── */
     .section-label {
@@ -331,6 +337,11 @@
       border-radius: 100px; padding: 0.2rem 0.7rem;
       color: var(--muted);
     }
+    html[data-theme="light"] .pill {
+      background: rgba(219, 231, 255, 0.72);
+      color: #2f436b;
+      border-color: rgba(64,93,148,0.28);
+    }
 
     .stage-blocker {
       margin-top: 0.9rem;
@@ -341,6 +352,16 @@
       font-size: 0.8rem; color: #fca5a5; font-weight: 600;
     }
     .stage-blocker span { font-weight: 400; color: var(--muted); }
+    html[data-theme="light"] .stage-content {
+      background: rgba(255, 255, 255, 0.98);
+      border-color: rgba(64,93,148,0.24);
+    }
+    html[data-theme="light"] .stage-blocker {
+      background: rgba(255, 228, 232, 0.72);
+      border-left-color: #cf4d64;
+      color: #a12f49;
+    }
+    html[data-theme="light"] .stage-blocker span { color: #2f436b; }
 
     /* Color per stage */
     .s1 .stage-tag  { background: rgba(59,130,246,0.15); color: var(--stage1); }
@@ -387,6 +408,11 @@
       border-radius: 12px; padding: 0.5rem 1rem;
       font-size: 0.82rem; font-weight: 700; color: #6ee7b7;
     }
+    html[data-theme="light"] .unlock-pillar {
+      background: rgba(189, 243, 220, 0.66);
+      border-color: rgba(16, 155, 106, 0.36);
+      color: #0f6b4a;
+    }
 
     /* ── Readiness Check ── */
     .readiness { padding: 1rem 0 5rem; }
@@ -410,6 +436,12 @@
     .rcard-check { margin-top: 0.9rem; font-size: 0.8rem; font-weight: 700; }
     .rcard-check.yes { color: #34d399; }
     .rcard-check.no  { color: #f87171; }
+    html[data-theme="light"] .rcard {
+      background: rgba(255, 255, 255, 0.98);
+      border-color: rgba(64,93,148,0.24);
+    }
+    html[data-theme="light"] .rcard h4 { color: #122247; }
+    html[data-theme="light"] .rcard p { color: #2f436b; }
 
     /* ── CTA ── */
     .cta-section {

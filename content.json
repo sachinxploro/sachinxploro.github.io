@@ -836,6 +836,10 @@
       "saasHeading": {
         "selector": "#digital-transformation-saas-heading",
         "value": "Part 3: SaaS Chaos vs Unified Platform"
+      },
+      "milestoneHeading": {
+        "selector": "#digital-transformation-milestone-heading",
+        "value": "Part 4: Digital Transformation has no finish line, only the next milestone."
       }
     }
   },

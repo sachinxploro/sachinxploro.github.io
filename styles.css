@@ -96,6 +96,10 @@ html[data-theme="light"] body {
   border-bottom: 1px solid var(--line);
 }
 
+.site-header .container {
+  width: min(1280px, calc(100% - 2rem));
+}
+
 html[data-theme="light"] .site-header {
   background: rgba(255, 255, 255, 0.82);
 }

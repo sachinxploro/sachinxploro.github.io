@@ -17,6 +17,10 @@
         padding-top: 1.4rem;
       }
 
+      .dt-main .container {
+        width: min(1240px, calc(100% - 2rem));
+      }
+
       .dt-folder-shell {
         border-radius: 16px;
         background: linear-gradient(
@@ -65,6 +69,26 @@
         transform: translateY(0);
       }
 
+      html[data-theme="light"] .dt-folder-tabs {
+        background: rgba(183, 198, 228, 0.6);
+      }
+
+      html[data-theme="light"] .dt-folder-tab {
+        background: rgba(72, 89, 128, 0.18);
+        color: #445f93;
+        border-color: rgba(64, 92, 146, 0.35);
+      }
+
+      html[data-theme="light"] .dt-folder-tab:hover {
+        color: #163063;
+        background: rgba(72, 89, 128, 0.28);
+      }
+
+      html[data-theme="light"] .dt-folder-tab.active {
+        color: #122247;
+        background: rgba(243, 248, 255, 0.96);
+      }
+
       .dt-folder-body {
         padding: 0;
         background: rgba(15, 23, 48, 0.8);
@@ -94,6 +118,11 @@
       }
 
       #dt-saas-frame {
+        min-height: 760px;
+        height: 92vh;
+      }
+
+      #dt-milestone-frame {
         min-height: 760px;
         height: 92vh;
       }
@@ -189,6 +218,16 @@
             >
               <span id="digital-transformation-saas-heading">Part 3: SaaS Chaos vs Unified Platform</span>
             </button>
+            <button
+              type="button"
+              id="dt-tab-milestone"
+              class="dt-folder-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="dt-panel-milestone"
+            >
+              <span id="digital-transformation-milestone-heading">Part 4: Digital Transformation has no finish line, only the next milestone.</span>
+            </button>
           </div>
 
           <div class="dt-folder-body">
@@ -223,6 +262,18 @@
                   class="dt-frame"
                   src="assets/html/digital-transformation-saas-chaos.html"
                   title="SaaS chaos vs unified platform"
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </article>
+
+            <article id="dt-panel-milestone" class="dt-panel" role="tabpanel" aria-labelledby="dt-tab-milestone">
+              <div style="padding: 0.35rem 0.35rem 0">
+                <iframe
+                  id="dt-milestone-frame"
+                  class="dt-frame"
+                  src="assets/html/digital-transformation-next-milestone.html"
+                  title="Digital transformation next milestone"
                   loading="lazy"
                 ></iframe>
               </div>
@@ -286,24 +337,30 @@
         const storyTab = document.getElementById("dt-tab-story");
         const quizTab = document.getElementById("dt-tab-quiz");
         const saasTab = document.getElementById("dt-tab-saas");
+        const milestoneTab = document.getElementById("dt-tab-milestone");
         const storyPanel = document.getElementById("dt-panel-story");
         const quizPanel = document.getElementById("dt-panel-quiz");
         const saasPanel = document.getElementById("dt-panel-saas");
+        const milestonePanel = document.getElementById("dt-panel-milestone");
 
         const isStory = tabName === "story";
         const isQuiz = tabName === "quiz";
         const isSaas = tabName === "saas";
+        const isMilestone = tabName === "milestone";
 
         storyTab.classList.toggle("active", isStory);
         quizTab.classList.toggle("active", isQuiz);
         saasTab.classList.toggle("active", isSaas);
+        milestoneTab.classList.toggle("active", isMilestone);
         storyTab.setAttribute("aria-selected", isStory ? "true" : "false");
         quizTab.setAttribute("aria-selected", isQuiz ? "true" : "false");
         saasTab.setAttribute("aria-selected", isSaas ? "true" : "false");
+        milestoneTab.setAttribute("aria-selected", isMilestone ? "true" : "false");
 
         storyPanel.classList.toggle("active", isStory);
         quizPanel.classList.toggle("active", isQuiz);
         saasPanel.classList.toggle("active", isSaas);
+        milestonePanel.classList.toggle("active", isMilestone);
 
         if (isQuiz) resizeFrame("dt-quiz-frame");
       }
@@ -318,6 +375,10 @@
 
       document.getElementById("dt-tab-saas").addEventListener("click", function () {
         activateTab("saas");
+      });
+
+      document.getElementById("dt-tab-milestone").addEventListener("click", function () {
+        activateTab("milestone");
       });
     </script>
   </body>

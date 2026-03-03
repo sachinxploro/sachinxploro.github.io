@@ -23,10 +23,11 @@
 
 #logo-text {
   font-family: Orbitron, Manrope, sans-serif;
-  font-size: 1.78rem;
+  font-size: 1.68rem;
   letter-spacing: 0.01em;
   font-weight: 700;
   color: #f4f8ff;
+  white-space: nowrap;
 }
 
 #logo-tagline {
