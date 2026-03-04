@@ -169,8 +169,8 @@
       }
 
       #dt-milestone-frame {
-        min-height: 760px;
-        height: 92vh;
+        min-height: 0;
+        height: auto;
       }
 
       @media (max-width: 980px) {
@@ -360,7 +360,7 @@
         }
       }
 
-      ["dt-quiz-frame"].forEach(function (id) {
+      ["dt-quiz-frame", "dt-story-frame", "dt-saas-frame", "dt-milestone-frame"].forEach(function (id) {
         const frame = document.getElementById(id);
         if (!frame) return;
 
@@ -376,7 +376,9 @@
       });
 
       setInterval(function () {
-        resizeFrame("dt-quiz-frame");
+        ["dt-quiz-frame", "dt-story-frame", "dt-saas-frame", "dt-milestone-frame"].forEach(function (id) {
+          resizeFrame(id);
+        });
       }, 1200);
 
       function activateTab(tabName) {
@@ -409,6 +411,9 @@
         milestonePanel.classList.toggle("active", isMilestone);
 
         if (isQuiz) resizeFrame("dt-quiz-frame");
+        if (isStory) resizeFrame("dt-story-frame");
+        if (isSaas) resizeFrame("dt-saas-frame");
+        if (isMilestone) resizeFrame("dt-milestone-frame");
       }
 
       document.getElementById("dt-tab-story").addEventListener("click", function () {
