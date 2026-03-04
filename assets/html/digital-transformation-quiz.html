@@ -22,6 +22,18 @@
       --radius:    14px;
     }
 
+    html[data-theme="light"] {
+      --bg:        #eef3ff;
+      --surface:   rgba(255, 255, 255, 0.86);
+      --surface-2: rgba(223, 234, 252, 0.76);
+      --line:      rgba(67, 94, 148, 0.24);
+      --teal:      #007f79;
+      --blue:      #2a57cc;
+      --blue-soft: #3c66c7;
+      --muted:     #425b8b;
+      --text:      #0f234d;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html { scroll-behavior: smooth; }
@@ -62,6 +74,11 @@
       background-size: 44px 44px;
       pointer-events: none; z-index: 0;
     }
+    html[data-theme="light"] body::before {
+      background-image:
+        linear-gradient(rgba(55,90,150,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(55,90,150,0.06) 1px, transparent 1px);
+    }
 
     /* ── Layout ─────────────────────────────────────────────── */
     .quiz-wrapper {
@@ -82,7 +99,7 @@
       background: rgba(0,209,199,0.07);
       border-radius: 999px;
       padding: 0.35rem 1rem;
-      font-size: 0.83rem; font-weight: 700;
+      font-size: 0.91rem; font-weight: 700;
       letter-spacing: 0.08em; text-transform: uppercase;
       color: var(--teal); margin-bottom: 1.2rem;
     }
@@ -120,7 +137,7 @@
     }
     .progress-label {
       display: flex; justify-content: space-between;
-      font-size: 0.8rem; color: var(--muted); font-weight: 600;
+      font-size: 0.88rem; color: var(--muted); font-weight: 600;
       margin-bottom: 1.8rem; letter-spacing: 0.03em;
     }
     .progress-label .q-counter { color: var(--blue-soft); }
@@ -164,7 +181,7 @@
       font-size: 1.05rem; font-weight: 700; color: #fff; line-height: 1.4;
     }
     .q-hint {
-      font-size: 0.83rem; color: var(--muted); margin-top: 4px; font-style: italic;
+      font-size: 0.91rem; color: var(--muted); margin-top: 4px; font-style: italic;
     }
 
     /* ── Options ────────────────────────────────────────────── */
@@ -209,7 +226,7 @@
       width: 26px; height: 26px; border-radius: 7px;
       background: rgba(100,130,200,0.15); border: 1px solid var(--line);
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.8rem; font-weight: 800; color: var(--muted);
+      font-size: 0.88rem; font-weight: 800; color: var(--muted);
       flex-shrink: 0; transition: all 0.2s;
     }
     .opt-text { flex: 1; line-height: 1.4; }
@@ -218,7 +235,7 @@
       border: 2px solid var(--line);
       flex-shrink: 0; transition: all 0.2s;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.85rem;
+      font-size: 0.93rem;
     }
     .option-btn.selected .opt-check {
       background: var(--teal); border-color: var(--teal); color: #0a1220;
@@ -233,7 +250,7 @@
       background: none; border: 1px solid var(--line);
       color: var(--muted); padding: 0.6rem 1.2rem;
       border-radius: 8px; font-family: 'Manrope', sans-serif;
-      font-size: 0.83rem; font-weight: 600; cursor: pointer;
+      font-size: 0.91rem; font-weight: 600; cursor: pointer;
       transition: all 0.2s;
     }
     .btn-ghost:hover:not(:disabled) { border-color: var(--blue-soft); color: var(--blue-soft); }
@@ -312,7 +329,7 @@
       font-family: 'Syne', sans-serif;
       font-size: 2.2rem; font-weight: 800; color: #fff; line-height: 1;
     }
-    .ring-denom { font-size: 0.83rem; color: var(--muted); font-weight: 600; }
+    .ring-denom { font-size: 0.91rem; color: var(--muted); font-weight: 600; }
 
     .result-title {
       font-family: 'Syne', sans-serif;
@@ -336,7 +353,7 @@
       text-align: left;
     }
     .breakdown-emoji { font-size: 1rem; }
-    .breakdown-label { font-size: 0.83rem; font-weight: 600; color: var(--text); }
+    .breakdown-label { font-size: 0.91rem; font-weight: 600; color: var(--text); }
     .breakdown-score {
       font-size: 0.90rem; font-weight: 800;
       padding: 0.2rem 0.6rem; border-radius: 6px;
@@ -351,7 +368,7 @@
     /* ── Recommendation pills ─────────────────────────────── */
     .reco-section { margin: 2rem 0 1rem; text-align: left; }
     .reco-title {
-      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
+      font-size: 0.88rem; font-weight: 700; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--blue-soft); margin-bottom: 0.9rem;
     }
     .reco-list { display: flex; flex-direction: column; gap: 0.5rem; }
@@ -360,7 +377,7 @@
       padding: 0.75rem 1rem;
       background: rgba(46,114,255,0.07);
       border: 1px solid rgba(46,114,255,0.15);
-      border-radius: 10px; font-size: 0.84rem; color: var(--text); line-height: 1.5;
+      border-radius: 10px; font-size: 0.92rem; color: var(--text); line-height: 1.5;
     }
     .reco-item .ri { flex-shrink: 0; margin-top: 1px; }
 
@@ -400,6 +417,59 @@
     @keyframes qIn {
       from { opacity: 0; transform: translateX(24px); }
       to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ── Light mode contrast fixes ─────────────────────────── */
+    html[data-theme="light"] .quiz-title,
+    html[data-theme="light"] .q-text,
+    html[data-theme="light"] .ring-num,
+    html[data-theme="light"] .result-title {
+      color: #10244d;
+    }
+
+    html[data-theme="light"] .q-card,
+    html[data-theme="light"] .result-card {
+      background: linear-gradient(150deg, rgba(255,255,255,0.8), rgba(224,236,255,0.62));
+      border-color: rgba(67,94,148,0.24);
+    }
+
+    html[data-theme="light"] .option-btn {
+      background: rgba(230,239,255,0.78);
+      border-color: rgba(67,94,148,0.22);
+      color: #18315d;
+    }
+
+    html[data-theme="light"] .option-btn:hover:not(:disabled) {
+      background: rgba(0,127,121,0.08);
+      border-color: rgba(0,127,121,0.35);
+    }
+
+    html[data-theme="light"] .option-btn.selected {
+      background: rgba(0,127,121,0.14);
+      border-color: rgba(0,127,121,0.45);
+      color: #0f2d46;
+    }
+    html[data-theme="light"] .q-emoji {
+      font-family: "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif;
+      font-size: 1.45rem;
+      background: rgba(79,142,255,0.22);
+      border-color: rgba(79,142,255,0.5);
+      color: #1f4ea8;
+      box-shadow: 0 1px 3px rgba(33,57,102,0.18);
+      filter: saturate(1.35) contrast(1.15);
+    }
+    html[data-theme="light"] .opt-score,
+    html[data-theme="light"] .opt-check {
+      font-family: "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif;
+      background: rgba(79,142,255,0.16);
+      border-color: rgba(67,94,148,0.45);
+      color: #23477f;
+    }
+    html[data-theme="light"] .option-btn.selected .opt-score,
+    html[data-theme="light"] .option-btn.selected .opt-check {
+      background: rgba(0,127,121,0.24);
+      border-color: rgba(0,127,121,0.5);
+      color: #0f5e59;
     }
 
     /* ── Confetti ────────────────────────────────────────────── */
@@ -478,6 +548,54 @@
 </div>
 
 <script>
+function applyEmbeddedTheme(mode) {
+  const next = mode === "light" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+}
+
+(function initEmbeddedThemeSync() {
+  let initialTheme = "dark";
+
+  try {
+    if (window.parent && window.parent !== window) {
+      const parentTheme = window.parent.document.documentElement.getAttribute("data-theme");
+      if (parentTheme === "light" || parentTheme === "dark") initialTheme = parentTheme;
+    } else {
+      const savedTheme = localStorage.getItem("dag-theme");
+      if (savedTheme === "light" || savedTheme === "dark") {
+        initialTheme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+        initialTheme = "light";
+      }
+    }
+  } catch (_) {
+    const savedTheme = localStorage.getItem("dag-theme");
+    if (savedTheme === "light" || savedTheme === "dark") {
+      initialTheme = savedTheme;
+    } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+      initialTheme = "light";
+    }
+  }
+
+  applyEmbeddedTheme(initialTheme);
+
+  window.addEventListener("message", function (event) {
+    if (event.origin !== window.location.origin) return;
+    const data = event.data || {};
+    if (data.type === "dag-theme") {
+      applyEmbeddedTheme(data.theme);
+    }
+  });
+
+  try {
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: "dag-theme-request" }, window.location.origin);
+    }
+  } catch (_) {
+    // noop
+  }
+})();
+
 const QUESTIONS = [
   {
     emoji: "🧾",

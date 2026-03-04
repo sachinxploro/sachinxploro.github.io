@@ -341,6 +341,43 @@
     <script src="content.js"></script>
     <script src="script.js"></script>
     <script>
+      const DT_FRAME_IDS = ["dt-quiz-frame", "dt-story-frame", "dt-saas-frame", "dt-milestone-frame"];
+
+      function getCurrentTheme() {
+        return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+      }
+
+      function postThemeToFrame(frameId) {
+        const frame = document.getElementById(frameId);
+        if (!frame) return;
+        const theme = getCurrentTheme();
+
+        try {
+          if (frame.contentDocument && frame.contentDocument.documentElement) {
+            frame.contentDocument.documentElement.setAttribute("data-theme", theme);
+          }
+        } catch (_) {
+          // ignore direct access failures
+        }
+
+        try {
+          if (frame.contentWindow) {
+            frame.contentWindow.postMessage(
+              { type: "dag-theme", theme: theme },
+              window.location.origin,
+            );
+          }
+        } catch (_) {
+          // ignore postMessage failures
+        }
+      }
+
+      function syncThemeToFrames() {
+        DT_FRAME_IDS.forEach(function (id) {
+          postThemeToFrame(id);
+        });
+      }
+
       function resizeFrame(frameId) {
         const frame = document.getElementById(frameId);
         if (!frame) return;
@@ -360,26 +397,56 @@
         }
       }
 
-      ["dt-quiz-frame", "dt-story-frame", "dt-saas-frame", "dt-milestone-frame"].forEach(function (id) {
+      DT_FRAME_IDS.forEach(function (id) {
         const frame = document.getElementById(id);
         if (!frame) return;
 
         frame.addEventListener("load", function () {
+          postThemeToFrame(id);
           resizeFrame(id);
           setTimeout(function () {
+            postThemeToFrame(id);
             resizeFrame(id);
           }, 600);
           setTimeout(function () {
+            postThemeToFrame(id);
             resizeFrame(id);
           }, 1800);
         });
       });
 
       setInterval(function () {
-        ["dt-quiz-frame", "dt-story-frame", "dt-saas-frame", "dt-milestone-frame"].forEach(function (id) {
+        DT_FRAME_IDS.forEach(function (id) {
           resizeFrame(id);
         });
       }, 1200);
+
+      const themeObserver = new MutationObserver(function (mutations) {
+        for (const mutation of mutations) {
+          if (mutation.type === "attributes" && mutation.attributeName === "data-theme") {
+            syncThemeToFrames();
+            break;
+          }
+        }
+      });
+      themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+      window.addEventListener("message", function (event) {
+        if (event.origin !== window.location.origin) return;
+        const data = event.data || {};
+        if (data.type === "dag-theme-request" && event.source && typeof event.source.postMessage === "function") {
+          try {
+            event.source.postMessage(
+              { type: "dag-theme", theme: getCurrentTheme() },
+              window.location.origin,
+            );
+          } catch (_) {
+            // ignore
+          }
+        }
+      });
+
+      syncThemeToFrames();
 
       function activateTab(tabName) {
         const storyTab = document.getElementById("dt-tab-story");
