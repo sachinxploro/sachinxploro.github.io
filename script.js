@@ -57,7 +57,63 @@ function initThemeToggle() {
 }
 
 // ---------------------------------------------
-// 1.2️⃣ AI Buzz timed popup
+// 1.2️⃣ Mobile nav toggle
+// ---------------------------------------------
+function initMobileNavToggle() {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+
+  const navWrap = header.querySelector(".nav-wrap");
+  const nav = header.querySelector("nav");
+  if (!navWrap || !nav) return;
+
+  let toggleBtn = document.getElementById("mobileMenuToggleBtn");
+  if (!toggleBtn) {
+    toggleBtn = document.createElement("button");
+    toggleBtn.type = "button";
+    toggleBtn.id = "mobileMenuToggleBtn";
+    toggleBtn.className = "mobile-menu-toggle";
+    toggleBtn.setAttribute("aria-label", "Toggle navigation menu");
+    toggleBtn.setAttribute("aria-expanded", "false");
+    toggleBtn.innerHTML = `
+      <span class="mobile-menu-toggle-lines" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    `;
+    navWrap.insertBefore(toggleBtn, nav);
+  }
+
+  const mobileMedia = window.matchMedia("(max-width: 820px)");
+
+  function closeMenu() {
+    header.classList.remove("nav-open");
+    toggleBtn.setAttribute("aria-expanded", "false");
+  }
+
+  function toggleMenu() {
+    const isOpen = header.classList.toggle("nav-open");
+    toggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  }
+
+  toggleBtn.addEventListener("click", toggleMenu);
+
+  nav.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      if (mobileMedia.matches) closeMenu();
+    });
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") closeMenu();
+  });
+
+  mobileMedia.addEventListener("change", function (event) {
+    if (!event.matches) closeMenu();
+  });
+}
+
+// ---------------------------------------------
+// 1.3️⃣ AI Buzz timed popup
 // Shows after 10s and then every 120s
 // ---------------------------------------------
 function initAiBuzzPopup() {
@@ -122,9 +178,11 @@ function initAiBuzzPopup() {
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initThemeToggle);
+  document.addEventListener("DOMContentLoaded", initMobileNavToggle);
   document.addEventListener("DOMContentLoaded", initAiBuzzPopup);
 } else {
   initThemeToggle();
+  initMobileNavToggle();
   initAiBuzzPopup();
 }
 

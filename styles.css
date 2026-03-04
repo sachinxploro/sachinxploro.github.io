@@ -134,6 +134,33 @@ html[data-theme="light"] .site-header {
   color: var(--text);
 }
 
+.mobile-menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  padding: 0;
+}
+
+.mobile-menu-toggle-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobile-menu-toggle-lines span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 99px;
+  background: var(--text);
+}
+
 .nav-dropdown {
   position: relative;
 }
@@ -1714,10 +1741,39 @@ button:focus-visible {
   }
 
   .nav-wrap {
-    align-items: flex-start;
+    align-items: center;
     padding: 0.8rem 0;
     gap: 0.6rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .mobile-menu-toggle {
+    display: inline-flex;
+  }
+
+  .site-header nav {
+    width: 100%;
+    display: none;
+  }
+
+  .site-header.nav-open nav {
+    display: block;
+  }
+
+  .nav-list {
+    width: 100%;
     flex-direction: column;
+    gap: 0.65rem;
+    padding-top: 0.35rem;
+  }
+
+  .nav-list > li {
+    width: 100%;
+  }
+
+  .nav-list a {
+    display: inline-flex;
   }
 
   .nav-submenu {
