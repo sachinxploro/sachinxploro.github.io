@@ -1,42 +1,53 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Digital Maturity Score | Digital AI Garage</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap"
+    rel="stylesheet" />
   <style>
     /* ── Base tokens matching DAG site ─────────────────────── */
     :root {
-      --bg:        #080e1c;
-      --surface:   rgba(15, 23, 48, 0.88);
+      --bg: #080e1c;
+      --surface: rgba(15, 23, 48, 0.88);
       --surface-2: rgba(24, 36, 72, 0.6);
-      --line:      rgba(100, 130, 200, 0.18);
-      --teal:      #00D1C7;
-      --blue:      #2E72FF;
+      --line: rgba(100, 130, 200, 0.18);
+      --teal: #00D1C7;
+      --blue: #2E72FF;
       --blue-soft: #7ea7ff;
-      --muted:     #8899bb;
-      --text:      #e8eeff;
-      --radius:    14px;
+      --muted: #8899bb;
+      --text: #e8eeff;
+      --radius: 14px;
     }
 
     html[data-theme="light"] {
-      --bg:        #eef3ff;
-      --surface:   rgba(255, 255, 255, 0.86);
+      --bg: #eef3ff;
+      --surface: rgba(255, 255, 255, 0.86);
       --surface-2: rgba(223, 234, 252, 0.76);
-      --line:      rgba(67, 94, 148, 0.24);
-      --teal:      #007f79;
-      --blue:      #2a57cc;
+      --line: rgba(67, 94, 148, 0.24);
+      --teal: #007f79;
+      --blue: #2a57cc;
       --blue-soft: #3c66c7;
-      --muted:     #425b8b;
-      --text:      #0f234d;
+      --muted: #425b8b;
+      --text: #0f234d;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Manrope', sans-serif;
@@ -48,41 +59,87 @@
 
     /* ── Ambient BG ─────────────────────────────────────────── */
     .ambient {
-      position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
     }
+
     .orb {
-      position: absolute; border-radius: 50%;
-      filter: blur(90px); opacity: 0.22;
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.22;
       animation: drift 18s ease-in-out infinite;
     }
-    .orb-1 { width: 500px; height: 500px; left: -150px; top: -100px; background: rgba(0,209,199,0.5); animation-delay: 0s; }
-    .orb-2 { width: 400px; height: 400px; right: -100px; top: 30%; background: rgba(46,114,255,0.5); animation-delay: -6s; }
-    .orb-3 { width: 350px; height: 350px; left: 40%; bottom: -80px; background: rgba(125,163,255,0.4); animation-delay: -12s; }
+
+    .orb-1 {
+      width: 500px;
+      height: 500px;
+      left: -150px;
+      top: -100px;
+      background: rgba(0, 209, 199, 0.5);
+      animation-delay: 0s;
+    }
+
+    .orb-2 {
+      width: 400px;
+      height: 400px;
+      right: -100px;
+      top: 30%;
+      background: rgba(46, 114, 255, 0.5);
+      animation-delay: -6s;
+    }
+
+    .orb-3 {
+      width: 350px;
+      height: 350px;
+      left: 40%;
+      bottom: -80px;
+      background: rgba(125, 163, 255, 0.4);
+      animation-delay: -12s;
+    }
+
     @keyframes drift {
-      0%,100% { transform: translate(0,0) scale(1); }
-      33% { transform: translate(30px,20px) scale(1.04); }
-      66% { transform: translate(-20px,30px) scale(0.97); }
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      33% {
+        transform: translate(30px, 20px) scale(1.04);
+      }
+
+      66% {
+        transform: translate(-20px, 30px) scale(0.97);
+      }
     }
 
     /* ── Grid noise overlay ──────────────────────────────────── */
     body::before {
       content: '';
-      position: fixed; inset: 0;
+      position: fixed;
+      inset: 0;
       background-image:
-        linear-gradient(rgba(100,130,200,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(100,130,200,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(100, 130, 200, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(100, 130, 200, 0.03) 1px, transparent 1px);
       background-size: 44px 44px;
-      pointer-events: none; z-index: 0;
+      pointer-events: none;
+      z-index: 0;
     }
+
     html[data-theme="light"] body::before {
       background-image:
-        linear-gradient(rgba(55,90,150,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(55,90,150,0.06) 1px, transparent 1px);
+        linear-gradient(rgba(55, 90, 150, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(55, 90, 150, 0.06) 1px, transparent 1px);
     }
 
     /* ── Layout ─────────────────────────────────────────────── */
     .quiz-wrapper {
-      position: relative; z-index: 1;
+      position: relative;
+      z-index: 1;
       max-width: 780px;
       margin: 0 auto;
       padding: 2rem 1.25rem 4rem;
@@ -93,18 +150,45 @@
       text-align: center;
       margin-bottom: 2.5rem;
     }
+
     .quiz-badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      border: 1px solid rgba(0,209,199,0.3);
-      background: rgba(0,209,199,0.07);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid rgba(0, 209, 199, 0.3);
+      background: rgba(0, 209, 199, 0.07);
       border-radius: 999px;
       padding: 0.35rem 1rem;
-      font-size: 0.91rem; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--teal); margin-bottom: 1.2rem;
+      font-size: 0.91rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1.2rem;
     }
-    .quiz-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); animation: pulse 1.8s ease-in-out infinite; display: block; }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(1.4)} }
+
+    .quiz-badge span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      animation: pulse 1.8s ease-in-out infinite;
+      display: block;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(1.4)
+      }
+    }
 
     .quiz-title {
       font-family: 'Syne', sans-serif;
@@ -114,37 +198,70 @@
       color: #fff;
       margin-bottom: 0.8rem;
     }
-    .quiz-title em { font-style: normal; color: var(--teal); }
+
+    .quiz-title em {
+      font-style: normal;
+      color: var(--teal);
+    }
+
     .quiz-subtitle {
-      color: var(--muted); font-size: 0.95rem; line-height: 1.6; max-width: 500px; margin: 0 auto 1.5rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
     }
+
     .quiz-meta {
-      display: flex; justify-content: center; gap: 1.5rem; font-size: 0.90rem;
-      color: var(--muted); font-weight: 600; letter-spacing: 0.04em;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      font-size: 0.90rem;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.04em;
     }
-    .quiz-meta span { display: flex; align-items: center; gap: 5px; }
+
+    .quiz-meta span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
 
     /* ── Progress ───────────────────────────────────────────── */
     .progress-outer {
-      background: var(--line); border-radius: 999px; height: 5px;
-      margin-bottom: 0.5rem; overflow: hidden;
+      background: var(--line);
+      border-radius: 999px;
+      height: 5px;
+      margin-bottom: 0.5rem;
+      overflow: hidden;
     }
+
     .progress-fill {
-      height: 100%; border-radius: 999px;
+      height: 100%;
+      border-radius: 999px;
       background: linear-gradient(90deg, var(--teal), var(--blue));
-      transition: width 0.5s cubic-bezier(.4,0,.2,1);
+      transition: width 0.5s cubic-bezier(.4, 0, .2, 1);
       width: 0%;
     }
+
     .progress-label {
-      display: flex; justify-content: space-between;
-      font-size: 0.88rem; color: var(--muted); font-weight: 600;
-      margin-bottom: 1.8rem; letter-spacing: 0.03em;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.03em;
     }
-    .progress-label .q-counter { color: var(--blue-soft); }
+
+    .progress-label .q-counter {
+      color: var(--blue-soft);
+    }
 
     /* ── Question card ──────────────────────────────────────── */
     .q-card {
-      background: linear-gradient(150deg, rgba(200,223,255,0.09), rgba(255,255,255,0.04));
+      background: linear-gradient(150deg, rgba(200, 223, 255, 0.09), rgba(255, 255, 255, 0.04));
       border: 1px solid var(--line);
       border-radius: 18px;
       padding: 2rem;
@@ -154,269 +271,565 @@
       overflow: hidden;
       transition: all 0.4s ease;
     }
+
     .q-card::before {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
       background: linear-gradient(90deg, var(--teal), var(--blue));
-      transform-origin: left; transform: scaleX(0);
+      transform-origin: left;
+      transform: scaleX(0);
       transition: transform 0.5s ease;
     }
-    .q-card.answered::before { transform: scaleX(1); }
+
+    .q-card.answered::before {
+      transform: scaleX(1);
+    }
 
     .q-top {
-      display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.4rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
     }
+
     .q-emoji {
-      width: 46px; height: 46px; border-radius: 12px;
-      background: rgba(46,114,255,0.15); border: 1px solid rgba(46,114,255,0.2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; flex-shrink: 0;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: rgba(46, 114, 255, 0.15);
+      border: 1px solid rgba(46, 114, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
     }
-    .q-meta { flex: 1; }
+
+    .q-meta {
+      flex: 1;
+    }
+
     .q-number {
-      font-size: 0.90rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--blue-soft); margin-bottom: 4px;
+      font-size: 0.90rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-soft);
+      margin-bottom: 4px;
     }
+
     .q-text {
-      font-size: 1.05rem; font-weight: 700; color: #fff; line-height: 1.4;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.4;
     }
+
     .q-hint {
-      font-size: 0.91rem; color: var(--muted); margin-top: 4px; font-style: italic;
+      font-size: 0.91rem;
+      color: var(--muted);
+      margin-top: 4px;
+      font-style: italic;
     }
 
     /* ── Options ────────────────────────────────────────────── */
-    .options-list { display: flex; flex-direction: column; gap: 0.55rem; }
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
 
     .option-btn {
-      display: flex; align-items: center; gap: 1rem;
-      width: 100%; text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      text-align: left;
       padding: 0.75rem 1rem;
-      background: rgba(24,36,72,0.5);
+      background: rgba(24, 36, 72, 0.5);
       border: 1px solid var(--line);
       border-radius: 10px;
       color: var(--text);
       font-family: 'Manrope', sans-serif;
-      font-size: 0.88rem; font-weight: 500;
+      font-size: 0.88rem;
+      font-weight: 500;
       cursor: pointer;
       transition: all 0.22s ease;
-      position: relative; overflow: hidden;
+      position: relative;
+      overflow: hidden;
     }
+
     .option-btn::after {
       content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(90deg, rgba(0,209,199,0.07), transparent);
-      opacity: 0; transition: opacity 0.2s;
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0, 209, 199, 0.07), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
     }
+
     .option-btn:hover:not(:disabled) {
-      border-color: rgba(0,209,199,0.35);
-      background: rgba(0,209,199,0.07);
+      border-color: rgba(0, 209, 199, 0.35);
+      background: rgba(0, 209, 199, 0.07);
       transform: translateX(3px);
     }
-    .option-btn:hover:not(:disabled)::after { opacity: 1; }
+
+    .option-btn:hover:not(:disabled)::after {
+      opacity: 1;
+    }
 
     .option-btn.selected {
       border-color: var(--teal);
-      background: rgba(0,209,199,0.1);
+      background: rgba(0, 209, 199, 0.1);
       color: #fff;
     }
-    .option-btn.selected .opt-score { background: var(--teal); color: #0a1220; }
-    .option-btn:disabled { cursor: default; }
+
+    .option-btn.selected .opt-score {
+      background: var(--teal);
+      color: #0a1220;
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
 
     .opt-score {
-      width: 26px; height: 26px; border-radius: 7px;
-      background: rgba(100,130,200,0.15); border: 1px solid var(--line);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.88rem; font-weight: 800; color: var(--muted);
-      flex-shrink: 0; transition: all 0.2s;
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      background: rgba(100, 130, 200, 0.15);
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--muted);
+      flex-shrink: 0;
+      transition: all 0.2s;
     }
-    .opt-text { flex: 1; line-height: 1.4; }
+
+    .opt-text {
+      flex: 1;
+      line-height: 1.4;
+    }
+
     .opt-check {
-      width: 18px; height: 18px; border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
       border: 2px solid var(--line);
-      flex-shrink: 0; transition: all 0.2s;
-      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 0.93rem;
     }
+
     .option-btn.selected .opt-check {
-      background: var(--teal); border-color: var(--teal); color: #0a1220;
+      background: var(--teal);
+      border-color: var(--teal);
+      color: #0a1220;
     }
 
     /* ── Navigation ─────────────────────────────────────────── */
     .q-nav {
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-top: 1.5rem;
     }
+
     .btn-ghost {
-      background: none; border: 1px solid var(--line);
-      color: var(--muted); padding: 0.6rem 1.2rem;
-      border-radius: 8px; font-family: 'Manrope', sans-serif;
-      font-size: 0.91rem; font-weight: 600; cursor: pointer;
+      background: none;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.91rem;
+      font-weight: 600;
+      cursor: pointer;
       transition: all 0.2s;
     }
-    .btn-ghost:hover:not(:disabled) { border-color: var(--blue-soft); color: var(--blue-soft); }
-    .btn-ghost:disabled { opacity: 0.3; cursor: default; }
+
+    .btn-ghost:hover:not(:disabled) {
+      border-color: var(--blue-soft);
+      color: var(--blue-soft);
+    }
+
+    .btn-ghost:disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--teal), var(--blue));
-      border: none; color: #fff;
-      padding: 0.65rem 1.6rem; border-radius: 8px;
+      border: none;
+      color: #fff;
+      padding: 0.65rem 1.6rem;
+      border-radius: 8px;
       font-family: 'Manrope', sans-serif;
-      font-size: 0.88rem; font-weight: 700; cursor: pointer;
-      transition: all 0.25s; letter-spacing: 0.02em;
-      display: flex; align-items: center; gap: 7px;
-      box-shadow: 0 4px 20px rgba(0,209,199,0.25);
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 4px 20px rgba(0, 209, 199, 0.25);
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,209,199,0.35); }
-    .btn-primary:disabled { opacity: 0.4; cursor: default; transform: none; }
-    .btn-primary .arrow { transition: transform 0.2s; }
-    .btn-primary:hover .arrow { transform: translateX(3px); }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0, 209, 199, 0.35);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.4;
+      cursor: default;
+      transform: none;
+    }
+
+    .btn-primary .arrow {
+      transition: transform 0.2s;
+    }
+
+    .btn-primary:hover .arrow {
+      transform: translateX(3px);
+    }
 
     /* ── Score dots mini ────────────────────────────────────── */
     .score-dots {
-      display: flex; justify-content: center; gap: 6px; margin-bottom: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 2rem;
     }
+
     .s-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: var(--line); border: 1px solid rgba(100,130,200,0.2);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--line);
+      border: 1px solid rgba(100, 130, 200, 0.2);
       transition: all 0.3s;
     }
-    .s-dot.done { background: var(--teal); border-color: var(--teal); transform: scale(1.2); }
-    .s-dot.current { background: var(--blue); border-color: var(--blue); animation: pulse 1.5s infinite; }
+
+    .s-dot.done {
+      background: var(--teal);
+      border-color: var(--teal);
+      transform: scale(1.2);
+    }
+
+    .s-dot.current {
+      background: var(--blue);
+      border-color: var(--blue);
+      animation: pulse 1.5s infinite;
+    }
 
     /* ── Result screen ──────────────────────────────────────── */
-    #result-screen { display: none; }
+    #result-screen {
+      display: none;
+    }
 
     .result-card {
-      background: linear-gradient(150deg, rgba(200,223,255,0.1), rgba(255,255,255,0.04));
+      background: linear-gradient(150deg, rgba(200, 223, 255, 0.1), rgba(255, 255, 255, 0.04));
       border: 1px solid var(--line);
       border-radius: 20px;
       padding: 2.5rem 2rem;
       text-align: center;
       backdrop-filter: blur(12px);
-      position: relative; overflow: hidden;
+      position: relative;
+      overflow: hidden;
     }
+
     .result-card::before {
       content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(0,209,199,0.08) 0%, transparent 60%);
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(0, 209, 199, 0.08) 0%, transparent 60%);
       pointer-events: none;
     }
 
     .result-level-badge {
       display: inline-block;
-      font-size: 0.90rem; font-weight: 800; letter-spacing: 0.15em;
-      text-transform: uppercase; border-radius: 999px;
-      padding: 0.3rem 1rem; margin-bottom: 1.2rem;
+      font-size: 0.90rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      margin-bottom: 1.2rem;
     }
 
     .result-score-ring {
-      position: relative; width: 150px; height: 150px;
+      position: relative;
+      width: 150px;
+      height: 150px;
       margin: 0 auto 1.5rem;
     }
-    .score-ring-svg { width: 150px; height: 150px; transform: rotate(-90deg); }
-    .ring-bg { fill: none; stroke: rgba(100,130,200,0.12); stroke-width: 10; }
+
+    .score-ring-svg {
+      width: 150px;
+      height: 150px;
+      transform: rotate(-90deg);
+    }
+
+    .ring-bg {
+      fill: none;
+      stroke: rgba(100, 130, 200, 0.12);
+      stroke-width: 10;
+    }
+
     .ring-fill {
-      fill: none; stroke-width: 10; stroke-linecap: round;
-      stroke-dasharray: 408; stroke-dashoffset: 408;
-      transition: stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1);
+      fill: none;
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-dasharray: 408;
+      stroke-dashoffset: 408;
+      transition: stroke-dashoffset 1.5s cubic-bezier(.4, 0, .2, 1);
     }
+
     .ring-label {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
+
     .ring-num {
       font-family: 'Syne', sans-serif;
-      font-size: 2.2rem; font-weight: 800; color: #fff; line-height: 1;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
     }
-    .ring-denom { font-size: 0.91rem; color: var(--muted); font-weight: 600; }
+
+    .ring-denom {
+      font-size: 0.91rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
 
     .result-title {
       font-family: 'Syne', sans-serif;
-      font-size: 1.8rem; font-weight: 800;
-      color: #fff; margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.5rem;
     }
-    .result-desc { color: var(--muted); font-size: 0.93rem; line-height: 1.65; max-width: 480px; margin: 0 auto 2rem; }
+
+    .result-desc {
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.65;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
 
     /* ── Per-question result breakdown ─────────────────────── */
     .breakdown {
       margin: 2rem 0;
-      display: flex; flex-direction: column; gap: 0.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
     }
+
     .breakdown-row {
       display: grid;
       grid-template-columns: 1.4rem 1fr auto;
-      align-items: center; gap: 0.75rem;
+      align-items: center;
+      gap: 0.75rem;
       background: var(--surface-2);
       border: 1px solid var(--line);
-      border-radius: 10px; padding: 0.75rem 1rem;
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
       text-align: left;
     }
-    .breakdown-emoji { font-size: 1rem; }
-    .breakdown-label { font-size: 0.91rem; font-weight: 600; color: var(--text); }
+
+    .breakdown-emoji {
+      font-size: 1rem;
+    }
+
+    .breakdown-label {
+      font-size: 0.91rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
     .breakdown-score {
-      font-size: 0.90rem; font-weight: 800;
-      padding: 0.2rem 0.6rem; border-radius: 6px;
+      font-size: 0.90rem;
+      font-weight: 800;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
       white-space: nowrap;
     }
-    .score-0 { background: rgba(230,57,70,0.15); color: #f87171; }
-    .score-1 { background: rgba(251,146,60,0.15); color: #fb923c; }
-    .score-2 { background: rgba(251,191,36,0.15); color: #fbbf24; }
-    .score-3 { background: rgba(52,211,153,0.15); color: #34d399; }
-    .score-4 { background: rgba(0,209,199,0.15); color: var(--teal); }
+
+    .score-0 {
+      background: rgba(230, 57, 70, 0.15);
+      color: #f87171;
+    }
+
+    .score-1 {
+      background: rgba(251, 146, 60, 0.15);
+      color: #fb923c;
+    }
+
+    .score-2 {
+      background: rgba(251, 191, 36, 0.15);
+      color: #fbbf24;
+    }
+
+    .score-3 {
+      background: rgba(52, 211, 153, 0.15);
+      color: #34d399;
+    }
+
+    .score-4 {
+      background: rgba(0, 209, 199, 0.15);
+      color: var(--teal);
+    }
 
     /* ── Recommendation pills ─────────────────────────────── */
-    .reco-section { margin: 2rem 0 1rem; text-align: left; }
+    .reco-section {
+      margin: 2rem 0 1rem;
+      text-align: left;
+    }
+
     .reco-title {
-      font-size: 0.88rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--blue-soft); margin-bottom: 0.9rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue-soft);
+      margin-bottom: 0.9rem;
     }
-    .reco-list { display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .reco-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
     .reco-item {
-      display: flex; align-items: flex-start; gap: 0.7rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
       padding: 0.75rem 1rem;
-      background: rgba(46,114,255,0.07);
-      border: 1px solid rgba(46,114,255,0.15);
-      border-radius: 10px; font-size: 0.92rem; color: var(--text); line-height: 1.5;
+      background: rgba(46, 114, 255, 0.07);
+      border: 1px solid rgba(46, 114, 255, 0.15);
+      border-radius: 10px;
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.5;
     }
-    .reco-item .ri { flex-shrink: 0; margin-top: 1px; }
+
+    .reco-item .ri {
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
 
     .cta-row {
-      display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
     }
+
     .btn-cta {
       background: linear-gradient(135deg, var(--teal), var(--blue));
-      border: none; color: #fff; padding: 0.75rem 1.8rem;
-      border-radius: 10px; font-family: 'Manrope', sans-serif;
-      font-size: 0.9rem; font-weight: 700; cursor: pointer;
-      transition: all 0.25s; box-shadow: 0 4px 20px rgba(0,209,199,0.25);
-      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+      border: none;
+      color: #fff;
+      padding: 0.75rem 1.8rem;
+      border-radius: 10px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 4px 20px rgba(0, 209, 199, 0.25);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
-    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,209,199,0.4); }
+
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0, 209, 199, 0.4);
+    }
+
     .btn-outline {
-      background: none; border: 1px solid var(--line); color: var(--muted);
-      padding: 0.75rem 1.8rem; border-radius: 10px;
-      font-family: 'Manrope', sans-serif; font-size: 0.9rem;
-      font-weight: 600; cursor: pointer; transition: all 0.2s;
+      background: none;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      padding: 0.75rem 1.8rem;
+      border-radius: 10px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
     }
-    .btn-outline:hover { border-color: var(--blue-soft); color: var(--blue-soft); }
+
+    .btn-outline:hover {
+      border-color: var(--blue-soft);
+      color: var(--blue-soft);
+    }
 
     /* ── Screen transition ─────────────────────────────────── */
-    .screen { animation: screenIn 0.4s ease forwards; }
+    .screen {
+      animation: screenIn 0.4s ease forwards;
+    }
+
     @keyframes screenIn {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* ── Question transition ─────────────────────────────────── */
-    .q-card.slide-out { animation: qOut 0.25s ease forwards; }
-    .q-card.slide-in  { animation: qIn  0.3s ease forwards; }
-    @keyframes qOut {
-      to { opacity: 0; transform: translateX(-24px); }
+    .q-card.slide-out {
+      animation: qOut 0.25s ease forwards;
     }
+
+    .q-card.slide-in {
+      animation: qIn 0.3s ease forwards;
+    }
+
+    @keyframes qOut {
+      to {
+        opacity: 0;
+        transform: translateX(-24px);
+      }
+    }
+
     @keyframes qIn {
-      from { opacity: 0; transform: translateX(24px); }
-      to   { opacity: 1; transform: translateX(0); }
+      from {
+        opacity: 0;
+        transform: translateX(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
     /* ── Light mode contrast fixes ─────────────────────────── */
@@ -429,376 +842,397 @@
 
     html[data-theme="light"] .q-card,
     html[data-theme="light"] .result-card {
-      background: linear-gradient(150deg, rgba(255,255,255,0.8), rgba(224,236,255,0.62));
-      border-color: rgba(67,94,148,0.24);
+      background: linear-gradient(150deg, rgba(255, 255, 255, 0.8), rgba(224, 236, 255, 0.62));
+      border-color: rgba(67, 94, 148, 0.24);
     }
 
     html[data-theme="light"] .option-btn {
-      background: rgba(230,239,255,0.78);
-      border-color: rgba(67,94,148,0.22);
+      background: rgba(230, 239, 255, 0.78);
+      border-color: rgba(67, 94, 148, 0.22);
       color: #18315d;
     }
 
     html[data-theme="light"] .option-btn:hover:not(:disabled) {
-      background: rgba(0,127,121,0.08);
-      border-color: rgba(0,127,121,0.35);
+      background: rgba(0, 127, 121, 0.08);
+      border-color: rgba(0, 127, 121, 0.35);
     }
 
     html[data-theme="light"] .option-btn.selected {
-      background: rgba(0,127,121,0.14);
-      border-color: rgba(0,127,121,0.45);
+      background: rgba(0, 127, 121, 0.14);
+      border-color: rgba(0, 127, 121, 0.45);
       color: #0f2d46;
     }
+
     html[data-theme="light"] .q-emoji {
-      font-family: "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif;
+      font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
       font-size: 1.45rem;
-      background: rgba(79,142,255,0.22);
-      border-color: rgba(79,142,255,0.5);
+      background: rgba(79, 142, 255, 0.22);
+      border-color: rgba(79, 142, 255, 0.5);
       color: #1f4ea8;
-      box-shadow: 0 1px 3px rgba(33,57,102,0.18);
+      box-shadow: 0 1px 3px rgba(33, 57, 102, 0.18);
       filter: saturate(1.35) contrast(1.15);
     }
+
     html[data-theme="light"] .opt-score,
     html[data-theme="light"] .opt-check {
-      font-family: "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif;
-      background: rgba(79,142,255,0.16);
-      border-color: rgba(67,94,148,0.45);
+      font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+      background: rgba(79, 142, 255, 0.16);
+      border-color: rgba(67, 94, 148, 0.45);
       color: #23477f;
     }
+
     html[data-theme="light"] .option-btn.selected .opt-score,
     html[data-theme="light"] .option-btn.selected .opt-check {
-      background: rgba(0,127,121,0.24);
-      border-color: rgba(0,127,121,0.5);
+      background: rgba(0, 127, 121, 0.24);
+      border-color: rgba(0, 127, 121, 0.5);
       color: #0f5e59;
     }
 
     /* ── Confetti ────────────────────────────────────────────── */
     .confetti-piece {
-      position: fixed; width: 8px; height: 8px;
-      top: -20px; border-radius: 2px;
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      top: -20px;
+      border-radius: 2px;
       animation: confettiFall linear forwards;
-      pointer-events: none; z-index: 999;
+      pointer-events: none;
+      z-index: 999;
     }
+
     @keyframes confettiFall {
-      to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
     }
 
     /* ── Responsive ─────────────────────────────────────────── */
     @media (max-width: 600px) {
-      .q-card { padding: 1.3rem; }
-      .result-card { padding: 1.5rem 1.1rem; }
-      .q-top { gap: 0.7rem; }
+      .q-card {
+        padding: 1.3rem;
+      }
+
+      .result-card {
+        padding: 1.5rem 1.1rem;
+      }
+
+      .q-top {
+        gap: 0.7rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<div class="ambient">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-</div>
+  <div class="ambient">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
 
-<div class="quiz-wrapper">
+  <div class="quiz-wrapper">
 
-  <!-- QUIZ SCREEN -->
-  <div id="quiz-screen" class="screen">
+    <!-- QUIZ SCREEN -->
+    <div id="quiz-screen" class="screen">
 
-    <div class="quiz-header">
-      <div class="quiz-badge"><span></span>Free Assessment · 3 Minutes</div>
-      <h1 class="quiz-title">How <em>Digitally Mature</em><br>Is Your Business?</h1>
-      <p class="quiz-subtitle">Answer 7 honest questions. Get your Digital Maturity Score and a clear picture of where you stand — and where to go next.</p>
-      <div class="quiz-meta">
-        <span>📋 7 Questions</span>
-        <span>⚡ Instant Score</span>
-        <span>🎯 Personalised Insights</span>
+      <div class="quiz-header">
+        <div class="quiz-badge"><span></span>Free Assessment · 3 Minutes</div>
+        <h1 class="quiz-title">How <em>Digitally Mature</em><br>Is Your Business?</h1>
+        <p class="quiz-subtitle">Answer 7 honest questions. Get your Digital Maturity Score and a clear picture of where
+          you stand — and where to go next.</p>
+        <div class="quiz-meta">
+          <span>📋 7 Questions</span>
+          <span>⚡ Instant Score</span>
+          <span>🎯 Personalised Insights</span>
+        </div>
+      </div>
+
+      <div class="score-dots" id="score-dots"></div>
+
+      <div class="progress-outer">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <div class="progress-label">
+        <span id="progress-label-text">Question 1 of 7</span>
+        <span class="q-counter" id="score-so-far">Score: 0 / 28</span>
+      </div>
+
+      <div class="q-card" id="q-card">
+        <!-- populated by JS -->
+      </div>
+
+      <div class="q-nav">
+        <button class="btn-ghost" id="btn-prev" disabled>← Back</button>
+        <button class="btn-primary" id="btn-next" disabled>
+          Next <span class="arrow">→</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- RESULT SCREEN -->
+    <div id="result-screen" class="screen">
+      <div class="result-card" id="result-card">
+        <!-- populated by JS -->
       </div>
     </div>
 
-    <div class="score-dots" id="score-dots"></div>
-
-    <div class="progress-outer">
-      <div class="progress-fill" id="progress-fill"></div>
-    </div>
-    <div class="progress-label">
-      <span id="progress-label-text">Question 1 of 7</span>
-      <span class="q-counter" id="score-so-far">Score: 0 / 28</span>
-    </div>
-
-    <div class="q-card" id="q-card">
-      <!-- populated by JS -->
-    </div>
-
-    <div class="q-nav">
-      <button class="btn-ghost" id="btn-prev" disabled>← Back</button>
-      <button class="btn-primary" id="btn-next" disabled>
-        Next <span class="arrow">→</span>
-      </button>
-    </div>
-
   </div>
 
-  <!-- RESULT SCREEN -->
-  <div id="result-screen" class="screen">
-    <div class="result-card" id="result-card">
-      <!-- populated by JS -->
-    </div>
-  </div>
+  <script>
+    function applyEmbeddedTheme(mode) {
+      const next = mode === "light" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+    }
 
-</div>
+    (function initEmbeddedThemeSync() {
+      let initialTheme = "dark";
 
-<script>
-function applyEmbeddedTheme(mode) {
-  const next = mode === "light" ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", next);
-}
-
-(function initEmbeddedThemeSync() {
-  let initialTheme = "dark";
-
-  try {
-    if (window.parent && window.parent !== window) {
-      const parentTheme = window.parent.document.documentElement.getAttribute("data-theme");
-      if (parentTheme === "light" || parentTheme === "dark") initialTheme = parentTheme;
-    } else {
-      const savedTheme = localStorage.getItem("dag-theme");
-      if (savedTheme === "light" || savedTheme === "dark") {
-        initialTheme = savedTheme;
-      } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
-        initialTheme = "light";
+      try {
+        if (window.parent && window.parent !== window) {
+          const parentTheme = window.parent.document.documentElement.getAttribute("data-theme");
+          if (parentTheme === "light" || parentTheme === "dark") initialTheme = parentTheme;
+        } else {
+          const savedTheme = localStorage.getItem("dag-theme");
+          if (savedTheme === "light" || savedTheme === "dark") {
+            initialTheme = savedTheme;
+          } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+            initialTheme = "light";
+          }
+        }
+      } catch (_) {
+        const savedTheme = localStorage.getItem("dag-theme");
+        if (savedTheme === "light" || savedTheme === "dark") {
+          initialTheme = savedTheme;
+        } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+          initialTheme = "light";
+        }
       }
+
+      applyEmbeddedTheme(initialTheme);
+
+      window.addEventListener("message", function (event) {
+        if (event.origin !== window.location.origin) return;
+        const data = event.data || {};
+        if (data.type === "dag-theme") {
+          applyEmbeddedTheme(data.theme);
+        }
+      });
+
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: "dag-theme-request" }, window.location.origin);
+        }
+      } catch (_) {
+        // noop
+      }
+    })();
+
+    const QUESTIONS = [
+      {
+        emoji: "🧾",
+        number: "01",
+        text: "How do you currently record sales and purchases?",
+        hint: "This reveals your core system maturity",
+        options: [
+          { text: "Fully manual — registers or notebooks", score: 0 },
+          { text: "Excel sheets maintained by hand", score: 1 },
+          { text: "Tally or basic accounting software", score: 2 },
+          { text: "Integrated ERP system", score: 3 },
+          { text: "Fully integrated with real-time dashboards", score: 4 },
+        ],
+      },
+      {
+        emoji: "📦",
+        number: "02",
+        text: "How do you track inventory?",
+        hint: "Many SMBs quietly lose margin here",
+        options: [
+          { text: "Physical count only", score: 0 },
+          { text: "Excel maintained manually", score: 1 },
+          { text: "Software-based stock management", score: 2 },
+          { text: "Barcode-based tracking", score: 3 },
+          { text: "Real-time multi-warehouse tracking with alerts", score: 4 },
+        ],
+      },
+      {
+        emoji: "💰",
+        number: "03",
+        text: "How do you track receivables and follow up on payments?",
+        hint: "Measures your process automation maturity",
+        options: [
+          { text: "Manual reminders by owner", score: 0 },
+          { text: "WhatsApp calls / informal follow-ups", score: 1 },
+          { text: "Excel aging sheet", score: 2 },
+          { text: "Automated reminders via system", score: 3 },
+          { text: "Integrated aging dashboard with escalation rules", score: 4 },
+        ],
+      },
+      {
+        emoji: "📊",
+        number: "04",
+        text: "If someone asked you your exact profit for last month — how long would it take?",
+        hint: "Directly measures your data visibility maturity",
+        options: [
+          { text: "Several days of number-crunching", score: 0 },
+          { text: "1–2 days with help from my accountant", score: 1 },
+          { text: "A few hours pulling from different files", score: 2 },
+          { text: "Instant — I have a live dashboard", score: 3 },
+        ],
+      },
+      {
+        emoji: "🔄",
+        number: "05",
+        text: "Are your systems connected to each other?",
+        hint: "This is where most SMBs hit a wall",
+        options: [
+          { text: "Everything is separate and siloed", score: 0 },
+          { text: "Excel + accounting software — disconnected", score: 1 },
+          { text: "Partial integration — some data flows", score: 2 },
+          { text: "Fully integrated: Sales → Inventory → Accounts", score: 4 },
+        ],
+      },
+      {
+        emoji: "👥",
+        number: "06",
+        text: "How dependent is your business on specific people for information?",
+        hint: "Measures operational risk and documentation",
+        options: [
+          { text: "Only the owner knows everything", score: 0 },
+          { text: "One accountant holds most of the data", score: 1 },
+          { text: "A few key people have critical info", score: 2 },
+          { text: "Anyone can access what they need through systems", score: 4 },
+        ],
+      },
+      {
+        emoji: "📱",
+        number: "07",
+        text: "Do you use digital tools for customer engagement?",
+        hint: "Especially powerful for trading & service SMBs",
+        options: [
+          { text: "Only phone calls", score: 0 },
+          { text: "WhatsApp manually", score: 1 },
+          { text: "CRM for basic lead tracking", score: 2 },
+          { text: "CRM + automated follow-ups", score: 3 },
+          { text: "Full pipeline visibility + conversion analytics", score: 4 },
+        ],
+      },
+    ];
+
+    const LEVELS = [
+      {
+        min: 0, max: 8,
+        label: "Survival Mode",
+        color: "#f87171",
+        bgColor: "rgba(248,113,113,0.15)",
+        badgeColor: "rgba(248,113,113,0.12)",
+        ringColor: "#f87171",
+        emoji: "⚠️",
+        desc: "Your business is running largely on intuition and manual effort. That worked yesterday — but it's a real risk today. Competitors with even basic digital tools are faster, cheaper to run, and harder to beat. The good news? The gap is bridgeable quickly.",
+        recos: [
+          "Start with one free tool: Google Business Profile to get found online",
+          "Move from notebooks to Tally or a free cloud accounting app this month",
+          "Set up WhatsApp Business — it takes 10 minutes and signals professionalism",
+          "Schedule a free 30-minute discovery call with us to map your first step",
+        ],
+      },
+      {
+        min: 9, max: 15,
+        label: "Basic Digitization",
+        color: "#fb923c",
+        bgColor: "rgba(251,146,60,0.15)",
+        badgeColor: "rgba(251,146,60,0.12)",
+        ringColor: "#fb923c",
+        emoji: "🔧",
+        desc: "You've made a start — you have some tools in place. But they're not talking to each other, and too much still depends on manual effort and individual memory. The foundation is there; now it's time to connect and automate.",
+        recos: [
+          "Connect your sales tracking to your accounting software — stop double entry",
+          "One lead. One deal. One system that scales",
+          "Automate payment reminders — this alone often recovers 15-20% faster collections",
+          "Talk to us about a 4-week Power Automate pilot for one key workflow",
+        ],
+      },
+      {
+        min: 16, max: 22,
+        label: "Structured Business",
+        color: "#fbbf24",
+        bgColor: "rgba(251,191,36,0.15)",
+        badgeColor: "rgba(251,191,36,0.12)",
+        ringColor: "#fbbf24",
+        emoji: "📈",
+        desc: "You're running a structured operation with real software in place. The challenge now is depth: your systems are still siloed enough that decisions are slower than they should be, and you're probably still over-reliant on a few people. Integration and automation are your next lever.",
+        recos: [
+          "Invest in connecting ERP + CRM + BI — the ROI is typically 6-9 months",
+          "Build a single dashboard for daily business health (Power BI is your friend)",
+          "Document and automate your top 3 approval workflows",
+          "Consider a phased integration project — let's design the roadmap together",
+        ],
+      },
+      {
+        min: 23, max: 28,
+        label: "Digitally Mature SMB",
+        color: "#34d399",
+        bgColor: "rgba(52,211,153,0.15)",
+        badgeColor: "rgba(52,211,153,0.12)",
+        ringColor: "#34d399",
+        emoji: "🚀",
+        desc: "You're in the top tier of Indian SMBs for digital maturity. Your systems are connected, your data is visible, and your team isn't dependent on any one person. Now is the time to go further: AI-assisted decisions, predictive analytics, and proactive customer engagement.",
+        recos: [
+          "Explore AI-powered analytics on your existing data (Power BI Copilot)",
+          "Implement predictive inventory and receivables alerts",
+          "Build a customer engagement layer with automated lifecycle journeys",
+          "Let's discuss advanced automation and AI integration opportunities",
+        ],
+      },
+    ];
+
+    const SCORE_LABELS = {
+      0: "Manual", 1: "Basic", 2: "Partial", 3: "Structured", 4: "Integrated"
+    };
+
+    // State
+    let current = 0;
+    let answers = new Array(QUESTIONS.length).fill(null);
+    let totalScore = 0;
+
+    // DOM refs
+    const qCard = document.getElementById('q-card');
+    const btnNext = document.getElementById('btn-next');
+    const btnPrev = document.getElementById('btn-prev');
+    const progressFill = document.getElementById('progress-fill');
+    const progressLabel = document.getElementById('progress-label-text');
+    const scoreSoFar = document.getElementById('score-so-far');
+    const quizScreen = document.getElementById('quiz-screen');
+    const resultScreen = document.getElementById('result-screen');
+    const resultCard = document.getElementById('result-card');
+    const scoreDotsEl = document.getElementById('score-dots');
+
+    // Build dots
+    function buildDots() {
+      scoreDotsEl.innerHTML = '';
+      QUESTIONS.forEach((_, i) => {
+        const d = document.createElement('div');
+        d.className = 'score-dot s-dot' + (i === 0 ? ' current' : '');
+        d.id = 'dot-' + i;
+        scoreDotsEl.appendChild(d);
+      });
     }
-  } catch (_) {
-    const savedTheme = localStorage.getItem("dag-theme");
-    if (savedTheme === "light" || savedTheme === "dark") {
-      initialTheme = savedTheme;
-    } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
-      initialTheme = "light";
+
+    function updateDots() {
+      QUESTIONS.forEach((_, i) => {
+        const d = document.getElementById('dot-' + i);
+        d.className = 's-dot';
+        if (answers[i] !== null) d.classList.add('done');
+        else if (i === current) d.classList.add('current');
+      });
     }
-  }
 
-  applyEmbeddedTheme(initialTheme);
+    function renderQuestion(idx, direction = 'in') {
+      const q = QUESTIONS[idx];
 
-  window.addEventListener("message", function (event) {
-    if (event.origin !== window.location.origin) return;
-    const data = event.data || {};
-    if (data.type === "dag-theme") {
-      applyEmbeddedTheme(data.theme);
-    }
-  });
-
-  try {
-    if (window.parent && window.parent !== window) {
-      window.parent.postMessage({ type: "dag-theme-request" }, window.location.origin);
-    }
-  } catch (_) {
-    // noop
-  }
-})();
-
-const QUESTIONS = [
-  {
-    emoji: "🧾",
-    number: "01",
-    text: "How do you currently record sales and purchases?",
-    hint: "This reveals your core system maturity",
-    options: [
-      { text: "Fully manual — registers or notebooks", score: 0 },
-      { text: "Excel sheets maintained by hand", score: 1 },
-      { text: "Tally or basic accounting software", score: 2 },
-      { text: "Integrated ERP system", score: 3 },
-      { text: "Fully integrated with real-time dashboards", score: 4 },
-    ],
-  },
-  {
-    emoji: "📦",
-    number: "02",
-    text: "How do you track inventory?",
-    hint: "Many SMBs quietly lose margin here",
-    options: [
-      { text: "Physical count only", score: 0 },
-      { text: "Excel maintained manually", score: 1 },
-      { text: "Software-based stock management", score: 2 },
-      { text: "Barcode-based tracking", score: 3 },
-      { text: "Real-time multi-warehouse tracking with alerts", score: 4 },
-    ],
-  },
-  {
-    emoji: "💰",
-    number: "03",
-    text: "How do you track receivables and follow up on payments?",
-    hint: "Measures your process automation maturity",
-    options: [
-      { text: "Manual reminders by owner", score: 0 },
-      { text: "WhatsApp calls / informal follow-ups", score: 1 },
-      { text: "Excel aging sheet", score: 2 },
-      { text: "Automated reminders via system", score: 3 },
-      { text: "Integrated aging dashboard with escalation rules", score: 4 },
-    ],
-  },
-  {
-    emoji: "📊",
-    number: "04",
-    text: "If someone asked you your exact profit for last month — how long would it take?",
-    hint: "Directly measures your data visibility maturity",
-    options: [
-      { text: "Several days of number-crunching", score: 0 },
-      { text: "1–2 days with help from my accountant", score: 1 },
-      { text: "A few hours pulling from different files", score: 2 },
-      { text: "Instant — I have a live dashboard", score: 3 },
-    ],
-  },
-  {
-    emoji: "🔄",
-    number: "05",
-    text: "Are your systems connected to each other?",
-    hint: "This is where most SMBs hit a wall",
-    options: [
-      { text: "Everything is separate and siloed", score: 0 },
-      { text: "Excel + accounting software — disconnected", score: 1 },
-      { text: "Partial integration — some data flows", score: 2 },
-      { text: "Fully integrated: Sales → Inventory → Accounts", score: 4 },
-    ],
-  },
-  {
-    emoji: "👥",
-    number: "06",
-    text: "How dependent is your business on specific people for information?",
-    hint: "Measures operational risk and documentation",
-    options: [
-      { text: "Only the owner knows everything", score: 0 },
-      { text: "One accountant holds most of the data", score: 1 },
-      { text: "A few key people have critical info", score: 2 },
-      { text: "Anyone can access what they need through systems", score: 4 },
-    ],
-  },
-  {
-    emoji: "📱",
-    number: "07",
-    text: "Do you use digital tools for customer engagement?",
-    hint: "Especially powerful for trading & service SMBs",
-    options: [
-      { text: "Only phone calls", score: 0 },
-      { text: "WhatsApp manually", score: 1 },
-      { text: "CRM for basic lead tracking", score: 2 },
-      { text: "CRM + automated follow-ups", score: 3 },
-      { text: "Full pipeline visibility + conversion analytics", score: 4 },
-    ],
-  },
-];
-
-const LEVELS = [
-  {
-    min: 0, max: 8,
-    label: "Survival Mode",
-    color: "#f87171",
-    bgColor: "rgba(248,113,113,0.15)",
-    badgeColor: "rgba(248,113,113,0.12)",
-    ringColor: "#f87171",
-    emoji: "⚠️",
-    desc: "Your business is running largely on intuition and manual effort. That worked yesterday — but it's a real risk today. Competitors with even basic digital tools are faster, cheaper to run, and harder to beat. The good news? The gap is bridgeable quickly.",
-    recos: [
-      "Start with one free tool: Google Business Profile to get found online",
-      "Move from notebooks to Tally or a free cloud accounting app this month",
-      "Set up WhatsApp Business — it takes 10 minutes and signals professionalism",
-      "Schedule a free 30-minute discovery call with us to map your first step",
-    ],
-  },
-  {
-    min: 9, max: 15,
-    label: "Basic Digitization",
-    color: "#fb923c",
-    bgColor: "rgba(251,146,60,0.15)",
-    badgeColor: "rgba(251,146,60,0.12)",
-    ringColor: "#fb923c",
-    emoji: "🔧",
-    desc: "You've made a start — you have some tools in place. But they're not talking to each other, and too much still depends on manual effort and individual memory. The foundation is there; now it's time to connect and automate.",
-    recos: [
-      "Connect your sales tracking to your accounting software — stop double entry",
-      "Introduce a simple CRM (HubSpot free tier) to stop losing leads",
-      "Automate payment reminders — this alone often recovers 15-20% faster collections",
-      "Talk to us about a 4-week Power Automate pilot for one key workflow",
-    ],
-  },
-  {
-    min: 16, max: 22,
-    label: "Structured Business",
-    color: "#fbbf24",
-    bgColor: "rgba(251,191,36,0.15)",
-    badgeColor: "rgba(251,191,36,0.12)",
-    ringColor: "#fbbf24",
-    emoji: "📈",
-    desc: "You're running a structured operation with real software in place. The challenge now is depth: your systems are still siloed enough that decisions are slower than they should be, and you're probably still over-reliant on a few people. Integration and automation are your next lever.",
-    recos: [
-      "Invest in connecting ERP + CRM + BI — the ROI is typically 6-9 months",
-      "Build a single dashboard for daily business health (Power BI is your friend)",
-      "Document and automate your top 3 approval workflows",
-      "Consider a phased integration project — let's design the roadmap together",
-    ],
-  },
-  {
-    min: 23, max: 28,
-    label: "Digitally Mature SMB",
-    color: "#34d399",
-    bgColor: "rgba(52,211,153,0.15)",
-    badgeColor: "rgba(52,211,153,0.12)",
-    ringColor: "#34d399",
-    emoji: "🚀",
-    desc: "You're in the top tier of Indian SMBs for digital maturity. Your systems are connected, your data is visible, and your team isn't dependent on any one person. Now is the time to go further: AI-assisted decisions, predictive analytics, and proactive customer engagement.",
-    recos: [
-      "Explore AI-powered analytics on your existing data (Power BI Copilot)",
-      "Implement predictive inventory and receivables alerts",
-      "Build a customer engagement layer with automated lifecycle journeys",
-      "Let's discuss advanced automation and AI integration opportunities",
-    ],
-  },
-];
-
-const SCORE_LABELS = {
-  0: "Manual", 1: "Basic", 2: "Partial", 3: "Structured", 4: "Integrated"
-};
-
-// State
-let current = 0;
-let answers = new Array(QUESTIONS.length).fill(null);
-let totalScore = 0;
-
-// DOM refs
-const qCard         = document.getElementById('q-card');
-const btnNext       = document.getElementById('btn-next');
-const btnPrev       = document.getElementById('btn-prev');
-const progressFill  = document.getElementById('progress-fill');
-const progressLabel = document.getElementById('progress-label-text');
-const scoreSoFar    = document.getElementById('score-so-far');
-const quizScreen    = document.getElementById('quiz-screen');
-const resultScreen  = document.getElementById('result-screen');
-const resultCard    = document.getElementById('result-card');
-const scoreDotsEl   = document.getElementById('score-dots');
-
-// Build dots
-function buildDots() {
-  scoreDotsEl.innerHTML = '';
-  QUESTIONS.forEach((_, i) => {
-    const d = document.createElement('div');
-    d.className = 'score-dot s-dot' + (i === 0 ? ' current' : '');
-    d.id = 'dot-' + i;
-    scoreDotsEl.appendChild(d);
-  });
-}
-
-function updateDots() {
-  QUESTIONS.forEach((_, i) => {
-    const d = document.getElementById('dot-' + i);
-    d.className = 's-dot';
-    if (answers[i] !== null) d.classList.add('done');
-    else if (i === current) d.classList.add('current');
-  });
-}
-
-function renderQuestion(idx, direction = 'in') {
-  const q = QUESTIONS[idx];
-
-  const html = `
+      const html = `
     <div class="q-top">
       <div class="q-emoji">${q.emoji}</div>
       <div class="q-meta">
@@ -819,138 +1253,138 @@ function renderQuestion(idx, direction = 'in') {
     </div>
   `;
 
-  if (direction === 'in') {
-    qCard.classList.remove('slide-out', 'slide-in', 'answered');
-    qCard.innerHTML = html;
-    void qCard.offsetWidth; // force reflow
-    qCard.classList.add('slide-in');
-    if (answers[idx] !== null) qCard.classList.add('answered');
-  } else {
-    qCard.innerHTML = html;
-    if (answers[idx] !== null) qCard.classList.add('answered');
-  }
+      if (direction === 'in') {
+        qCard.classList.remove('slide-out', 'slide-in', 'answered');
+        qCard.innerHTML = html;
+        void qCard.offsetWidth; // force reflow
+        qCard.classList.add('slide-in');
+        if (answers[idx] !== null) qCard.classList.add('answered');
+      } else {
+        qCard.innerHTML = html;
+        if (answers[idx] !== null) qCard.classList.add('answered');
+      }
 
-  // Attach option listeners
-  document.querySelectorAll('.option-btn').forEach(btn => {
-    btn.addEventListener('click', () => selectOption(btn));
-  });
+      // Attach option listeners
+      document.querySelectorAll('.option-btn').forEach(btn => {
+        btn.addEventListener('click', () => selectOption(btn));
+      });
 
-  updateProgress();
-}
+      updateProgress();
+    }
 
-function selectOption(btn) {
-  const optIdx   = parseInt(btn.dataset.idx);
-  const optScore = parseInt(btn.dataset.score);
+    function selectOption(btn) {
+      const optIdx = parseInt(btn.dataset.idx);
+      const optScore = parseInt(btn.dataset.score);
 
-  answers[current] = optIdx;
+      answers[current] = optIdx;
 
-  // Update UI
-  document.querySelectorAll('.option-btn').forEach((b, i) => {
-    b.classList.toggle('selected', i === optIdx);
-    b.querySelector('.opt-check').textContent = (i === optIdx) ? '✓' : '';
-  });
+      // Update UI
+      document.querySelectorAll('.option-btn').forEach((b, i) => {
+        b.classList.toggle('selected', i === optIdx);
+        b.querySelector('.opt-check').textContent = (i === optIdx) ? '✓' : '';
+      });
 
-  qCard.classList.add('answered');
-  btnNext.disabled = false;
+      qCard.classList.add('answered');
+      btnNext.disabled = false;
 
-  // Recalc score
-  totalScore = answers.reduce((sum, ans, qi) => {
-    if (ans === null) return sum;
-    return sum + QUESTIONS[qi].options[ans].score;
-  }, 0);
+      // Recalc score
+      totalScore = answers.reduce((sum, ans, qi) => {
+        if (ans === null) return sum;
+        return sum + QUESTIONS[qi].options[ans].score;
+      }, 0);
 
-  updateProgress();
-  updateDots();
-}
+      updateProgress();
+      updateDots();
+    }
 
-function updateProgress() {
-  const answered = answers.filter(a => a !== null).length;
-  const pct = ((current) / QUESTIONS.length) * 100;
-  progressFill.style.width = pct + '%';
-  progressLabel.textContent = `Question ${current + 1} of ${QUESTIONS.length}`;
-  scoreSoFar.textContent = `Score: ${totalScore} / 28`;
-  btnNext.disabled = answers[current] === null;
-  btnPrev.disabled = current === 0;
+    function updateProgress() {
+      const answered = answers.filter(a => a !== null).length;
+      const pct = ((current) / QUESTIONS.length) * 100;
+      progressFill.style.width = pct + '%';
+      progressLabel.textContent = `Question ${current + 1} of ${QUESTIONS.length}`;
+      scoreSoFar.textContent = `Score: ${totalScore} / 28`;
+      btnNext.disabled = answers[current] === null;
+      btnPrev.disabled = current === 0;
 
-  // Change last question button text
-  if (current === QUESTIONS.length - 1) {
-    btnNext.innerHTML = 'See My Score <span class="arrow">→</span>';
-  } else {
-    btnNext.innerHTML = 'Next <span class="arrow">→</span>';
-  }
-}
+      // Change last question button text
+      if (current === QUESTIONS.length - 1) {
+        btnNext.innerHTML = 'See My Score <span class="arrow">→</span>';
+      } else {
+        btnNext.innerHTML = 'Next <span class="arrow">→</span>';
+      }
+    }
 
-function goNext() {
-  if (answers[current] === null) return;
+    function goNext() {
+      if (answers[current] === null) return;
 
-  if (current === QUESTIONS.length - 1) {
-    showResult();
-    return;
-  }
+      if (current === QUESTIONS.length - 1) {
+        showResult();
+        return;
+      }
 
-  qCard.classList.add('slide-out');
-  setTimeout(() => {
-    qCard.classList.remove('slide-out');
-    current++;
-    renderQuestion(current, 'in');
-    updateDots();
-  }, 220);
-}
+      qCard.classList.add('slide-out');
+      setTimeout(() => {
+        qCard.classList.remove('slide-out');
+        current++;
+        renderQuestion(current, 'in');
+        updateDots();
+      }, 220);
+    }
 
-function goPrev() {
-  if (current === 0) return;
-  qCard.classList.remove('answered');
-  current--;
-  renderQuestion(current, 'in');
-  updateDots();
-  updateProgress();
-}
+    function goPrev() {
+      if (current === 0) return;
+      qCard.classList.remove('answered');
+      current--;
+      renderQuestion(current, 'in');
+      updateDots();
+      updateProgress();
+    }
 
-function showResult() {
-  progressFill.style.width = '100%';
+    function showResult() {
+      progressFill.style.width = '100%';
 
-  quizScreen.style.animation = 'none';
-  quizScreen.style.opacity = '0';
-  quizScreen.style.transform = 'translateY(-16px)';
-  quizScreen.style.transition = 'all 0.35s ease';
+      quizScreen.style.animation = 'none';
+      quizScreen.style.opacity = '0';
+      quizScreen.style.transform = 'translateY(-16px)';
+      quizScreen.style.transition = 'all 0.35s ease';
 
-  setTimeout(() => {
-    quizScreen.style.display = 'none';
-    resultScreen.style.display = 'block';
-    resultScreen.style.animation = 'screenIn 0.4s ease forwards';
-    buildResultCard();
+      setTimeout(() => {
+        quizScreen.style.display = 'none';
+        resultScreen.style.display = 'block';
+        resultScreen.style.animation = 'screenIn 0.4s ease forwards';
+        buildResultCard();
 
-    // Confetti for high scorers
-    if (totalScore >= 20) launchConfetti();
-  }, 320);
-}
+        // Confetti for high scorers
+        if (totalScore >= 20) launchConfetti();
+      }, 320);
+    }
 
-function buildResultCard() {
-  const level = LEVELS.find(l => totalScore >= l.min && totalScore <= l.max) || LEVELS[0];
-  const pct   = Math.round((totalScore / 28) * 100);
-  const circumference = 408;
-  const offset = circumference - (pct / 100) * circumference;
+    function buildResultCard() {
+      const level = LEVELS.find(l => totalScore >= l.min && totalScore <= l.max) || LEVELS[0];
+      const pct = Math.round((totalScore / 28) * 100);
+      const circumference = 408;
+      const offset = circumference - (pct / 100) * circumference;
 
-  // Build breakdown
-  const breakdownRows = QUESTIONS.map((q, i) => {
-    const ans = answers[i];
-    const score = ans !== null ? q.options[ans].score : 0;
-    const maxScore = q.options[q.options.length - 1].score;
-    return `
+      // Build breakdown
+      const breakdownRows = QUESTIONS.map((q, i) => {
+        const ans = answers[i];
+        const score = ans !== null ? q.options[ans].score : 0;
+        const maxScore = q.options[q.options.length - 1].score;
+        return `
       <div class="breakdown-row">
         <span class="breakdown-emoji">${q.emoji}</span>
         <span class="breakdown-label">${q.text.replace(/\?.*/, '').trim()}…</span>
         <span class="breakdown-score score-${score}">${score} / ${maxScore} · ${SCORE_LABELS[score] || 'N/A'}</span>
       </div>
     `;
-  }).join('');
+      }).join('');
 
-  // Recommendations
-  const recoItems = level.recos.map(r => `
+      // Recommendations
+      const recoItems = level.recos.map(r => `
     <div class="reco-item"><span class="ri">→</span> ${r}</div>
   `).join('');
 
-  resultCard.innerHTML = `
+      resultCard.innerHTML = `
     <div class="result-level-badge" style="background:${level.badgeColor}; color:${level.color};">
       ${level.emoji} ${level.label}
     </div>
@@ -988,58 +1422,58 @@ function buildResultCard() {
     </div>
   `;
 
-  // Animate ring
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      document.getElementById('ring-fill').style.strokeDashoffset = offset;
-      document.getElementById('ring-fill').style.transition = 'stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1)';
-    }, 100);
-  });
-}
+      // Animate ring
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          document.getElementById('ring-fill').style.strokeDashoffset = offset;
+          document.getElementById('ring-fill').style.transition = 'stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1)';
+        }, 100);
+      });
+    }
 
-function launchConfetti() {
-  const colors = ['#00D1C7','#2E72FF','#7ea7ff','#fbbf24','#34d399','#f472b6'];
-  for (let i = 0; i < 60; i++) {
-    setTimeout(() => {
-      const el = document.createElement('div');
-      el.className = 'confetti-piece';
-      el.style.left = Math.random() * 100 + 'vw';
-      el.style.background = colors[Math.floor(Math.random() * colors.length)];
-      el.style.animationDuration = (1.5 + Math.random() * 2) + 's';
-      el.style.animationDelay = '0s';
-      el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 4000);
-    }, i * 40);
-  }
-}
+    function launchConfetti() {
+      const colors = ['#00D1C7', '#2E72FF', '#7ea7ff', '#fbbf24', '#34d399', '#f472b6'];
+      for (let i = 0; i < 60; i++) {
+        setTimeout(() => {
+          const el = document.createElement('div');
+          el.className = 'confetti-piece';
+          el.style.left = Math.random() * 100 + 'vw';
+          el.style.background = colors[Math.floor(Math.random() * colors.length)];
+          el.style.animationDuration = (1.5 + Math.random() * 2) + 's';
+          el.style.animationDelay = '0s';
+          el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+          document.body.appendChild(el);
+          setTimeout(() => el.remove(), 4000);
+        }, i * 40);
+      }
+    }
 
-function restartQuiz() {
-  current = 0;
-  answers = new Array(QUESTIONS.length).fill(null);
-  totalScore = 0;
+    function restartQuiz() {
+      current = 0;
+      answers = new Array(QUESTIONS.length).fill(null);
+      totalScore = 0;
 
-  resultScreen.style.display = 'none';
-  quizScreen.style.display = 'block';
-  quizScreen.style.opacity = '1';
-  quizScreen.style.transform = 'none';
-  quizScreen.style.animation = 'screenIn 0.4s ease forwards';
+      resultScreen.style.display = 'none';
+      quizScreen.style.display = 'block';
+      quizScreen.style.opacity = '1';
+      quizScreen.style.transform = 'none';
+      quizScreen.style.animation = 'screenIn 0.4s ease forwards';
 
-  buildDots();
-  renderQuestion(0, 'in');
-  updateProgress();
-  btnNext.disabled = true;
-}
+      buildDots();
+      renderQuestion(0, 'in');
+      updateProgress();
+      btnNext.disabled = true;
+    }
 
-// Event listeners
-btnNext.addEventListener('click', goNext);
-btnPrev.addEventListener('click', goPrev);
+    // Event listeners
+    btnNext.addEventListener('click', goNext);
+    btnPrev.addEventListener('click', goPrev);
 
-// Init
-buildDots();
-renderQuestion(0, 'in');
-updateProgress();
-</script>
+    // Init
+    buildDots();
+    renderQuestion(0, 'in');
+    updateProgress();
+  </script>
 </body>
-</html>
 
+</html>

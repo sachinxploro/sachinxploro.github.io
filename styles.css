@@ -259,12 +259,36 @@ html[data-theme="light"] .site-header {
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
-  transition: color 0.2s ease;
+  position: relative;
+  display: inline-block;
+  transition: color 0.2s ease, transform 0.22s ease;
+}
+
+.nav-list a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.3rem;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+  transition: transform 0.22s ease, opacity 0.22s ease;
 }
 
 .nav-list a:hover,
 .nav-list a:focus-visible {
   color: var(--text);
+  transform: translateY(-2px);
+}
+
+.nav-list a:hover::after,
+.nav-list a:focus-visible::after {
+  transform: scaleX(1);
+  opacity: 1;
 }
 
 .mobile-menu-toggle {
@@ -350,25 +374,39 @@ html[data-theme="light"] .theme-toggle-btn {
 
 .ai-buzz-popup {
   position: fixed;
-  inset: 0;
+  right: 0;
+  bottom: 0;
   z-index: 1300;
   display: none;
+  pointer-events: none;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 .ai-buzz-popup.is-open {
   display: block;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 .ai-buzz-popup-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(4, 10, 30, 0.64);
+  display: none !important;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.ai-buzz-popup::before,
+.ai-buzz-popup::after {
+  content: none !important;
 }
 
 .ai-buzz-popup-panel {
-  position: absolute;
-  right: 1.2rem;
-  bottom: 1.2rem;
+  position: relative;
   width: min(360px, calc(100% - 2rem));
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -376,6 +414,7 @@ html[data-theme="light"] .theme-toggle-btn {
   color: var(--text);
   padding: 1rem;
   box-shadow: 0 16px 30px rgba(2, 8, 24, 0.4);
+  pointer-events: auto;
 }
 
 .ai-buzz-popup-title {
@@ -416,7 +455,7 @@ html[data-theme="light"] .theme-toggle-btn {
 }
 
 html[data-theme="light"] .ai-buzz-popup-backdrop {
-  background: rgba(30, 50, 84, 0.22);
+  background: transparent;
 }
 
 .nav-submenu a {
@@ -436,6 +475,14 @@ html[data-theme="light"] .ai-buzz-popup-backdrop {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+}
+
+.nav-submenu a {
+  transform: none;
+}
+
+.nav-submenu a::after {
+  display: none;
 }
 
 .user-item {

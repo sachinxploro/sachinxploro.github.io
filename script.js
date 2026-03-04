@@ -41,11 +41,7 @@ function initThemeToggle() {
   }
 
   const savedTheme = localStorage.getItem("dag-theme");
-  const preferredTheme = window.matchMedia("(prefers-color-scheme: light)")
-    .matches
-    ? "light"
-    : "dark";
-  applyTheme(savedTheme || preferredTheme);
+  applyTheme(savedTheme || "dark");
 
   themeBtn.addEventListener("click", function () {
     const currentTheme =
@@ -114,7 +110,7 @@ function initMobileNavToggle() {
 
 // ---------------------------------------------
 // 1.3️⃣ AI Buzz timed popup
-// Shows after 10s and then every 120s
+// Shows after 20s and then every 120s
 // ---------------------------------------------
 function initAiBuzzPopup() {
   const currentPath = (window.location.pathname || "").toLowerCase();
@@ -126,7 +122,6 @@ function initAiBuzzPopup() {
   popup.className = "ai-buzz-popup";
   popup.setAttribute("aria-hidden", "true");
   popup.innerHTML = `
-    <div class="ai-buzz-popup-backdrop" data-action="close"></div>
     <div class="ai-buzz-popup-panel" role="dialog" aria-modal="true" aria-label="AI Buzz update">
       <h3 class="ai-buzz-popup-title">Busting the AI Buzz</h3>
       <p class="ai-buzz-popup-text">Everyone's racing to "do AI."<br>But AI without a foundation is a house of cards.<br>The real journey to meaningful AI starts long before the first model is trained.</p>
@@ -138,6 +133,23 @@ function initAiBuzzPopup() {
   `;
 
   document.body.appendChild(popup);
+  popup.style.inset = "auto";
+  popup.style.right = "0";
+  popup.style.bottom = "0";
+  popup.style.background = "transparent";
+  popup.style.backdropFilter = "none";
+  popup.style.webkitBackdropFilter = "none";
+  popup.style.pointerEvents = "none";
+
+  const popupPanel = popup.querySelector(".ai-buzz-popup-panel");
+  if (popupPanel instanceof HTMLElement) {
+    popupPanel.style.pointerEvents = "auto";
+  }
+
+  const legacyBackdrop = popup.querySelector(".ai-buzz-popup-backdrop");
+  if (legacyBackdrop && legacyBackdrop.parentNode) {
+    legacyBackdrop.parentNode.removeChild(legacyBackdrop);
+  }
 
   let popupVisible = false;
   let popupTimerId = null;
@@ -168,12 +180,12 @@ function initAiBuzzPopup() {
     const target = event.target;
     if (!(target instanceof HTMLElement)) return;
     const action = target.getAttribute("data-action");
-    if (action === "close" || action === "cancel") {
+    if (action === "cancel") {
       closePopup();
     }
   });
 
-  scheduleOpen(10000);
+  scheduleOpen(20000);
 }
 
 if (document.readyState === "loading") {
@@ -334,23 +346,14 @@ function initCarousels() {
 
 document.addEventListener("DOMContentLoaded", initCarousels);
 
-function getHeroVideoSourceForToday() {
-  const dayOfMonth = new Date().getDate();
-  const firstHalfUrl =
-    "https://digitalaigaragewebsite.blob.core.windows.net/website/DAG.Hero.optimized.mp4?sp=r&st=2026-02-27T03:17:26Z&se=2030-02-27T11:32:26Z&spr=https&sv=2024-11-04&sr=b&sig=gAiUVnrOVDVIlOxXWWxqkK2YqEl%2BZnG3Efj11KuiEcY%3D";
-  const secondHalfUrl =
-    "https://digitalaigaragewebsite1.blob.core.windows.net/website/DAG.Hero.optimized.mp4?sp=r&st=2026-02-27T03:20:38Z&se=2030-02-27T11:35:38Z&spr=https&sv=2024-11-04&sr=b&sig=eYNzfg60n6JAEG4lm8W%2B1nRSKeZZkiTQLEk%2ByGqAyX8%3D";
-
-  return dayOfMonth <= 15 ? firstHalfUrl : secondHalfUrl;
-}
+const HERO_VIDEO_URL = "https://cdn.digitalaigarage.com/hero-final.mp4";
 
 function initHeroVideoSource() {
   const heroVideo = document.querySelector(".landing-hero-media");
   if (!heroVideo) return;
 
-  const selectedSrc = getHeroVideoSourceForToday();
-  if (heroVideo.getAttribute("src") !== selectedSrc) {
-    heroVideo.setAttribute("src", selectedSrc);
+  if (heroVideo.getAttribute("src") !== HERO_VIDEO_URL) {
+    heroVideo.setAttribute("src", HERO_VIDEO_URL);
     heroVideo.load();
   }
 }
