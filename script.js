@@ -123,7 +123,7 @@ function initAiBuzzPopup() {
   popup.setAttribute("aria-hidden", "true");
   popup.innerHTML = `
     <div class="ai-buzz-popup-panel" role="dialog" aria-modal="true" aria-label="AI Buzz update">
-      <h3 class="ai-buzz-popup-title">Busting the AI Buzz</h3>
+      <h3 class="ai-buzz-popup-title">🤖 Busting the AI Buzz</h3>
       <p class="ai-buzz-popup-text">Everyone's racing to "do AI."<br>But AI without a foundation is a house of cards.<br>The real journey to meaningful AI starts long before the first model is trained.</p>
       <div class="ai-buzz-popup-actions">
         <button type="button" class="ai-buzz-popup-btn ai-buzz-popup-cancel" data-action="cancel">Cancel</button>

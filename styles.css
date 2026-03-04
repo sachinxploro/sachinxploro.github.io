@@ -406,15 +406,18 @@ html[data-theme="light"] .theme-toggle-btn {
 }
 
 .ai-buzz-popup-panel {
-  position: relative;
-  width: min(360px, calc(100% - 2rem));
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: min(360px, 100vw);
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 14px 0 0 0;
   background: var(--surface);
   color: var(--text);
   padding: 1rem;
   box-shadow: 0 16px 30px rgba(2, 8, 24, 0.4);
   pointer-events: auto;
+  margin: 0;
 }
 
 .ai-buzz-popup-title {
