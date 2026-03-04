@@ -22,21 +22,41 @@
       }
 
       .dt-folder-shell {
+        position: relative;
         border-radius: 16px;
         background: linear-gradient(
           150deg,
-          rgba(200, 223, 255, 0.08),
-          rgba(255, 255, 255, 0.03)
+          rgba(200, 223, 255, 0.24),
+          rgba(255, 255, 255, 0.08)
         );
         overflow: hidden;
+        border: 1px solid rgba(214, 230, 255, 0.3);
+        backdrop-filter: blur(14px) saturate(130%);
+        -webkit-backdrop-filter: blur(14px) saturate(130%);
+        box-shadow: 0 18px 44px rgba(7, 16, 40, 0.28);
+      }
+
+      .dt-folder-shell::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.12) 0%,
+          rgba(255, 255, 255, 0.03) 42%,
+          rgba(255, 255, 255, 0) 100%
+        );
       }
 
       .dt-folder-tabs {
+        position: relative;
+        z-index: 1;
         display: flex;
         gap: 0.35rem;
         padding: 0.55rem 0.6rem 0;
         border-bottom: 1px solid var(--line);
-        background: rgba(8, 14, 28, 0.6);
+        background: rgba(160, 182, 232, 0.22);
       }
 
       .dt-folder-tab {
@@ -46,8 +66,12 @@
         border-bottom: 0;
         border-top-left-radius: 12px;
         border-top-right-radius: 12px;
-        background: rgba(24, 36, 72, 0.62);
-        color: var(--muted);
+        background: linear-gradient(
+          160deg,
+          rgba(233, 241, 255, 0.36),
+          rgba(191, 207, 244, 0.18)
+        );
+        color: #2f4b82;
         padding: 1.15rem 1rem;
         font-family: "Manrope", sans-serif;
         font-size: 0.93rem;
@@ -59,39 +83,61 @@
       }
 
       .dt-folder-tab:hover {
-        color: #e8eeff;
-        background: rgba(32, 49, 94, 0.72);
+        color: #183569;
+        background: linear-gradient(
+          160deg,
+          rgba(246, 250, 255, 0.58),
+          rgba(213, 227, 255, 0.32)
+        );
       }
 
       .dt-folder-tab.active {
-        color: #e8eeff;
-        background: rgba(15, 23, 48, 0.95);
+        color: #13284f;
+        background: linear-gradient(
+          160deg,
+          rgba(255, 255, 255, 0.8),
+          rgba(226, 237, 255, 0.5)
+        );
         transform: translateY(0);
       }
 
       html[data-theme="light"] .dt-folder-tabs {
-        background: rgba(183, 198, 228, 0.6);
+        background: rgba(177, 197, 235, 0.3);
       }
 
       html[data-theme="light"] .dt-folder-tab {
-        background: rgba(72, 89, 128, 0.18);
-        color: #445f93;
+        background: linear-gradient(
+          160deg,
+          rgba(241, 248, 255, 0.72),
+          rgba(211, 226, 253, 0.48)
+        );
+        color: #3a548a;
         border-color: rgba(64, 92, 146, 0.35);
       }
 
       html[data-theme="light"] .dt-folder-tab:hover {
         color: #163063;
-        background: rgba(72, 89, 128, 0.28);
+        background: linear-gradient(
+          160deg,
+          rgba(251, 253, 255, 0.92),
+          rgba(223, 236, 255, 0.64)
+        );
       }
 
       html[data-theme="light"] .dt-folder-tab.active {
         color: #122247;
-        background: rgba(243, 248, 255, 0.96);
+        background: linear-gradient(
+          160deg,
+          rgba(255, 255, 255, 0.98),
+          rgba(230, 240, 255, 0.75)
+        );
       }
 
       .dt-folder-body {
+        position: relative;
+        z-index: 1;
         padding: 0;
-        background: rgba(15, 23, 48, 0.8);
+        background: rgba(10, 21, 48, 0.7);
       }
 
       .dt-panel {
