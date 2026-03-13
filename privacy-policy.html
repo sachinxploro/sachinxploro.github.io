@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy – Digital AI Garage</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f5f0;
+      --surface: #ffffff;
+      --ink: #1a1814;
+      --muted: #6b6760;
+      --accent: #2d5a3d;
+      --accent-light: #e8f0eb;
+      --border: #e2ddd6;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* Header */
+    header {
+      background: var(--accent);
+      color: white;
+      padding: 60px 24px 48px;
+      text-align: center;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 28px;
+    }
+
+    .brand-dot {
+      width: 6px; height: 6px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 50%;
+    }
+
+    header h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    .meta-line {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.04em;
+    }
+
+    /* Layout */
+    .wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* TOC */
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 36px;
+      margin: 48px 0 56px;
+    }
+
+    .toc-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc;
+      columns: 2;
+      column-gap: 32px;
+    }
+
+    @media (max-width: 560px) { .toc ol { columns: 1; } }
+
+    .toc li {
+      counter-increment: toc;
+      margin-bottom: 10px;
+      font-size: 14px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      break-inside: avoid;
+    }
+
+    .toc li::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      min-width: 22px;
+    }
+
+    .toc a {
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .toc a:hover { color: var(--accent); }
+
+    /* Sections */
+    section {
+      margin-bottom: 52px;
+      padding-top: 8px;
+    }
+
+    section h2 {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .sec-num {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 3px 9px;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 14px 0 22px;
+    }
+
+    section h3 {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 28px 0 12px;
+    }
+
+    p {
+      color: #3a3830;
+      margin-bottom: 14px;
+      font-size: 15.5px;
+    }
+
+    ul {
+      list-style: none;
+      margin: 8px 0 16px;
+    }
+
+    ul li {
+      font-size: 15.5px;
+      color: #3a3830;
+      padding: 8px 0 8px 22px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    ul li:last-child { border-bottom: none; }
+
+    ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 17px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* Highlight box */
+    .highlight {
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 18px 22px;
+      margin: 20px 0;
+      font-size: 15px;
+      color: #2a3a2f;
+    }
+
+    /* Contact card */
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-top: 20px;
+    }
+
+    .contact-card .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .contact-row:last-child { border-bottom: none; }
+
+    .contact-icon {
+      width: 32px; height: 32px;
+      background: var(--accent-light);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    footer strong { color: var(--ink); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span>Digital AI Garage LLP</span>
+    <span class="brand-dot"></span>
+    <span>Legal</span>
+  </div>
+  <h1>Privacy Policy</h1>
+  <p class="meta-line">Effective date: March 12, 2026 &nbsp;·&nbsp; Version 1.0</p>
+</header>
+
+<div class="wrapper">
+
+  <nav class="toc">
+    <div class="toc-title">Table of Contents</div>
+    <ol>
+      <li><a href="#s1">Introduction</a></li>
+      <li><a href="#s2">Information We Collect</a></li>
+      <li><a href="#s3">How We Use Your Information</a></li>
+      <li><a href="#s4">WhatsApp Business Communication</a></li>
+      <li><a href="#s5">Sharing of Your Information</a></li>
+      <li><a href="#s6">Data Retention</a></li>
+      <li><a href="#s7">Data Security</a></li>
+      <li><a href="#s8">Cookies &amp; Tracking</a></li>
+      <li><a href="#s9">Your Rights</a></li>
+      <li><a href="#s10">Children's Privacy</a></li>
+      <li><a href="#s11">Policy Changes</a></li>
+      <li><a href="#s12">Contact Us</a></li>
+    </ol>
+  </nav>
+
+  <section id="s1">
+    <h2><span class="sec-num">01</span> Introduction</h2>
+    <div class="divider"></div>
+    <p>Digital AI Garage LLP ("we", "our", or "us") is committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our services, including our WhatsApp Business communication services, website at digitalaigarage.com, and any related applications.</p>
+    <p>By using our services, you agree to the collection and use of information in accordance with this policy. If you do not agree, please discontinue use of our services.</p>
+  </section>
+
+  <section id="s2">
+    <h2><span class="sec-num">02</span> Information We Collect</h2>
+    <div class="divider"></div>
+    <h3>Information You Provide</h3>
+    <ul>
+      <li>Name and contact details (phone number, email address)</li>
+      <li>Business name and registration details</li>
+      <li>Messages and communications sent through our WhatsApp Business service</li>
+      <li>Feedback, inquiries, and support requests</li>
+      <li>Payment information (processed securely via third-party providers)</li>
+    </ul>
+    <h3>Information Collected Automatically</h3>
+    <ul>
+      <li>Device information (device type, operating system)</li>
+      <li>IP address and approximate location</li>
+      <li>Usage data and interaction logs</li>
+      <li>WhatsApp messaging metadata (timestamps, delivery status)</li>
+    </ul>
+  </section>
+
+  <section id="s3">
+    <h2><span class="sec-num">03</span> How We Use Your Information</h2>
+    <div class="divider"></div>
+    <p>We use the information we collect for the following purposes:</p>
+    <ul>
+      <li>To provide, operate, and maintain our services</li>
+      <li>To communicate with you via WhatsApp Business API and other channels</li>
+      <li>To respond to your inquiries and provide customer support</li>
+      <li>To process transactions and send related information</li>
+      <li>To send service updates, alerts, and administrative messages</li>
+      <li>To improve our services and develop new features</li>
+      <li>To comply with legal obligations and resolve disputes</li>
+      <li>To prevent fraud and ensure security of our platform</li>
+    </ul>
+  </section>
+
+  <section id="s4">
+    <h2><span class="sec-num">04</span> WhatsApp Business Communication</h2>
+    <div class="divider"></div>
+    <p>We use the WhatsApp Business API to communicate with our customers. By opting in to receive WhatsApp messages from us, you acknowledge:</p>
+    <ul>
+      <li>We will only send messages related to services you have requested or opted into</li>
+      <li>You can opt out at any time by replying <strong>STOP</strong> to any message</li>
+      <li>Message and data rates from your carrier may apply</li>
+      <li>WhatsApp messages are subject to Meta's own privacy policy in addition to ours</li>
+    </ul>
+    <div class="highlight">
+      We do not use WhatsApp to send unsolicited marketing messages. All communications are based on legitimate business purposes or your explicit consent.
+    </div>
+  </section>
+
+  <section id="s5">
+    <h2><span class="sec-num">05</span> Sharing of Your Information</h2>
+    <div class="divider"></div>
+    <p>We do not sell, trade, or rent your personal information to third parties. We may share your information only in the following limited circumstances:</p>
+    <ul>
+      <li><strong>Service providers:</strong> trusted third-party vendors who assist in operating our services, bound by confidentiality agreements</li>
+      <li><strong>Legal requirements:</strong> when required by law, court order, or government authority</li>
+      <li><strong>Business transfers:</strong> in connection with a merger, acquisition, or sale of assets, with prior notice to you</li>
+      <li><strong>With your consent:</strong> for any other purpose with your explicit permission</li>
+    </ul>
+  </section>
+
+  <section id="s6">
+    <h2><span class="sec-num">06</span> Data Retention</h2>
+    <div class="divider"></div>
+    <p>We retain your personal information only as long as necessary to fulfil the purposes outlined in this policy, or as required by applicable law. WhatsApp message content may be retained for up to 12 months for customer service and compliance purposes.</p>
+    <p>You may request deletion of your data at any time by contacting us (see Section 12).</p>
+  </section>
+
+  <section id="s7">
+    <h2><span class="sec-num">07</span> Data Security</h2>
+    <div class="divider"></div>
+    <p>We implement appropriate technical and organisational measures to protect your personal information, including:</p>
+    <ul>
+      <li>Encryption of data in transit and at rest</li>
+      <li>Access controls and authentication measures</li>
+      <li>Regular security assessments</li>
+    </ul>
+    <p>However, no method of transmission over the internet is 100% secure. While we strive to protect your information, we cannot guarantee absolute security.</p>
+  </section>
+
+  <section id="s8">
+    <h2><span class="sec-num">08</span> Cookies &amp; Tracking Technologies</h2>
+    <div class="divider"></div>
+    <p>Our website (digitalaigarage.com) may use cookies and similar tracking technologies to enhance your experience. You can control cookie settings through your browser. We do not use cookies to track users across third-party websites.</p>
+  </section>
+
+  <section id="s9">
+    <h2><span class="sec-num">09</span> Your Rights</h2>
+    <div class="divider"></div>
+    <p>You may have the following rights regarding your personal data:</p>
+    <ul>
+      <li><strong>Right to access:</strong> request a copy of the personal data we hold about you</li>
+      <li><strong>Right to rectification:</strong> request correction of inaccurate data</li>
+      <li><strong>Right to erasure:</strong> request deletion of your personal data</li>
+      <li><strong>Right to object:</strong> object to processing of your data for certain purposes</li>
+      <li><strong>Right to data portability:</strong> request transfer of your data in a structured format</li>
+      <li><strong>Right to withdraw consent:</strong> where processing is based on consent, withdraw it at any time</li>
+    </ul>
+    <p>To exercise any of these rights, please contact us at the details provided in Section 12.</p>
+  </section>
+
+  <section id="s10">
+    <h2><span class="sec-num">10</span> Children's Privacy</h2>
+    <div class="divider"></div>
+    <p>Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from minors. If you believe a child has provided us with personal information, please contact us and we will promptly delete it.</p>
+  </section>
+
+  <section id="s11">
+    <h2><span class="sec-num">11</span> Changes to This Policy</h2>
+    <div class="divider"></div>
+    <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes by posting the updated policy on our website with a revised effective date. Continued use of our services after changes constitutes acceptance of the updated policy.</p>
+  </section>
+
+  <section id="s12">
+    <h2><span class="sec-num">12</span> Contact Us</h2>
+    <div class="divider"></div>
+    <p>If you have any questions, concerns, or requests regarding this Privacy Policy, please contact us:</p>
+    <div class="contact-card">
+      <div class="label">Get in touch</div>
+      <div class="contact-row">
+        <div class="contact-icon">🏢</div>
+        <span><strong>Digital AI Garage LLP</strong></span>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">✉️</div>
+        <span><a href="mailto:sachinxploro1@gmail.com">sachinxploro1@gmail.com</a></span>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">🌐</div>
+        <span><a href="https://www.digitalaigarage.com" target="_blank">www.digitalaigarage.com</a></span>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">📍</div>
+        <span>India</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p><strong>Digital AI Garage LLP</strong> &nbsp;·&nbsp; Privacy Policy &nbsp;·&nbsp; Effective March 12, 2026</p>
+  <p style="margin-top:8px;">© 2026 Digital AI Garage LLP. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

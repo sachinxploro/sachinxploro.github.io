@@ -1774,6 +1774,19 @@ button:focus-visible {
   margin: 0;
 }
 
+.site-footer a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(26px);
