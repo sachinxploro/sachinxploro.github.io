@@ -17,4 +17,4 @@ Thumbs.db
 
 # Local dev and documentation artifacts
 api/local.settings.json
-docs/
+/docs/

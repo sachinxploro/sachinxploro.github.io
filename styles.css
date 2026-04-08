@@ -1349,6 +1349,67 @@ html[data-theme="light"] .ai-buzz-popup-backdrop {
   box-shadow: 0 10px 26px rgba(5, 18, 44, 0.2);
 }
 
+.crm-pdf-section {
+  padding-top: 0.3rem;
+}
+
+.crm-pdf-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(
+    145deg,
+    rgba(14, 25, 51, 0.92),
+    rgba(12, 22, 45, 0.88)
+  );
+  box-shadow: 0 14px 36px rgba(2, 8, 26, 0.36);
+}
+
+.crm-pdf-head {
+  padding: 1.2rem 1.2rem 1rem;
+}
+
+.crm-pdf-kicker {
+  margin: 0 0 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  color: #8ec0ff;
+  font-weight: 700;
+}
+
+.crm-pdf-head h2 {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+  color: #edf5ff;
+}
+
+.crm-pdf-description {
+  margin: 0.6rem 0 0;
+  color: #bdd1f5;
+  max-width: 72ch;
+}
+
+.crm-pdf-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.crm-pdf-viewer-wrap {
+  border-top: 1px solid var(--line);
+  background: #f6f8fc;
+}
+
+.crm-pdf-viewer {
+  width: 100%;
+  height: 72vh;
+  min-height: 620px;
+  border: 0;
+  display: block;
+}
+
 button {
   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
@@ -2821,6 +2882,34 @@ html[data-theme="light"] .hero-audio-toggle {
   color: #122247;
   border-color: rgba(27, 58, 120, 0.36);
   background: rgba(245, 250, 255, 0.88);
+}
+
+html[data-theme="light"] .crm-pdf-card {
+  background: linear-gradient(
+    145deg,
+    rgba(245, 250, 255, 0.98),
+    rgba(232, 241, 255, 0.96)
+  );
+  border-color: rgba(45, 93, 206, 0.28);
+}
+
+html[data-theme="light"] .crm-pdf-kicker {
+  color: #2f67c9;
+}
+
+html[data-theme="light"] .crm-pdf-head h2 {
+  color: #122247;
+}
+
+html[data-theme="light"] .crm-pdf-description {
+  color: #405179;
+}
+
+@media (max-width: 900px) {
+  .crm-pdf-viewer {
+    height: 68vh;
+    min-height: 460px;
+  }
 }
 
 html[data-theme="light"] .secondary-btn {
